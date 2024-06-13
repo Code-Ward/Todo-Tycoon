@@ -19,7 +19,8 @@ struct AddTaskView: View {
     
     var body: some View {
         VStack {
-            
+            // TODO: 화면이 표시되자마자 키보드 활성화 되어있어야 함
+            // TODO: 키보드 활성화 상태의 모달 뷰 화면 크기 조정해야함(반만 차지하게)
             TextField("할일 제목 입력", text: $taskTitle, prompt: Text("할 일을 입력해주세요."))
                 .frame(width: 335, height: 24)
                 .padding(.top, 30)
