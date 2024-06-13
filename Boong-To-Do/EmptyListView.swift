@@ -19,6 +19,8 @@ struct EmptyListView: View {
             Color.secondary.opacity(0.1)
                 .edgesIgnoringSafeArea(.all)
             VStack {
+                
+                Spacer(minLength: 80)
                 // TODO: 로고로 변경가능성?
                 Text("이미지")
                     .frame(width: 150, height: 146)
@@ -38,6 +40,7 @@ struct EmptyListView: View {
                             .background(.black)
                             .clipShape(.rect(cornerRadius: 8))
                     })
+                    Spacer()
                 }
             }
             VStack {
@@ -74,4 +77,33 @@ struct EmptyListView: View {
 
 #Preview {
     EmptyListView()
+}
+
+struct KeyboardObserver: UIViewRepresentable {
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
+
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView(frame: .zero)
+        context.coordinator.startObserving()
+        return view
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
+
+    class Coordinator {
+        private var cancellable: AnyCancellable?
+
+        func startObserving() {
+            cancellable = NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+                .sink { notification in
+                    // 키보드가 나타날 때 처리할 내용
+                }
+            cancellable = NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+                .sink { notification in
+                    // 키보드가 사라질 때 처리할 내용
+                }
+        }
+    }
 }
