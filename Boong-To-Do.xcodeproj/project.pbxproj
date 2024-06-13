@@ -18,6 +18,8 @@
 		913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874552C1888B000EC9C98 /* EmptyListView.swift */; };
 		913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874572C18909F00EC9C98 /* AddTaskView.swift */; };
 		9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874592C18A03700EC9C98 /* DurationSelector.swift */; };
+		C3724ECA2C1B1F310058C67C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C3724EC92C1B1F310058C67C /* .gitignore */; };
+		C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C3724ECB2C1B1F8D0058C67C /* .gitattributes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		913874552C1888B000EC9C98 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		913874572C18909F00EC9C98 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
 		913874592C18A03700EC9C98 /* DurationSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSelector.swift; sourceTree = "<group>"; };
+		C3724EC92C1B1F310058C67C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C3724ECB2C1B1F8D0058C67C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 		9131C8F22C15FD5F006DE1F7 = {
 			isa = PBXGroup;
 			children = (
+				C3724EC92C1B1F310058C67C /* .gitignore */,
+				C3724ECB2C1B1F8D0058C67C /* .gitattributes */,
 				9131C8FD2C15FD5F006DE1F7 /* Boong-To-Do */,
 				9131C90E2C15FD61006DE1F7 /* Boong-To-DoTests */,
 				9131C9182C15FD61006DE1F7 /* Boong-To-DoUITests */,
@@ -244,7 +250,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9131C9062C15FD61006DE1F7 /* Preview Assets.xcassets in Resources */,
+				C3724ECA2C1B1F310058C67C /* .gitignore in Resources */,
 				9131C9032C15FD61006DE1F7 /* Assets.xcassets in Resources */,
+				C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
