@@ -78,32 +78,3 @@ struct EmptyListView: View {
 #Preview {
     EmptyListView()
 }
-
-struct KeyboardObserver: UIViewRepresentable {
-    func makeCoordinator() -> Coordinator {
-        Coordinator()
-    }
-
-    func makeUIView(context: Context) -> UIView {
-        let view = UIView(frame: .zero)
-        context.coordinator.startObserving()
-        return view
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {}
-
-    class Coordinator {
-        private var cancellable: AnyCancellable?
-
-        func startObserving() {
-            cancellable = NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
-                .sink { notification in
-                    // 키보드가 나타날 때 처리할 내용
-                }
-            cancellable = NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
-                .sink { notification in
-                    // 키보드가 사라질 때 처리할 내용
-                }
-        }
-    }
-}
