@@ -20,6 +20,7 @@
 		9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874592C18A03700EC9C98 /* DurationSelector.swift */; };
 		C3724ECA2C1B1F310058C67C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C3724EC92C1B1F310058C67C /* .gitignore */; };
 		C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C3724ECB2C1B1F8D0058C67C /* .gitattributes */; };
+		C3724ECE2C1B2BE60058C67C /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724ECD2C1B2BE60058C67C /* TaskListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		913874592C18A03700EC9C98 /* DurationSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSelector.swift; sourceTree = "<group>"; };
 		C3724EC92C1B1F310058C67C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C3724ECB2C1B1F8D0058C67C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		C3724ECD2C1B2BE60058C67C /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				913874552C1888B000EC9C98 /* EmptyListView.swift */,
 				913874572C18909F00EC9C98 /* AddTaskView.swift */,
 				913874592C18A03700EC9C98 /* DurationSelector.swift */,
+				C3724ECD2C1B2BE60058C67C /* TaskListView.swift */,
 				9131C9022C15FD61006DE1F7 /* Assets.xcassets */,
 				9131C9042C15FD61006DE1F7 /* Preview Content */,
 			);
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3724ECE2C1B2BE60058C67C /* TaskListView.swift in Sources */,
 				913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */,
 				9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */,
 				913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */,
