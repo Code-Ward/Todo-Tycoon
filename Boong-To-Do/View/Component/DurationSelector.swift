@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/**할일 추가 시, 예상 소요시간 선택 모달화면*/
 struct DurationSelector: View {
     
     // 상위 뷰 모달상태

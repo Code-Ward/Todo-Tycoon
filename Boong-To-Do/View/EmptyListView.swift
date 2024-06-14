@@ -4,10 +4,10 @@
 //
 //  Created by 황석현 on 6/11/24.
 //
-// MARK: 할일이 없을 때, 표시되는 뷰
 
 import SwiftUI
 
+/**할일이 없을 때, 표시되는 뷰*/
 struct EmptyListView: View {
     
     // 할일 추가하는 모달 뷰

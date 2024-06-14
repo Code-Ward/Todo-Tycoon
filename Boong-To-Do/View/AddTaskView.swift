@@ -4,10 +4,10 @@
 //
 //  Created by 황석현 on 6/11/24.
 //
-// MARK: 할일 추가 화면(모달)
 
 import SwiftUI
 
+/**할일 추가 모달화면*/
 struct AddTaskView: View {
     
     @State var taskTitle: String = ""

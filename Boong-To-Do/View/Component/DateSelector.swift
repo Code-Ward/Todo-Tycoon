@@ -4,11 +4,10 @@
 //
 //  Created by 황석현 on 6/10/24.
 //
-// MARK: 날짜를 선택할 수 있는 스크롤뷰
 
 import SwiftUI
 
-
+/**날짜를 선택할 수 있는 스크롤뷰*/
 struct DateSelector: View {
     
     @State private var selectedDay: Int? = nil

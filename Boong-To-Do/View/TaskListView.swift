@@ -4,10 +4,10 @@
 //
 //  Created by 황석현 on 6/13/24.
 //
-// MARK: 할일 추가 완료 시, 할일 목록을 보여주는 화면
 
 import SwiftUI
 
+/**할일 추가 완료 시, 할일 목록을 보여주는 화면*/
 struct TaskListView: View {
     
     // TODO: 데이터 구조 설계하기
