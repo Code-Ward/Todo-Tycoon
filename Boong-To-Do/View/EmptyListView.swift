@@ -66,7 +66,7 @@ struct EmptyListView: View {
                         // 할일 추가 화면 모달뷰
                         AddTaskView(addTaskModalViewIsPresented: $addTaskIsPresented)
                         // TODO: 모달 뷰 사이즈 수정해야할지도?
-                            .presentationDetents([.medium])
+                            .presentationDetents([.height(200)])
                             .presentationDragIndicator(.visible)
                     })
                 }
