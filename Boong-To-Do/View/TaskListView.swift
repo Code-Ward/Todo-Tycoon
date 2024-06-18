@@ -11,11 +11,11 @@ import SwiftUI
 struct TaskListView: View {
     
     // TODO: 데이터 구조 설계하기
-    var dummyTaskArray: [DummyTaskData] = [
-        DummyTaskData(taskTitle: "기초디자인 포스터 1", taskDuration: 20, taskHasDone: false),
-        DummyTaskData(taskTitle: "기초디자인 포스터 2", taskDuration: 40, taskHasDone: true),
-        DummyTaskData(taskTitle: "할일 할일 할일 1", taskDuration: 20, taskHasDone: false),
-        DummyTaskData(taskTitle: "할일 할일 할일 2", taskDuration: 30, taskHasDone: true)
+    var mockTaskArray: [MockTaskData] = [
+        MockTaskData(taskTitle: "기초디자인 포스터 1", taskDuration: 20, taskHasDone: false),
+        MockTaskData(taskTitle: "기초디자인 포스터 2", taskDuration: 40, taskHasDone: true),
+        MockTaskData(taskTitle: "할일 할일 할일 1", taskDuration: 20, taskHasDone: false),
+        MockTaskData(taskTitle: "할일 할일 할일 2", taskDuration: 30, taskHasDone: true)
     ]
     
     
@@ -25,7 +25,7 @@ struct TaskListView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {
-                    Text("\(dummyTaskArray.count)개의 할 일")
+                    Text("\(mockTaskArray.count)개의 할 일")
                     
                     Spacer()
                     
@@ -35,8 +35,8 @@ struct TaskListView: View {
                 }
                 .padding()
                 
-                ForEach(dummyTaskArray) { dummy in
-                    TaskListCell(dummyTaskTitle: dummy.taskTitle, dummyTaskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
+                ForEach(mockTaskArray) { dummy in
+                    TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                 }
                 
             }
@@ -50,8 +50,8 @@ struct TaskListView: View {
 
 struct TaskListCell: View {
     
-    var dummyTaskTitle: String
-    var dummyTaskDuration: Int
+    var taskTitle: String
+    var taskDuration: Int
     @State var taskHasDone: Bool
     
     var body: some View {
@@ -62,14 +62,14 @@ struct TaskListCell: View {
                     Image(systemName: "square")
                 }
                 
-                Text(dummyTaskTitle)
+                Text(taskTitle)
                     .font(.system(size: 14))
                     .padding(.horizontal, 10)
                 
                 Spacer()
                 
                 Button(action: {}, label: {
-                    Label("\(dummyTaskDuration)분", systemImage: "clock")
+                    Label("\(taskDuration)분", systemImage: "clock")
                         .font(.system(size: 10))
                         .foregroundStyle(.black)
                 })
@@ -87,12 +87,5 @@ struct TaskListCell: View {
 }
 
 #Preview("TaskCell") {
-    TaskListCell(dummyTaskTitle: "기초 디자인 포스터", dummyTaskDuration: 20, taskHasDone: false)
-}
-
-struct DummyTaskData: Identifiable {
-    let id = UUID()
-    var taskTitle: String
-    var taskDuration: Int
-    var taskHasDone: Bool
+    TaskListCell(taskTitle: "기초 디자인 포스터", taskDuration: 20, taskHasDone: false)
 }

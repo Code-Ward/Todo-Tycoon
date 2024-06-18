@@ -59,7 +59,6 @@ struct AddTaskView: View {
                         .padding()
                 })
             }.sheet(isPresented: $durationSelectorIsPresented, content: {
-                // TODO: 키보드에 화면 밀림 현상 해결하기
                 DurationSelector(isPresented: $durationSelectorIsPresented)
                     .presentationDetents([.height(368)])
                     .presentationDragIndicator(.visible)

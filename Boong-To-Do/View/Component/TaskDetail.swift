@@ -41,7 +41,7 @@ struct TaskDetail: View {
             HStack {
                 Label(
                     // TODO: 예상소요시간 데이터 연동 필요
-                    title: { Text("예상 소요 시간 00분") },
+                    title: { Text("예상 소요 시간 20분") },
                     icon: { Image(systemName: "clock") }
                 )
                 .foregroundStyle(.gray)
@@ -66,6 +66,7 @@ struct TaskDetail: View {
 
 struct TaskTimer: View {
     
+    // TODO: 데이터 연동하기
     @State var progress = 0.6
     
     var body: some View {
@@ -78,11 +79,14 @@ struct TaskTimer: View {
                     .foregroundColor(.gray)
                 
                 VStack {
-                    Text("00:00")
+                    // TODO: 데이터 연동하기
+                    Text("20:00")
                         .font(.system(size: 70))
-                    
-                    Text("00분")
+                        .foregroundStyle(.opacity(0.5))
+                    // TODO: 데이터 연동하기
+                    Text("20분")
                         .font(.system(size: 16))
+                        .foregroundStyle(.opacity(0.5))
                 }
                 .padding(40)
                 
@@ -95,7 +99,7 @@ struct TaskTimer: View {
             }
             
             Button(action: {
-                
+                // TODO: 타이머 시작하기
             }, label: {
                 Text("타이머 시작하기")
                     .foregroundStyle(.white)

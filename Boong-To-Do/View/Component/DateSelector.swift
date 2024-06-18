@@ -19,14 +19,15 @@ struct DateSelector: View {
     
     var body: some View {
         VStack {
-            // 월 단위 표시
+            
+            // MARK: 월 단위 표시
             HStack {
                 Button(action: {
-                    // TODO: 터치 시, 월 변경할 수 있도록 하기
+                    // TODO: 터치 시, 월 변경하기
                 }, label: {
                     Image(systemName: "arrowtriangle.left.fill")
                         .frame(width: 20, height: 20)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.gray)
                         .padding(.leading)
                 })
                 
@@ -40,12 +41,13 @@ struct DateSelector: View {
                 }, label: {
                     Image(systemName: "arrowtriangle.right.fill")
                         .frame(width: 20, height: 20)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.gray)
                 })
                 
                 Spacer()
             }
-            // 날짜 나열
+            
+            // MARK: 날짜 나열
             ScrollViewReader { proxy in
                 ScrollView(.horizontal) {
                     HStack {
@@ -54,10 +56,9 @@ struct DateSelector: View {
                                 // TODO: 날짜와 요일 연동하기
                                 Text("\(weekDays[(day-1)%7])")
                                 Text("\(day)")
-                                    .foregroundColor(.secondary)
                             }
                             .frame(width: 41, height: 47)
-                            .foregroundColor(self.selectedDay == day ? Color.purple : Color.black)
+                            .foregroundStyle(self.selectedDay == day ? Color.accentColor : Color.black)
                             .background(self.selectedDay == day ? Color.gray.opacity(0.3) : Color.clear)
                             .clipShape(.rect(cornerRadius: 4))
                             .id(day)

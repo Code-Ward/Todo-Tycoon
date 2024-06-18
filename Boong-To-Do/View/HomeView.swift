@@ -19,7 +19,9 @@ struct HomeView: View {
                     
                     Spacer()
                     
-                    Button(action: {}, label: {
+                    Button(action: {
+                        // TODO: 버튼을 누르면 어떤 기능?
+                    }, label: {
                         Image(systemName: "ellipsis")
                             .resizable()
                             .scaledToFit()

@@ -22,6 +22,7 @@
 		C3724ECA2C1B1F310058C67C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C3724EC92C1B1F310058C67C /* .gitignore */; };
 		C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C3724ECB2C1B1F8D0058C67C /* .gitattributes */; };
 		C3724ECE2C1B2BE60058C67C /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724ECD2C1B2BE60058C67C /* TaskListView.swift */; };
+		C3F94E972C218A6A005C7291 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F94E962C218A6A005C7291 /* MockData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		C3724EC92C1B1F310058C67C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C3724ECB2C1B1F8D0058C67C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		C3724ECD2C1B2BE60058C67C /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		C3F94E962C218A6A005C7291 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 		C334E0882C1C3AFA00492574 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C3F94E962C218A6A005C7291 /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */,
 				9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */,
 				913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */,
+				C3F94E972C218A6A005C7291 /* MockData.swift in Sources */,
 				9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */,
 				9131C9012C15FD5F006DE1F7 /* HomeView.swift in Sources */,
 				C330C1CF2C1C426000F951D7 /* TaskDetail.swift in Sources */,

@@ -25,6 +25,7 @@ struct DurationSelector: View {
             }, label: {
                 HStack {
                     Spacer()
+                    
                     Image(systemName: "xmark")
                         .padding(.horizontal)
                         .foregroundStyle(.black)
@@ -36,10 +37,10 @@ struct DurationSelector: View {
                 Text("예상 소요 시간")
                     .padding()
                     .bold()
+                
                 Spacer()
             }
             
-            // TODO: Picker 형태 변경 필요, 라이브러리 사용?
             HStack {
                 Picker("시간 선택창", selection: $hourSelection) {
                     ForEach(hourArray, id: \.self) { hour in
@@ -63,7 +64,6 @@ struct DurationSelector: View {
                 Text("min")
             }
             .padding()
-            
         }
     }
 }
