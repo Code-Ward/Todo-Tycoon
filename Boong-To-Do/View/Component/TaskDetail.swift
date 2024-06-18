@@ -57,6 +57,7 @@ struct TaskDetail: View {
             TaskTimer()
             
         }
+        .padding(.horizontal, 20)
     }
 }
 

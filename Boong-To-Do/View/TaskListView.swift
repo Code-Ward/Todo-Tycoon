@@ -11,13 +11,12 @@ import SwiftUI
 struct TaskListView: View {
     
     // TODO: 데이터 구조 설계하기
-    var mockTaskArray: [MockTaskData] = [
+    var TaskArray: [MockTaskData] = [
         MockTaskData(taskTitle: "기초디자인 포스터 1", taskDuration: 20, taskHasDone: false),
         MockTaskData(taskTitle: "기초디자인 포스터 2", taskDuration: 40, taskHasDone: true),
         MockTaskData(taskTitle: "할일 할일 할일 1", taskDuration: 20, taskHasDone: false),
-        MockTaskData(taskTitle: "할일 할일 할일 2", taskDuration: 30, taskHasDone: true)
-    ]
-    
+        MockTaskData(taskTitle: "할일 할일 할일 2", taskDuration: 30, taskHasDone: true)]
+    @State var isPresented = false
     
     var body: some View {
         ZStack{
@@ -25,7 +24,7 @@ struct TaskListView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {
-                    Text("\(mockTaskArray.count)개의 할 일")
+                    Text("\(TaskArray.count)개의 할 일")
                     
                     Spacer()
                     
@@ -35,10 +34,18 @@ struct TaskListView: View {
                 }
                 .padding()
                 
-                ForEach(mockTaskArray) { dummy in
+                ForEach(TaskArray) { dummy in
                     TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
+                        .sheet(isPresented: $isPresented, content: {
+                            TaskDetail()
+                                .presentationDetents([.height(580)])
+                                .presentationDragIndicator(.visible)
+                        })
                 }
-                
+                .onTapGesture {
+                    isPresented.toggle()
+                }
+                 
             }
         }
     }
