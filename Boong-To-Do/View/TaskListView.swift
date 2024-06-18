@@ -45,7 +45,7 @@ struct TaskListView: View {
                 .onTapGesture {
                     isPresented.toggle()
                 }
-                 
+                Spacer()
             }
         }
     }

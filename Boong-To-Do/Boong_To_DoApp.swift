@@ -11,7 +11,7 @@ import SwiftUI
 struct Boong_To_DoApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            HomeView(dataExist: true)
         }
     }
 }

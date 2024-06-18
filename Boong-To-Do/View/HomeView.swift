@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State var dataExist: Bool
+    
     var body: some View {
             VStack {
                 HStack {
@@ -34,11 +36,19 @@ struct HomeView: View {
                 DateSelector()
                     .padding(.bottom, 10)
                     .scrollIndicators(.hidden)
-                EmptyListView()
+                if dataExist {
+                    TaskListView()
+                } else {
+                    EmptyListView()
+                }
             }
     }
 }
 
-#Preview {
-    HomeView()
+#Preview("DataExist") {
+    HomeView(dataExist: true)
+}
+
+#Preview("NoData") {
+    HomeView(dataExist: false)
 }
