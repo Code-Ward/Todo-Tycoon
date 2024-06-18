@@ -41,7 +41,7 @@ struct AddTaskView: View {
                         )
                         .foregroundStyle(.gray)
                         .frame(width: 140, height: 40)
-                        .background(.gray.opacity(0.3))
+                        .background(.gray.opacity(0.1))
                         .clipShape(.rect(cornerRadius: 4))
                         Spacer()
                     }
