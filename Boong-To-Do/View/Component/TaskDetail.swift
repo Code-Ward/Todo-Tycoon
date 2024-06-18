@@ -61,10 +61,6 @@ struct TaskDetail: View {
     }
 }
 
-#Preview("TaskDetail") {
-    TaskDetail()
-}
-
 struct TaskTimer: View {
     
     // TODO: 데이터 연동하기
@@ -113,6 +109,10 @@ struct TaskTimer: View {
             .padding(.top, 20)
         }
     }
+}
+
+#Preview("TaskDetail") {
+    TaskDetail()
 }
 
 #Preview("TaskTimer") {
