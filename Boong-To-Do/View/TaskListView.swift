@@ -22,31 +22,58 @@ struct TaskListView: View {
         ZStack{
             Color.gray.opacity(0.2)
                 .edgesIgnoringSafeArea(.all)
-            VStack {
-                HStack {
-                    Text("\(TaskArray.count)개의 할 일")
+            ScrollView {
+                VStack {
+                    // MARK: 미완료 할일 리스트
+                    Section {
+                        ForEach(TaskArray) { dummy in
+                            TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
+                                .sheet(isPresented: $isPresented, content: {
+                                    TaskDetail()
+                                        .presentationDetents([.height(580)])
+                                        .presentationDragIndicator(.visible)
+                                })
+                        }
+                        .onTapGesture { isPresented.toggle() }
+                    } header: {
+                        HStack {
+                            Text("\(TaskArray.count)개의 할 일")
+                            
+                            Spacer()
+                            
+                            // TODO: 정렬 기능 구현하기
+                            Text("정렬")
+                            Image(systemName: "arrow.up.arrow.down")
+                        }
+                        .padding()
+                    }
+                    // MARK: 완료 할일 리스트
+                    Section {
+                        ForEach(TaskArray) { dummy in
+                            TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
+                                .sheet(isPresented: $isPresented, content: {
+                                    TaskDetail()
+                                        .presentationDetents([.height(580)])
+                                        .presentationDragIndicator(.visible)
+                                })
+                        }
+                        .onTapGesture {
+                            isPresented.toggle()
+                        }
+                    } header: {
+                        HStack {
+                            Text("완료")
+                            
+                            Spacer()
+                        }
+                        .padding()
+                    }
+                    
                     
                     Spacer()
-                    
-                    // TODO: 정렬 기능 구현하기
-                    Text("정렬")
-                    Image(systemName: "arrow.up.arrow.down")
                 }
-                .padding()
-                
-                ForEach(TaskArray) { dummy in
-                    TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
-                        .sheet(isPresented: $isPresented, content: {
-                            TaskDetail()
-                                .presentationDetents([.height(580)])
-                                .presentationDragIndicator(.visible)
-                        })
-                }
-                .onTapGesture {
-                    isPresented.toggle()
-                }
-                Spacer()
             }
+            
         }
     }
 }
@@ -62,34 +89,34 @@ struct TaskListCell: View {
     @State var taskHasDone: Bool
     
     var body: some View {
-            HStack {
-                if taskHasDone {
-                    Image(systemName: "checkmark.square")
-                }else {
-                    Image(systemName: "square")
-                }
-                
-                Text(taskTitle)
-                    .font(.system(size: 14))
-                    .padding(.horizontal, 10)
-                
-                Spacer()
-                
-                Button(action: {}, label: {
-                    Label("\(taskDuration)분", systemImage: "clock")
-                        .font(.system(size: 10))
-                        .foregroundStyle(.black)
-                })
-                .frame(width: 50, height: 18)
-                .background(.gray).opacity(0.3)
-                .clipShape(.rect(cornerRadius: 4))
-                
+        HStack {
+            if taskHasDone {
+                Image(systemName: "checkmark.square")
+            }else {
+                Image(systemName: "square")
             }
+            
+            Text(taskTitle)
+                .font(.system(size: 14))
+                .padding(.horizontal, 10)
+            
+            Spacer()
+            
+            Button(action: {}, label: {
+                Label("\(taskDuration)분", systemImage: "clock")
+                    .font(.system(size: 10))
+                    .foregroundStyle(.black)
+            })
+            .frame(width: 50, height: 18)
+            .background(.gray).opacity(0.3)
+            .clipShape(.rect(cornerRadius: 4))
+            
+        }
         .frame(width: .infinity, height: 27)
         .padding(20)
         .background(.white)
         .clipShape(.rect(cornerRadius: 12))
-        .padding(10)
+        .padding(.horizontal, 10)
     }
 }
 
