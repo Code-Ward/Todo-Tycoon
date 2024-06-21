@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State var dataExist: Bool
+    @ObservedObject var viewModel = TaskViewModel()
     
     var body: some View {
             VStack {
@@ -37,7 +38,10 @@ struct HomeView: View {
                     .padding(.bottom, 10)
                     .scrollIndicators(.hidden)
                 if dataExist {
-                    TaskListView()
+                    TaskListView(viewModel: viewModel)
+                        .onAppear {
+                            viewModel.getTaskStates()
+                        }
                 } else {
                     EmptyListView()
                 }

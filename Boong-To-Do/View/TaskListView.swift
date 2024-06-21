@@ -10,13 +10,8 @@ import SwiftUI
 /**할일 추가 완료 시, 할일 목록을 보여주는 화면*/
 struct TaskListView: View {
     
-    // TODO: 데이터 구조 설계하기
-    var TaskArray: [MockTaskData] = [
-        MockTaskData(taskTitle: "기초디자인 포스터 1", taskDuration: 20, taskHasDone: false),
-        MockTaskData(taskTitle: "기초디자인 포스터 2", taskDuration: 40, taskHasDone: true),
-        MockTaskData(taskTitle: "할일 할일 할일 1", taskDuration: 20, taskHasDone: false),
-        MockTaskData(taskTitle: "할일 할일 할일 2", taskDuration: 30, taskHasDone: true)]
     @State var isPresented = false
+    @ObservedObject var viewModel: TaskViewModel
     
     var body: some View {
         ZStack{
@@ -26,7 +21,7 @@ struct TaskListView: View {
                 VStack {
                     // MARK: 미완료 할일 리스트
                     Section {
-                        ForEach(TaskArray) { dummy in
+                        ForEach(viewModel.notCompleteTasks) { dummy in
                             TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                 .sheet(isPresented: $isPresented, content: {
                                     TaskDetail()
@@ -37,7 +32,7 @@ struct TaskListView: View {
                         .onTapGesture { isPresented.toggle() }
                     } header: {
                         HStack {
-                            Text("\(TaskArray.count)개의 할 일")
+                            Text("\(viewModel.notCompleteTasks.count)개의 할 일")
                             
                             Spacer()
                             
@@ -49,7 +44,7 @@ struct TaskListView: View {
                     }
                     // MARK: 완료 할일 리스트
                     Section {
-                        ForEach(TaskArray) { dummy in
+                        ForEach(viewModel.completeTasks) { dummy in
                             TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                 .sheet(isPresented: $isPresented, content: {
                                     TaskDetail()
@@ -79,7 +74,7 @@ struct TaskListView: View {
 }
 
 #Preview("TaskList") {
-    TaskListView()
+    TaskListView(viewModel: TaskViewModel())
 }
 
 struct TaskListCell: View {
@@ -112,7 +107,6 @@ struct TaskListCell: View {
             .clipShape(.rect(cornerRadius: 4))
             
         }
-        .frame(width: .infinity, height: 27)
         .padding(20)
         .background(.white)
         .clipShape(.rect(cornerRadius: 12))
