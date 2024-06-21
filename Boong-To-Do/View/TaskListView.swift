@@ -12,6 +12,7 @@ struct TaskListView: View {
     
     @State var isPresented = false
     @ObservedObject var viewModel: TaskViewModel
+    @State var addTaskIsPresented = false
     
     var body: some View {
         ZStack{
@@ -66,6 +67,33 @@ struct TaskListView: View {
                     
                     
                     Spacer()
+                }
+            }
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    // 터치 시, 할일 추가 모달 나타남
+                    Button(action: {
+                        addTaskIsPresented.toggle()
+                    }, label: {
+                        ZStack {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .frame(width: 23, height: 23)
+                                .foregroundStyle(.white)
+                                .frame(width: 48, height: 48)
+                                .background(.black)
+                                .clipShape(Circle())
+                        }
+                        .padding()
+                    })
+                    .sheet(isPresented: $addTaskIsPresented, content: {
+                        // 할일 추가 화면 모달뷰
+                        AddTaskView(addTaskModalViewIsPresented: $addTaskIsPresented)
+                            .presentationDetents([.height(200)])
+                            .presentationDragIndicator(.visible)
+                    })
                 }
             }
             
