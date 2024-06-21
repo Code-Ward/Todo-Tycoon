@@ -86,13 +86,15 @@ struct TaskListCell: View {
     var body: some View {
         HStack {
             if taskHasDone {
-                Image(systemName: "checkmark.square")
+                Image(systemName: "checkmark.square.fill")
+                    .foregroundStyle(taskHasDone ? .secondaryText.opacity(0.5) : .primaryText)
             }else {
                 Image(systemName: "square")
             }
             
             Text(taskTitle)
                 .font(.system(size: 14))
+                .foregroundStyle(taskHasDone ? .secondaryText : .primaryText)
                 .padding(.horizontal, 10)
             
             Spacer()
@@ -108,12 +110,15 @@ struct TaskListCell: View {
             
         }
         .padding(20)
-        .background(.white)
+        .background(taskHasDone ? .secondaryText.opacity(0.1) : .white)
         .clipShape(.rect(cornerRadius: 12))
         .padding(.horizontal, 10)
     }
 }
 
-#Preview("TaskCell") {
+#Preview("NotDoneTaskCell") {
     TaskListCell(taskTitle: "기초 디자인 포스터", taskDuration: 20, taskHasDone: false)
+}
+#Preview("HasDoneTaskCell") {
+    TaskListCell(taskTitle: "기초 디자인 포스터", taskDuration: 20, taskHasDone: true)
 }
