@@ -140,6 +140,14 @@ struct TaskListCell: View {
         .padding(20)
         .background(taskHasDone ? .secondaryText.opacity(0.1) : .white)
         .clipShape(.rect(cornerRadius: 12))
+        .contextMenu {
+            Button(role: .destructive) {
+                // TODO: 선택 셀 데이터 삭제
+            } label: {
+                Label("삭제하기", systemImage: "trash")
+            }
+        }
+        .clipShape(.rect(cornerRadius: 12))
         .padding(.horizontal, 10)
     }
 }
