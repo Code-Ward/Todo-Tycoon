@@ -25,7 +25,7 @@ struct TaskListView: View {
                         ForEach(viewModel.notCompleteTasks) { dummy in
                             TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                 .sheet(isPresented: $isPresented, content: {
-                                    TaskDetail()
+                                    TaskProcessView()
                                         .presentationDetents([.height(580)])
                                         .presentationDragIndicator(.visible)
                                 })
@@ -48,7 +48,7 @@ struct TaskListView: View {
                         ForEach(viewModel.completeTasks) { dummy in
                             TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                 .sheet(isPresented: $isPresented, content: {
-                                    TaskDetail()
+                                    TaskProcessView()
                                         .presentationDetents([.height(580)])
                                         .presentationDragIndicator(.visible)
                                 })

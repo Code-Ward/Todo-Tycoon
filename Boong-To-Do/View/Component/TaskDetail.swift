@@ -1,19 +1,23 @@
 //
-//  TaskTimer.swift
+//  TaskDetail.swift
 //  Boong-To-Do
 //
-//  Created by 황석현 on 6/14/24.
+//  Created by 황석현 on 6/25/24.
 //
 
 import SwiftUI
 
-/**할일 시작 시, 보여지는 타이머 모달 화면*/
+/**할일 상세사항을 보여주는 뷰*/
 struct TaskDetail: View {
+    
+    var title: String = "기초디자인 포스터"
+    var description: String = "설명 설명 설명 설명 설명 설명 설명 설명"
+    var time: Int = 20
     
     var body: some View {
         VStack {
             HStack {
-                Text("기초디자인 포스터")
+                Text("\(title)")
                     .font(.system(size: 16))
                     .bold()
                     .padding(.bottom, 10)
@@ -21,17 +25,24 @@ struct TaskDetail: View {
             }
             
             HStack {
-                Text("설명 설명 설명 설명 설명 설명 설명 설명 ")
+                Text("\(description)")
                     .font(.system(size: 12))
+                    .frame(maxHeight: 145, alignment: .top)
                     .padding(.bottom, 15)
+                    .layoutPriority(1)
+                
                 Spacer()
             }
             
             HStack {
                 Label(
                     // TODO: 예상소요시간 데이터 연동 필요
-                    title: { Text("예상 소요 시간 20분") },
-                    icon: { Image(systemName: "clock") }
+                    title: { 
+                        Text("예상 소요 시간 \(time)분")
+                    },
+                    icon: { 
+                        Image(systemName: "clock")
+                    }
                 )
                 .foregroundStyle(.gray)
                 .padding()
@@ -41,69 +52,9 @@ struct TaskDetail: View {
                 
                 Spacer()
             }
-            .padding(.bottom, 40)
-            
-            TaskTimer()
-            
-        }
-        .padding(.horizontal, 20)
-    }
-}
-
-struct TaskTimer: View {
-    
-    // TODO: 데이터 연동하기
-    @State var progress = 0.6
-    
-    var body: some View {
-        VStack {
-            ZStack {
-                Circle()
-                    .stroke(lineWidth: 15)
-                    .opacity(0.3)
-                    .frame(width: 250, height: 250)
-                    .foregroundColor(.gray)
-                
-                VStack {
-                    // TODO: 데이터 연동하기
-                    Text("20:00")
-                        .font(.system(size: 70))
-                        .foregroundStyle(.opacity(0.5))
-                    // TODO: 데이터 연동하기
-                    Text("20분")
-                        .font(.system(size: 16))
-                        .foregroundStyle(.opacity(0.5))
-                }
-                .padding(40)
-                
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
-                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
-                    .frame(width: 250, height: 250)
-                    .foregroundColor(Color(.black))
-                    .rotationEffect(Angle(degrees: 270.0))
-            }
-            
-            Button(action: {
-                // TODO: 타이머 시작하기
-            }, label: {
-                Text("타이머 시작하기")
-                    .foregroundStyle(.white)
-                    .bold()
-                    .frame(width: 140)
-                    .padding()
-                    .background(.black)
-                    .clipShape(.rect(cornerRadius: 100))
-            })
-            .padding(.top, 20)
         }
     }
 }
-
 #Preview("TaskDetail") {
     TaskDetail()
-}
-
-#Preview("TaskTimer") {
-    TaskTimer()
 }
