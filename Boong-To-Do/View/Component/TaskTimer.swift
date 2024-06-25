@@ -69,8 +69,11 @@ struct TaskTimer: View {
                             SystemImageButton(imageName: SystemImage.pause.name, width: 12, height: 12)
                         })
                     }
-                    
-                    TextButton(content: "할 일 완료")
+                    Button {
+                        
+                    } label: {
+                        TextButton(content: "할 일 완료")
+                    }
                 }
                 .padding(.vertical, 20)
             }

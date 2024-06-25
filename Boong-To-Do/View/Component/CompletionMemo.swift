@@ -9,8 +9,26 @@ import SwiftUI
 
 /**할일 완료시 메모를 작성하는 화면*/
 struct CompletionMemo: View {
+    
+    @State var inputMemo = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            
+            TaskDetail()
+            
+            Text("메모")
+                .foregroundStyle(.secondary)
+            
+            TextField(text: $inputMemo) {
+                Text("완료한 메모 작성해주세요")
+            }
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: 216, alignment: .top)
+            .background(.textBox)
+            .clipShape(.rect(cornerRadius: 12))
+        }
+        .padding()
     }
 }
 

@@ -17,34 +17,6 @@ struct TaskDetail: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Menu {
-                    Button(role: .destructive, action: {
-                        isPresented.toggle()
-                        print("삭제하기 성공")
-                    }, label: {
-                        Label("삭제하기", systemImage: SystemImage.trash.name)
-                    })
-                } label: {
-                    Image(systemName: SystemImage.ellipsis.name)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                        .foregroundStyle(.black)
-                }
-                .alert(isPresented: $isPresented) {
-                    let deleteButton = Alert.Button.default(Text("취소")) {
-                        isPresented.toggle()
-                    }
-                    let cancelButton = Alert.Button.cancel(Text("삭제하기")) {
-                        // TODO: 데이터 삭제기능 추가
-                        print("데이터 삭제")
-                    }
-                    return Alert(title: Text("할 일 삭제"), message: Text("할일을 정말 삭제하시겠습니까?"), primaryButton: cancelButton, secondaryButton: deleteButton)
-                }
-            }
-            .padding(.top, 20)
 
             HStack {
                 Text("\(title)")
@@ -83,10 +55,42 @@ struct TaskDetail: View {
                 
                 Spacer()
             }
-            Spacer()
         }
     }
 }
+
+struct EllipsisMenu: View {
+    
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        Menu {
+            Button(role: .destructive, action: {
+                isPresented.toggle()
+                print("삭제하기 성공")
+            }, label: {
+                Label("삭제하기", systemImage: SystemImage.trash.name)
+            })
+        } label: {
+            Image(systemName: SystemImage.ellipsis.name)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .foregroundStyle(.black)
+        }
+        .alert(isPresented: $isPresented) {
+            let deleteButton = Alert.Button.default(Text("취소")) {
+                isPresented.toggle()
+            }
+            let cancelButton = Alert.Button.cancel(Text("삭제하기")) {
+                // TODO: 데이터 삭제기능 추가
+                print("데이터 삭제")
+            }
+            return Alert(title: Text("할 일 삭제"), message: Text("할일을 정말 삭제하시겠습니까?"), primaryButton: cancelButton, secondaryButton: deleteButton)
+        }
+    }
+}
+
 #Preview("TaskDetail") {
     TaskDetail()
 }

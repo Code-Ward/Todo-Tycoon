@@ -25,9 +25,26 @@ struct TaskListView: View {
                         ForEach(viewModel.notCompleteTasks) { dummy in
                             TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                 .sheet(isPresented: $isPresented, content: {
-                                    TaskProcessView()
-                                        .presentationDetents([.height(580)])
-                                        .presentationDragIndicator(.visible)
+                                    VStack {
+                                        HStack {
+                                            Spacer()
+                                            EllipsisMenu(isPresented: $isPresented)
+                                            .alert(isPresented: $isPresented) {
+                                                let deleteButton = Alert.Button.default(Text("취소")) {
+                                                    isPresented.toggle()
+                                                }
+                                                let cancelButton = Alert.Button.cancel(Text("삭제하기")) {
+                                                    // TODO: 데이터 삭제기능 추가
+                                                    print("데이터 삭제")
+                                                }
+                                                return Alert(title: Text("할 일 삭제"), message: Text("할일을 정말 삭제하시겠습니까?"), primaryButton: cancelButton, secondaryButton: deleteButton)
+                                            }
+                                        }
+                                        .padding(20)
+                                        TaskProcessView()
+                                            .presentationDetents([.height(580)])
+                                            .presentationDragIndicator(.visible)
+                                    }
                                 })
                         }
                         .onTapGesture { isPresented.toggle() }
