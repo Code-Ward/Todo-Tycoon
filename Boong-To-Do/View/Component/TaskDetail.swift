@@ -13,17 +13,6 @@ struct TaskDetail: View {
     var body: some View {
         VStack {
             HStack {
-                Spacer()
-                Button(action: {}, label: {
-                    Image(systemName: "ellipsis")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 24, height: 24)
-                        .foregroundStyle(.black)
-                })
-            }
-            
-            HStack {
                 Text("기초디자인 포스터")
                     .font(.system(size: 16))
                     .bold()

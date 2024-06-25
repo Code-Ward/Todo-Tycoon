@@ -8,8 +8,17 @@
 import Foundation
 
 struct MockTaskData: Identifiable {
+    // TODO: 날짜 저장 변수 필요
     let id = UUID()
-    var taskTitle: String
-    var taskDuration: Int
-    var taskHasDone: Bool
+    var taskTitle: String = "제목"
+    var taskDescription = ""
+    var taskDuration: Int = 0
+    var taskHasDone: Bool = false
+    
+    static var mockTaskArray: [MockTaskData] = [
+        MockTaskData(taskTitle: "기초디자인 포스터 1", taskDuration: 20, taskHasDone: false),
+        MockTaskData(taskTitle: "기초디자인 포스터 2", taskDuration: 40, taskHasDone: true),
+        MockTaskData(taskTitle: "할일 할일 할일 1", taskDuration: 20, taskHasDone: false),
+        MockTaskData(taskTitle: "할일 할일 할일 2", taskDuration: 30, taskHasDone: true)]
+    
 }
