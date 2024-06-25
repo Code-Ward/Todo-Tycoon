@@ -39,7 +39,7 @@ struct TaskListView: View {
                             
                             // TODO: 정렬 기능 구현하기
                             Text("정렬")
-                            Image(systemName: "arrow.up.arrow.down")
+                            Image(systemName: SystemImage.alignArrow.name)
                         }
                         .padding()
                     }
@@ -78,7 +78,7 @@ struct TaskListView: View {
                         addTaskIsPresented.toggle()
                     }, label: {
                         ZStack {
-                            Image(systemName: "plus")
+                            Image(systemName: SystemImage.plus.name)
                                 .resizable()
                                 .frame(width: 23, height: 23)
                                 .foregroundStyle(.white)
@@ -128,7 +128,7 @@ struct TaskListCell: View {
             Spacer()
             
             Button(action: {}, label: {
-                Label("\(taskDuration)분", systemImage: "clock")
+                Label("\(taskDuration)분", systemImage: SystemImage.clock.name)
                     .font(.system(size: 10))
                     .foregroundStyle(.black)
             })

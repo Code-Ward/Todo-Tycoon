@@ -24,10 +24,10 @@ struct TaskDetail: View {
                         isPresented.toggle()
                         print("삭제하기 성공")
                     }, label: {
-                        Label("삭제하기", systemImage: "trash")
+                        Label("삭제하기", systemImage: SystemImage.trash.name)
                     })
                 } label: {
-                    Image(systemName: "ellipsis")
+                    Image(systemName: SystemImage.ellipsis.name)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24, height: 24)
@@ -72,7 +72,7 @@ struct TaskDetail: View {
                             .font(.system(size: 12))
                     },
                     icon: { 
-                        Image(systemName: "clock")
+                        Image(systemName: SystemImage.clock.name)
                             .frame(width: 18, height: 18)
                     }
                 )

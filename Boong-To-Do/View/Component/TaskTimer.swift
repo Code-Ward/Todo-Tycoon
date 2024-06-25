@@ -12,6 +12,8 @@ struct TaskTimer: View {
     
     // TODO: 데이터 연동하기
     @State var progress = 0.6
+    @State var isStarted = false
+    @State var isRunning = false
     
     var body: some View {
         VStack {
@@ -42,12 +44,36 @@ struct TaskTimer: View {
                     .rotationEffect(Angle(degrees: 270.0))
             }
             // TODO: 타이머 시작하면, 버튼 2개 생성(재생/정지, 할일 완료)
-            Button(action: {
-                // TODO: 타이머 시작하기
-            }, label: {
-                TextButton(content: "타이머 시작하기")
-                    .padding(.vertical, 20)
-            })
+            if !isStarted {
+                Button(action: {
+                    isStarted.toggle()
+                }, label: {
+                    TextButton(content: "타이머 시작하기")
+                        .padding(.vertical, 20)
+                })
+            } else {
+                HStack {
+                    // TODO: if Timer.invalid() 추가
+                    if isRunning {
+                        Button(action: {
+                            // TODO: 타이머 재실행
+                            isRunning.toggle()
+                        }, label: {
+                            SystemImageButton(imageName: SystemImage.play.name, width: 12, height: 12)
+                        })
+                    } else {
+                        Button(action: {
+                            // TODO: 타이머 정지
+                            isRunning.toggle()
+                        }, label: {
+                            SystemImageButton(imageName: SystemImage.pause.name, width: 12, height: 12)
+                        })
+                    }
+                    
+                    TextButton(content: "할 일 완료")
+                }
+                .padding(.vertical, 20)
+            }
         }
     }
 }

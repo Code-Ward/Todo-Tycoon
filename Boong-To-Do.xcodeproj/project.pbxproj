@@ -22,6 +22,7 @@
 		C34156452C29F555008A2454 /* TaskDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156442C29F555008A2454 /* TaskDetail.swift */; };
 		C34156472C29F5B7008A2454 /* TaskProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156462C29F5B7008A2454 /* TaskProcessView.swift */; };
 		C35262CD2C2ACABC0074C0FB /* SystemComponts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */; };
+		C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CE2C2ACEA60074C0FB /* Enums.swift */; };
 		C36DDF752C255787002D214A /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36DDF742C255787002D214A /* TaskViewModel.swift */; };
 		C3724ECA2C1B1F310058C67C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C3724EC92C1B1F310058C67C /* .gitignore */; };
 		C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C3724ECB2C1B1F8D0058C67C /* .gitattributes */; };
@@ -65,6 +66,7 @@
 		C34156442C29F555008A2454 /* TaskDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetail.swift; sourceTree = "<group>"; };
 		C34156462C29F5B7008A2454 /* TaskProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskProcessView.swift; sourceTree = "<group>"; };
 		C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemComponts.swift; sourceTree = "<group>"; };
+		C35262CE2C2ACEA60074C0FB /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C36DDF742C255787002D214A /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		C3724EC92C1B1F310058C67C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C3724ECB2C1B1F8D0058C67C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				C3F94E962C218A6A005C7291 /* MockData.swift */,
+				C35262CE2C2ACEA60074C0FB /* Enums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				C34156472C29F5B7008A2454 /* TaskProcessView.swift in Sources */,
 				913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */,
 				9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */,
+				C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */,
 				C36DDF752C255787002D214A /* TaskViewModel.swift in Sources */,
 				913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */,
 				C34156452C29F555008A2454 /* TaskDetail.swift in Sources */,

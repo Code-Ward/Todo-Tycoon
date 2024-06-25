@@ -11,9 +11,8 @@ import SwiftUI
 struct SystemComponts: View {
     var body: some View {
         VStack {
-            Text("dd")
             TextButton()
-            SystemImageButton()
+            SystemImageButton(imageName: SystemImage.plus.name)
         }
     }
 }
@@ -28,7 +27,7 @@ struct TextButton: View {
         Text("\(content)")
             .foregroundStyle(.white)
             .bold()
-            .frame(width: 140)
+            .frame(minWidth: 120)
             .padding()
             .background(.black)
             .clipShape(.rect(cornerRadius: 100))
@@ -37,16 +36,22 @@ struct TextButton: View {
 
 struct SystemImageButton: View {
     
-    var systemImageName: String = "plus"
-    var width: CGFloat = 24.0
-    var height: CGFloat = 24.0
+    var imageName: String
+    var width: CGFloat
+    var height: CGFloat
+    
+    init(imageName: String, width: CGFloat = 24.0, height: CGFloat = 24.0) {
+            self.imageName = imageName
+            self.width = width
+            self.height = height
+        }
     
     var body: some View {
-        Image(systemName: systemImageName)
+        Image(systemName: imageName)
             .resizable()
             .frame(width: width, height: height)
             .foregroundStyle(.white)
-            .frame(width: width * 2, height: height * 2)
+            .frame(width: 48, height: 48)
             .background(.black)
             .clipShape(Circle())
     }

@@ -25,7 +25,7 @@ struct DateSelector: View {
                 Button(action: {
                     // TODO: 터치 시, 월 변경하기
                 }, label: {
-                    Image(systemName: "arrowtriangle.left.fill")
+                    Image(systemName: SystemImage.leftArrow.name)
                         .frame(width: 20, height: 20)
                         .foregroundStyle(.gray)
                         .padding(.leading)
@@ -39,7 +39,7 @@ struct DateSelector: View {
                 Button(action: {
                     // TODO: 터치 시, 월 변경하기
                 }, label: {
-                    Image(systemName: "arrowtriangle.right.fill")
+                    Image(systemName: SystemImage.rightArrow.name)
                         .frame(width: 20, height: 20)
                         .foregroundStyle(.gray)
                 })
