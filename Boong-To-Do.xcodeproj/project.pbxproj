@@ -23,6 +23,7 @@
 		C34156472C29F5B7008A2454 /* TaskProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156462C29F5B7008A2454 /* TaskProcessView.swift */; };
 		C35262CD2C2ACABC0074C0FB /* SystemComponts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */; };
 		C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CE2C2ACEA60074C0FB /* Enums.swift */; };
+		C35262D12C2AD80F0074C0FB /* CompletionMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */; };
 		C36DDF752C255787002D214A /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36DDF742C255787002D214A /* TaskViewModel.swift */; };
 		C3724ECA2C1B1F310058C67C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C3724EC92C1B1F310058C67C /* .gitignore */; };
 		C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C3724ECB2C1B1F8D0058C67C /* .gitattributes */; };
@@ -67,6 +68,7 @@
 		C34156462C29F5B7008A2454 /* TaskProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskProcessView.swift; sourceTree = "<group>"; };
 		C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemComponts.swift; sourceTree = "<group>"; };
 		C35262CE2C2ACEA60074C0FB /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionMemo.swift; sourceTree = "<group>"; };
 		C36DDF742C255787002D214A /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		C3724EC92C1B1F310058C67C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C3724ECB2C1B1F8D0058C67C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		C334E0872C1C3ADB00492574 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */,
 				913874592C18A03700EC9C98 /* DurationSelector.swift */,
 				9131C9282C16007A006DE1F7 /* DateSelector.swift */,
 				C330C1CE2C1C426000F951D7 /* TaskTimer.swift */,
@@ -346,6 +349,7 @@
 				9131C9012C15FD5F006DE1F7 /* HomeView.swift in Sources */,
 				C330C1CF2C1C426000F951D7 /* TaskTimer.swift in Sources */,
 				9131C8FF2C15FD5F006DE1F7 /* Boong_To_DoApp.swift in Sources */,
+				C35262D12C2AD80F0074C0FB /* CompletionMemo.swift in Sources */,
 				C35262CD2C2ACABC0074C0FB /* SystemComponts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
