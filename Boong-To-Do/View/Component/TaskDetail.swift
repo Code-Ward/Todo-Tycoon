@@ -13,6 +13,7 @@ struct TaskDetail: View {
     var title: String = "기초디자인 포스터"
     var description: String = "설명 설명 설명 설명 설명 설명 설명 설명"
     var time: Int = 20
+    @State var isPresented = false
     
     var body: some View {
         VStack {
@@ -20,6 +21,7 @@ struct TaskDetail: View {
                 Spacer()
                 Menu {
                     Button(role: .destructive, action: {
+                        isPresented.toggle()
                         print("삭제하기 성공")
                     }, label: {
                         Label("삭제하기", systemImage: "trash")
@@ -31,6 +33,16 @@ struct TaskDetail: View {
                         .frame(width: 24, height: 24)
                         .foregroundStyle(.black)
                 }
+                .alert(isPresented: $isPresented) {
+                    let deleteButton = Alert.Button.default(Text("취소")) {
+                        isPresented.toggle()
+                    }
+                    let cancelButton = Alert.Button.cancel(Text("삭제하기")) {
+                        // TODO: 데이터 삭제기능 추가
+                        print("데이터 삭제")
+                    }
+                    return Alert(title: Text("할 일 삭제"), message: Text("할일을 정말 삭제하시겠습니까?"), primaryButton: cancelButton, secondaryButton: deleteButton)
+                }
             }
             .padding(.top, 20)
 
@@ -38,9 +50,10 @@ struct TaskDetail: View {
                 Text("\(title)")
                     .font(.system(size: 16))
                     .bold()
-                    .frame(width: .infinity, height: 24)
                 Spacer()
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 24)
             
             HStack {
                 Text("\(description)")
