@@ -41,22 +41,17 @@ struct TaskTimer: View {
                     .foregroundColor(Color(.black))
                     .rotationEffect(Angle(degrees: 270.0))
             }
-            
+            // TODO: 타이머 시작하면, 버튼 2개 생성(재생/정지, 할일 완료)
             Button(action: {
                 // TODO: 타이머 시작하기
             }, label: {
-                Text("타이머 시작하기")
-                    .foregroundStyle(.white)
-                    .bold()
-                    .frame(width: 140)
-                    .padding()
-                    .background(.black)
-                    .clipShape(.rect(cornerRadius: 100))
+                TextButton(content: "타이머 시작하기")
+                    .padding(.vertical, 20)
             })
-            .padding(.vertical, 20)
         }
     }
 }
+
 #Preview("TaskTimer") {
     TaskTimer()
 }
