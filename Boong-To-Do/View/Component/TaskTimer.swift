@@ -53,7 +53,7 @@ struct TaskTimer: View {
                     .background(.black)
                     .clipShape(.rect(cornerRadius: 100))
             })
-            .padding(.top, 20)
+            .padding(.vertical, 20)
         }
     }
 }

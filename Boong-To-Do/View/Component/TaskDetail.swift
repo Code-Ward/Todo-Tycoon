@@ -17,19 +17,36 @@ struct TaskDetail: View {
     var body: some View {
         VStack {
             HStack {
+                Spacer()
+                Menu {
+                    Button(role: .destructive, action: {
+                        print("삭제하기 성공")
+                    }, label: {
+                        Label("삭제하기", systemImage: "trash")
+                    })
+                } label: {
+                    Image(systemName: "ellipsis")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(.black)
+                }
+            }
+            .padding(.top, 20)
+
+            HStack {
                 Text("\(title)")
                     .font(.system(size: 16))
                     .bold()
-                    .padding(.bottom, 10)
+                    .frame(width: .infinity, height: 24)
                 Spacer()
             }
             
             HStack {
                 Text("\(description)")
                     .font(.system(size: 12))
-                    .frame(maxHeight: 145, alignment: .top)
-                    .padding(.bottom, 15)
-                    .layoutPriority(1)
+                    .frame(minHeight: 50, alignment: .top)
+                    .lineLimit(8)
                 
                 Spacer()
             }
@@ -39,19 +56,21 @@ struct TaskDetail: View {
                     // TODO: 예상소요시간 데이터 연동 필요
                     title: { 
                         Text("예상 소요 시간 \(time)분")
+                            .font(.system(size: 12))
                     },
                     icon: { 
                         Image(systemName: "clock")
+                            .frame(width: 18, height: 18)
                     }
                 )
                 .foregroundStyle(.gray)
-                .padding()
-                .frame(height: 40)
+                .frame(width: 140, height: 30)
                 .background(.gray.opacity(0.1))
                 .clipShape(.rect(cornerRadius: 4))
                 
                 Spacer()
             }
+            Spacer()
         }
     }
 }
