@@ -61,13 +61,12 @@ struct TaskDetail: View {
 
 struct EllipsisMenu: View {
     
-    @Binding var isPresented: Bool
+    @State var isPresented = false
     
     var body: some View {
         Menu {
             Button(role: .destructive, action: {
                 isPresented.toggle()
-                print("삭제하기 성공")
             }, label: {
                 Label("삭제하기", systemImage: SystemImage.trash.name)
             })
