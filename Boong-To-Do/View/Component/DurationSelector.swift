@@ -26,7 +26,7 @@ struct DurationSelector: View {
                 HStack {
                     Spacer()
                     
-                    Image(systemName: "xmark")
+                    Image(systemName: SystemImage.xMark.name)
                         .padding(.horizontal)
                         .foregroundStyle(.black)
                         .bold()

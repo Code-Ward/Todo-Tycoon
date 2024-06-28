@@ -52,7 +52,7 @@ struct EmptyListView: View {
                         addTaskIsPresented.toggle()
                     }, label: {
                         ZStack {
-                            Image(systemName: "plus")   
+                            Image(systemName: SystemImage.plus.name)
                                 .resizable()
                                 .frame(width: 23, height: 23)
                                 .foregroundStyle(.white)

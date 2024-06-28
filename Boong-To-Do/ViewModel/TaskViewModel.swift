@@ -15,7 +15,9 @@ class TaskViewModel: ObservableObject {
     
     func getTaskStates() {
         for item in MockTaskData.mockTaskArray {
-            if item.taskHasDone { completeTasks.append(item)} else {
+            if item.taskHasDone { 
+                completeTasks.append(item)
+            } else {
                 notCompleteTasks.append(item)
             }
         }

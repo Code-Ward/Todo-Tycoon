@@ -40,7 +40,7 @@ struct AddTaskView: View {
                     HStack {
                         Label(
                             title: { Text("예상 소요 시간") },
-                            icon: { Image(systemName: "clock") }
+                            icon: { Image(systemName: SystemImage.clock.name) }
                         )
                         .foregroundStyle(.gray)
                         .frame(width: 140, height: 40)
