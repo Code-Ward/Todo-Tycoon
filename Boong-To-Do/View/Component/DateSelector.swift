@@ -13,9 +13,11 @@ struct DateSelector: View {
     @State private var selectedDay: Int? = nil
     @State private var scrollViewHeight: CGFloat = 0.0
     
-    // TODO: 데이터 구조 수정하기
+    // TODO: 데이터 구조 수정하기(6.2~7.27)
+    // TODO: 일월화수목금토 순으로 수정
+    // TODO: 버튼 터치 시 주단위로 변경(Drag X)
     let days = Array(1...30)
-    let weekDays = ["월", "화", "수", "목", "금", "토", "일"]
+    let weekDays = ["일", "월", "화", "수", "목", "금", "토"]
     
     var body: some View {
         VStack {

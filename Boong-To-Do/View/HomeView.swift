@@ -22,7 +22,7 @@ struct HomeView: View {
                 Spacer()
                 
                 Button(action: {
-                    // TODO: 버튼을 누르면 어떤 기능?
+                    // TODO: 기능 미정
                 }, label: {
                     Image(systemName: SystemImage.ellipsis.name)
                         .resizable()
