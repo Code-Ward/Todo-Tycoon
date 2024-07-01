@@ -10,21 +10,22 @@ import SwiftUI
 /**할일 추가 시, 예상 소요시간 선택 모달화면*/
 struct DurationSelector: View {
     
-    // TODO: 뷰모델 필요
-    
+    @EnvironmentObject var viewModel: TaskViewModel
     // 상위 뷰 모달상태
     @Binding var isPresented: Bool
-    // TODO: 시간 선택에 대한 계산법 필요(일단, 정수형으로 받자)
     @State var hourSelection = 0
     @State var minuteSelection = 0
     var hourArray = Array(0..<24)
     var minuteArray = Array(1..<60)
+    @Binding var taskRequiredTime: Int
     
     var body: some View {
         VStack {
             // X를 누르면 모달 Dismiss
+            // 데이터를 저장
             Button(action: {
                 isPresented.toggle()
+                taskRequiredTime = viewModel.getRequiredTime(hours: hourSelection, minutes: minuteSelection)
             }, label: {
                 HStack {
                     Spacer()
@@ -72,5 +73,5 @@ struct DurationSelector: View {
 }
 
 #Preview {
-    DurationSelector(isPresented: .constant(false))
+    DurationSelector(isPresented: .constant(false), taskRequiredTime: .constant(5))
 }

@@ -11,10 +11,10 @@ struct UserInfo {
     let id = UUID()
     let userID: String = "hamsik"
     let userPW: String = "passpass"// 암호화 필요
-    var tasks: [Todo]?
+    var tasks: [Todo]? = []
 }
 
-struct Todo {
+struct Todo: Identifiable {
     let id = UUID()
     var title: String
     var content: String?

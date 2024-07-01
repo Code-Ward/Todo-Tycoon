@@ -35,17 +35,24 @@ struct AddTaskView: View {
                 .padding(.bottom, 40)
             
             HStack {
-                // 터치 시, 시간 선택 창으로
+                // MARK: 예상 소요시간 선택
                 Button(action: {
                     durationSelectorIsPresented.toggle()
                 }, label: {
                     HStack {
                         Label(
-                            title: { Text("예상 소요 시간") },
+                            title: {
+                                if taskRequiredTime == 0 {
+                                    Text("예상 소요 시간")
+                                } else {
+                                    Text("예상 소요 시간 \(taskRequiredTime/60)분")
+                                        .font(.system(size: 14))
+                                }
+                            },
                             icon: { Image(systemName: SystemImage.clock.name) }
                         )
                         .foregroundStyle(.gray)
-                        .frame(width: 140, height: 40)
+                        .frame(width: 180, height: 40)
                         .background(.gray.opacity(0.1))
                         .clipShape(.rect(cornerRadius: 4))
                         Spacer()
@@ -65,7 +72,7 @@ struct AddTaskView: View {
                         .padding()
                 })
             }.sheet(isPresented: $durationSelectorIsPresented, content: {
-                DurationSelector(isPresented: $durationSelectorIsPresented)
+                DurationSelector(isPresented: $durationSelectorIsPresented, taskRequiredTime: $taskRequiredTime)
                     .presentationDetents([.height(368)])
                     .presentationDragIndicator(.visible)
             })

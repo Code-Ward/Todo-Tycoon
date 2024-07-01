@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel = TaskViewModel()
+    @EnvironmentObject var viewModel: TaskViewModel
     
     var body: some View {
         VStack {
@@ -39,10 +39,10 @@ struct HomeView: View {
                 .onAppear {
                     viewModel.getTaskStates()
                 }
-            if viewModel.mockNotCompleteTasks.isEmpty && viewModel.mockCompleteTasks.isEmpty {
+            if viewModel.notCompleteTasks.isEmpty && viewModel.completeTasks.isEmpty {
                 EmptyListView()
             } else {
-                TaskListView(viewModel: viewModel)
+                TaskListView()
             }
         }
     }

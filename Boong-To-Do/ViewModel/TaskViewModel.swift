@@ -10,12 +10,9 @@ import Foundation
 class TaskViewModel: ObservableObject {
     
     private var model = UserInfo()
-    private var mockModel = MockTaskData()
     @Published var completeTasks: [Todo] = []
     @Published var notCompleteTasks: [Todo] = []
-    @Published var mockCompleteTasks: [MockTaskData] = []
-    @Published var mockNotCompleteTasks: [MockTaskData] = []
-    
+
     func getTaskStates() {
         if let tasks = model.tasks {
             for task in tasks {
@@ -26,18 +23,19 @@ class TaskViewModel: ObservableObject {
                 }
             }
         }
-        
-        for task in MockTaskData.mockTaskArray {
-            if task.taskHasDone {
-                self.mockCompleteTasks.append(task)
-            } else {
-                self.mockNotCompleteTasks.append(task)
-            }
-        }
     }
     
     // TODO: 할일 저장 함수 완성하기
     func getSaveTask(title: String, content: String?, time: Int) {
-        model.tasks?.append(Todo(title: title, requiredTime: time, createdAt: Date.now))
+        self.model.tasks?.append(Todo(title: title, content: content, requiredTime: time, createdAt: Date.now))
+        print("title:\(title)")
+        print("content:\(String(describing: content))")
+        print("time:\(time)")
+        getTaskStates()
+    }
+    
+    /**입력한 시간을 초 단위로 바꿔 저장하는 함수*/
+    func getRequiredTime(hours: Int, minutes: Int) -> Int{
+        return ((hours * 3600) + (minutes * 60))
     }
 }

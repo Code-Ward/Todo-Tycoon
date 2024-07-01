@@ -12,7 +12,7 @@ struct TaskListView: View {
     
     
     @State var isPresented = false
-    @ObservedObject var viewModel: TaskViewModel
+    @EnvironmentObject var viewModel: TaskViewModel
     @State var addTaskIsPresented = false
     
     var body: some View {
@@ -24,8 +24,8 @@ struct TaskListView: View {
                     // MARK: 미완료 할일 리스트
                     Section {
                         // TODO: Mock -> 실데이터로 변경 필요
-                        ForEach(viewModel.mockNotCompleteTasks) { dummy in
-                            TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
+                        ForEach(viewModel.notCompleteTasks) { task in
+                            TaskListCell(taskTitle: task.title, taskDuration: task.requiredTime, taskHasDone: (task.finishedAt != nil))
                                 .sheet(isPresented: $isPresented, content: {
                                     VStack {
                                         TaskDetailView()
@@ -42,22 +42,24 @@ struct TaskListView: View {
                             
                             Spacer()
                             
-                            // TODO: 정렬 기능 구현하기
+                            // TODO: 정렬 기능 구현하기(추후 개발)
                             Text("정렬")
                             Image(systemName: SystemImage.alignArrow.name)
                         }
                         .padding()
                     }
                     // MARK: 완료 할일 리스트
-                    if !viewModel.mockCompleteTasks.isEmpty {
+                    if !viewModel.completeTasks.isEmpty {
                         Section {
                             // TODO: Mock -> 실데이터로 변경 필요
-                            ForEach(viewModel.mockCompleteTasks) { dummy in
-                                TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
+                            ForEach(viewModel.completeTasks) { task in
+                                TaskListCell(taskTitle: task.title, taskDuration: task.requiredTime, taskHasDone: (task.finishedAt != nil))
                                     .sheet(isPresented: $isPresented, content: {
-                                        TaskDetailView()
-                                            .presentationDetents([.height(580)])
-                                            .presentationDragIndicator(.visible)
+                                        VStack {
+                                            TaskDetailView()
+                                                .presentationDetents([.height(580)])
+                                                .presentationDragIndicator(.visible)
+                                        }
                                     })
                             }
                             .onTapGesture {
@@ -80,7 +82,7 @@ struct TaskListView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    // 터치 시, 할일 추가 모달 나타남
+                    // MARK: 할일 추가
                     Button(action: {
                         addTaskIsPresented.toggle()
                     }, label: {
@@ -109,7 +111,7 @@ struct TaskListView: View {
 }
 
 #Preview("TaskList") {
-    TaskListView(viewModel: TaskViewModel())
+    TaskListView()
 }
 
 struct TaskListCell: View {
