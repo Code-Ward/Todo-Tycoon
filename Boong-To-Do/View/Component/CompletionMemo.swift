@@ -15,7 +15,7 @@ struct CompletionMemo: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-            TaskDetail()
+            TaskInfo()
             
             Text("메모")
                 .foregroundStyle(.secondary)

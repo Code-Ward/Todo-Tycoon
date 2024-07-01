@@ -9,8 +9,8 @@ import Foundation
 
 struct UserInfo {
     let id = UUID()
-    let userID: String
-    let userPW: String // 암호화 필요
+    let userID: String = "hamsik"
+    let userPW: String = "passpass"// 암호화 필요
     var tasks: [Todo]?
 }
 

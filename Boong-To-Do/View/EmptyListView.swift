@@ -21,7 +21,7 @@ struct EmptyListView: View {
             VStack {
                 
                 Spacer(minLength: 80)
-                // TODO: 로고로 변경가능성?
+                // TODO: 로고 미정
                 Text("이미지")
                     .frame(width: 150, height: 146)
                     .background(.white)

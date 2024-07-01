@@ -20,8 +20,8 @@
 		9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874592C18A03700EC9C98 /* DurationSelector.swift */; };
 		917326062C314DE6001D4030 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917326052C314DE6001D4030 /* TaskModel.swift */; };
 		C330C1CF2C1C426000F951D7 /* TaskTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C330C1CE2C1C426000F951D7 /* TaskTimer.swift */; };
-		C34156452C29F555008A2454 /* TaskDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156442C29F555008A2454 /* TaskDetail.swift */; };
-		C34156472C29F5B7008A2454 /* TaskProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156462C29F5B7008A2454 /* TaskProcessView.swift */; };
+		C34156452C29F555008A2454 /* TaskInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156442C29F555008A2454 /* TaskInfo.swift */; };
+		C34156472C29F5B7008A2454 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34156462C29F5B7008A2454 /* TaskDetailView.swift */; };
 		C35262CD2C2ACABC0074C0FB /* SystemComponts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */; };
 		C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CE2C2ACEA60074C0FB /* Enums.swift */; };
 		C35262D12C2AD80F0074C0FB /* CompletionMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */; };
@@ -66,8 +66,8 @@
 		913874592C18A03700EC9C98 /* DurationSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSelector.swift; sourceTree = "<group>"; };
 		917326052C314DE6001D4030 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		C330C1CE2C1C426000F951D7 /* TaskTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimer.swift; sourceTree = "<group>"; };
-		C34156442C29F555008A2454 /* TaskDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetail.swift; sourceTree = "<group>"; };
-		C34156462C29F5B7008A2454 /* TaskProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskProcessView.swift; sourceTree = "<group>"; };
+		C34156442C29F555008A2454 /* TaskInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInfo.swift; sourceTree = "<group>"; };
+		C34156462C29F5B7008A2454 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
 		C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemComponts.swift; sourceTree = "<group>"; };
 		C35262CE2C2ACEA60074C0FB /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionMemo.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				913874552C1888B000EC9C98 /* EmptyListView.swift */,
 				9131C9002C15FD5F006DE1F7 /* HomeView.swift */,
 				C3724ECD2C1B2BE60058C67C /* TaskListView.swift */,
-				C34156462C29F5B7008A2454 /* TaskProcessView.swift */,
+				C34156462C29F5B7008A2454 /* TaskDetailView.swift */,
 				C334E0872C1C3ADB00492574 /* Component */,
 			);
 			path = View;
@@ -183,7 +183,7 @@
 				913874592C18A03700EC9C98 /* DurationSelector.swift */,
 				9131C9282C16007A006DE1F7 /* DateSelector.swift */,
 				C330C1CE2C1C426000F951D7 /* TaskTimer.swift */,
-				C34156442C29F555008A2454 /* TaskDetail.swift */,
+				C34156442C29F555008A2454 /* TaskInfo.swift */,
 				C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */,
 			);
 			path = Component;
@@ -340,13 +340,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3724ECE2C1B2BE60058C67C /* TaskListView.swift in Sources */,
-				C34156472C29F5B7008A2454 /* TaskProcessView.swift in Sources */,
+				C34156472C29F5B7008A2454 /* TaskDetailView.swift in Sources */,
 				913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */,
 				9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */,
 				C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */,
 				C36DDF752C255787002D214A /* TaskViewModel.swift in Sources */,
 				913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */,
-				C34156452C29F555008A2454 /* TaskDetail.swift in Sources */,
+				C34156452C29F555008A2454 /* TaskInfo.swift in Sources */,
 				C3F94E972C218A6A005C7291 /* MockData.swift in Sources */,
 				9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */,
 				9131C9012C15FD5F006DE1F7 /* HomeView.swift in Sources */,

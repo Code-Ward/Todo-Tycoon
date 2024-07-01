@@ -14,6 +14,7 @@ struct DurationSelector: View {
     
     // 상위 뷰 모달상태
     @Binding var isPresented: Bool
+    // TODO: 시간 선택에 대한 계산법 필요(일단, 정수형으로 받자)
     @State var hourSelection = 0
     @State var minuteSelection = 0
     var hourArray = Array(0..<24)

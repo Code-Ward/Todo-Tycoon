@@ -10,6 +10,7 @@ import SwiftUI
 /**할일 추가 완료 시, 할일 목록을 보여주는 화면*/
 struct TaskListView: View {
     
+    
     @State var isPresented = false
     @ObservedObject var viewModel: TaskViewModel
     @State var addTaskIsPresented = false
@@ -22,22 +23,19 @@ struct TaskListView: View {
                 VStack {
                     // MARK: 미완료 할일 리스트
                     Section {
-                        ForEach(viewModel.notCompleteTasks) { dummy in
+                        // TODO: Mock -> 실데이터로 변경 필요
+                        ForEach(viewModel.mockNotCompleteTasks) { dummy in
                             TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                 .sheet(isPresented: $isPresented, content: {
                                     VStack {
-                                        HStack {
-                                            Spacer()
-                                            EllipsisMenu(isPresented: isPresented)
-                                        }
-                                        .padding(20)
-                                        TaskProcessView()
+                                        TaskDetailView()
                                             .presentationDetents([.height(580)])
                                             .presentationDragIndicator(.visible)
                                     }
                                 })
                         }
                         .onTapGesture { isPresented.toggle() }
+                        
                     } header: {
                         HStack {
                             Text("\(viewModel.notCompleteTasks.count)개의 할 일")
@@ -51,12 +49,13 @@ struct TaskListView: View {
                         .padding()
                     }
                     // MARK: 완료 할일 리스트
-                    if !viewModel.completeTasks.isEmpty {
+                    if !viewModel.mockCompleteTasks.isEmpty {
                         Section {
-                            ForEach(viewModel.completeTasks) { dummy in
+                            // TODO: Mock -> 실데이터로 변경 필요
+                            ForEach(viewModel.mockCompleteTasks) { dummy in
                                 TaskListCell(taskTitle: dummy.taskTitle, taskDuration: dummy.taskDuration, taskHasDone: dummy.taskHasDone)
                                     .sheet(isPresented: $isPresented, content: {
-                                        TaskProcessView()
+                                        TaskDetailView()
                                             .presentationDetents([.height(580)])
                                             .presentationDragIndicator(.visible)
                                     })

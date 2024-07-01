@@ -8,7 +8,6 @@
 import Foundation
 
 struct MockTaskData: Identifiable {
-    // TODO: 날짜 저장 변수 필요
     let id = UUID()
     var taskTitle: String = "제목"
     var taskDescription = ""

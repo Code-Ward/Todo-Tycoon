@@ -10,8 +10,10 @@ import SwiftUI
 /**할일 추가 모달화면*/
 struct AddTaskView: View {
     
+    @EnvironmentObject var viewModel: TaskViewModel
     @State var taskTitle: String = ""
     @State var taskDesciptions: String = ""
+    @State var taskRequiredTime: Int = 0
     // 상위 뷰 모달 상태
     @Binding var addTaskModalViewIsPresented: Bool
     // 하위 뷰(시간 선택) 모달 상태
@@ -50,11 +52,12 @@ struct AddTaskView: View {
                     }
                     .padding(.horizontal)
                 })
-                // 터치 시, 모달 뷰 Dismiss
+                // MARK: 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
+                    viewModel.getSaveTask(title: taskTitle, content: taskDesciptions, time: taskRequiredTime)
                     addTaskModalViewIsPresented.toggle()
                 }, label: {
-                    Image(systemName: "arrow.up")
+                    Image(systemName: SystemImage.upArrow.name)
                         .foregroundStyle(.white)
                         .frame(width: 32, height: 32)
                         .background(.black)

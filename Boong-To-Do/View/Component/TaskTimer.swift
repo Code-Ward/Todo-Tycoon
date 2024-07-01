@@ -86,6 +86,6 @@ struct TaskTimer: View {
 }
 
 #Preview("TaskProcessView") {
-    TaskProcessView()
+    TaskDetailView()
 }
 

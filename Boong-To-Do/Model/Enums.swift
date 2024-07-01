@@ -17,6 +17,7 @@ enum SystemImage {
     case ellipsis
     case clock
     case alignArrow
+    case upArrow
     case leftArrow
     case rightArrow
     case xMark
@@ -36,6 +37,8 @@ enum SystemImage {
             "clock"
         case .alignArrow:
             "arrow.up.arrow.down"
+        case .upArrow:
+            "arrow.up"
         case .leftArrow:
             "arrowtriangle.left.fill"
         case .rightArrow:

@@ -39,7 +39,7 @@ struct HomeView: View {
                 .onAppear {
                     viewModel.getTaskStates()
                 }
-            if viewModel.notCompleteTasks.isEmpty && viewModel.completeTasks.isEmpty {
+            if viewModel.mockNotCompleteTasks.isEmpty && viewModel.mockCompleteTasks.isEmpty {
                 EmptyListView()
             } else {
                 TaskListView(viewModel: viewModel)

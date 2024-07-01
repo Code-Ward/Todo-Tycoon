@@ -11,11 +11,11 @@ import SwiftUI
  
  할일 상세목록 + 타이머
  */
-struct TaskProcessView: View {
+struct TaskDetailView: View {
     var body: some View {
-        // TODO: 할일 상세사항을 보여주는 뷰를 만들어서 VStack으로 뷰1, 타이머 뷰로 감싼다.
         VStack {
-            TaskDetail()
+        // TODO: 뷰에서 표시할 데이터를 전달해야함
+            TaskInfo()
             
             TaskTimer()
             
@@ -25,5 +25,5 @@ struct TaskProcessView: View {
 }
 
 #Preview {
-    TaskProcessView()
+    TaskDetailView()
 }

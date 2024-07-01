@@ -8,15 +8,23 @@
 import SwiftUI
 
 /**할일 상세사항을 보여주는 뷰*/
-struct TaskDetail: View {
+struct TaskInfo: View {
     
-    var title: String = "기초디자인 포스터"
-    var description: String = "설명 설명 설명 설명 설명 설명 설명 설명"
-    var time: Int = 20
+    @State var title: String = "제목"
+    @State var description: String = "설명"
+    @State var time: Int = 1
     @State var isPresented = false
     
     var body: some View {
         VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    
+                }, label: {
+                    EllipsisMenu(isPresented: false)
+                })
+            }
 
             HStack {
                 Text("\(title)")
@@ -59,6 +67,7 @@ struct TaskDetail: View {
     }
 }
 
+/**메뉴: 삭제하기*/
 struct EllipsisMenu: View {
     
     @State var isPresented = false
@@ -91,5 +100,9 @@ struct EllipsisMenu: View {
 }
 
 #Preview("TaskDetail") {
-    TaskDetail()
+    TaskInfo()
+}
+
+#Preview("ElipsisMenu") {
+    EllipsisMenu()
 }

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Boong_To_DoApp: App {
+    
+    @StateObject var viewModel = TaskViewModel()
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
+                .environmentObject(viewModel)
         }
     }
 }
