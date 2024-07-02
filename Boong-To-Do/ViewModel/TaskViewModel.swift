@@ -16,8 +16,9 @@ class TaskViewModel: ObservableObject {
     
     // MARK: 할일 저장
     /**할일 저장을 저장하며 함수 호출 시, (createdAt: Date.now) 저장*/
+    // TODO: createdAt 입력값 수정
     func saveTask(title: String, content: String?, time: Int) {
-        self.model.tasks?.append(Todo(title: title, content: content, requiredTime: time, createdAt: Date.now))
+        self.model.tasks?.append(Todo(title: title, requiredTime: time, createdAt: Date.now))
         fetchTaskData()
     }
     

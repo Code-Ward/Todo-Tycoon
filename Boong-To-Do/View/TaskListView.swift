@@ -27,7 +27,7 @@ struct TaskListView: View {
                             TaskListCell(task: task)
                                 .sheet(isPresented: $isPresented, content: {
                                     VStack {
-                                        TaskDetailView()
+                                        TaskDetailView(task: task)
                                             .presentationDetents([.height(580)])
                                             .presentationDragIndicator(.visible)
                                     }
@@ -55,7 +55,7 @@ struct TaskListView: View {
                                 TaskListCell(task: task)
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
-                                            TaskDetailView()
+                                            TaskDetailView(task: task)
                                                 .presentationDetents([.height(580)])
                                                 .presentationDragIndicator(.visible)
                                         }

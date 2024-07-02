@@ -10,12 +10,13 @@ import SwiftUI
 /**할일 완료시 메모를 작성하는 화면*/
 struct CompletionMemo: View {
     
+    @State var task: Todo
     @State var inputMemo = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             
-            TaskInfo()
+            TaskInfo(task: $task)
             
             Text("메모")
                 .foregroundStyle(.secondary)
@@ -33,5 +34,5 @@ struct CompletionMemo: View {
 }
 
 #Preview {
-    CompletionMemo()
+    CompletionMemo(task: Todo(title: "CompletionMemo", requiredTime: 12, createdAt: Date()))
 }

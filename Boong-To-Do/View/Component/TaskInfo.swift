@@ -10,24 +10,21 @@ import SwiftUI
 /**할일 상세사항을 보여주는 뷰*/
 struct TaskInfo: View {
     
-    @State var title: String = "제목"
-    @State var description: String = "설명"
-    @State var time: Int = 1
-    @State var isPresented = false
+    @Binding var task: Todo
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(action: {
-                    
-                }, label: {
-                    EllipsisMenu(isPresented: false)
-                })
-            }
+//            HStack {
+//                Spacer()
+//                Button(action: {
+//                    
+//                }, label: {
+//                    EllipsisMenu(isPresented: false)
+//                })
+//            }
 
             HStack {
-                Text("\(title)")
+                Text("\(task.title)")
                     .font(.system(size: 16))
                     .bold()
                 Spacer()
@@ -36,7 +33,7 @@ struct TaskInfo: View {
             .frame(height: 24)
             
             HStack {
-                Text("\(description)")
+                Text("\(task.content)")
                     .font(.system(size: 12))
                     .frame(minHeight: 50, alignment: .top)
                     .lineLimit(8)
@@ -48,7 +45,7 @@ struct TaskInfo: View {
                 Label(
                     // TODO: 예상소요시간 데이터 연동 필요
                     title: { 
-                        Text("예상 소요 시간 \(time)분")
+                        Text("예상 소요 시간 \(task.requiredTime)분")
                             .font(.system(size: 12))
                     },
                     icon: { 
@@ -67,44 +64,8 @@ struct TaskInfo: View {
     }
 }
 
-/**메뉴: 삭제하기*/
-struct EllipsisMenu: View {
-    
-    @State var isPresented = false
-    
-    var body: some View {
-        Menu {
-            
-            Button(role: .destructive, action: {
-                isPresented.toggle()
-            }, label: {
-                Label("삭제하기", systemImage: SystemImage.trash.name)
-            })
-            
-        } label: {
-            Image(systemName: SystemImage.ellipsis.name)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 24, height: 24)
-                .foregroundStyle(.black)
-        }
-        .alert(isPresented: $isPresented) {
-            let deleteButton = Alert.Button.default(Text("취소")) {
-                isPresented.toggle()
-            }
-            let cancelButton = Alert.Button.cancel(Text("삭제하기")) {
-                // TODO: 데이터 삭제기능 추가
-                print("데이터 삭제")
-            }
-            return Alert(title: Text("할 일 삭제"), message: Text("할일을 정말 삭제하시겠습니까?"), primaryButton: cancelButton, secondaryButton: deleteButton)
-        }
-    }
-}
-
 #Preview("TaskDetail") {
-    TaskInfo()
+    TaskInfo(task: .constant(Todo(title: "TaskDetail", requiredTime: 12, createdAt: Date())))
 }
 
-#Preview("ElipsisMenu") {
-    EllipsisMenu()
-}
+

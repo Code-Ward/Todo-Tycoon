@@ -26,6 +26,7 @@
 		C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262CE2C2ACEA60074C0FB /* Enums.swift */; };
 		C35262D12C2AD80F0074C0FB /* CompletionMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */; };
 		C36DDF752C255787002D214A /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36DDF742C255787002D214A /* TaskViewModel.swift */; };
+		C36F92932C33C9E2004C3593 /* EllipsisMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C36F92922C33C9E2004C3593 /* EllipsisMenu.swift */; };
 		C3724ECA2C1B1F310058C67C /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C3724EC92C1B1F310058C67C /* .gitignore */; };
 		C3724ECC2C1B1F8D0058C67C /* .gitattributes in Resources */ = {isa = PBXBuildFile; fileRef = C3724ECB2C1B1F8D0058C67C /* .gitattributes */; };
 		C3724ECE2C1B2BE60058C67C /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3724ECD2C1B2BE60058C67C /* TaskListView.swift */; };
@@ -71,6 +72,7 @@
 		C35262CE2C2ACEA60074C0FB /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		C35262D02C2AD80F0074C0FB /* CompletionMemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionMemo.swift; sourceTree = "<group>"; };
 		C36DDF742C255787002D214A /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
+		C36F92922C33C9E2004C3593 /* EllipsisMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipsisMenu.swift; sourceTree = "<group>"; };
 		C3724EC92C1B1F310058C67C /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C3724ECB2C1B1F8D0058C67C /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		C3724ECD2C1B2BE60058C67C /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				C330C1CE2C1C426000F951D7 /* TaskTimer.swift */,
 				C34156442C29F555008A2454 /* TaskInfo.swift */,
 				C35262CC2C2ACABC0074C0FB /* SystemComponts.swift */,
+				C36F92922C33C9E2004C3593 /* EllipsisMenu.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */,
 				C36DDF752C255787002D214A /* TaskViewModel.swift in Sources */,
 				913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */,
+				C36F92932C33C9E2004C3593 /* EllipsisMenu.swift in Sources */,
 				C34156452C29F555008A2454 /* TaskInfo.swift in Sources */,
 				9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */,
 				9131C9012C15FD5F006DE1F7 /* HomeView.swift in Sources */,
