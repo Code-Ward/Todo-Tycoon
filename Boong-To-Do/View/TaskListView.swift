@@ -23,9 +23,8 @@ struct TaskListView: View {
                 VStack {
                     // MARK: 미완료 할일 리스트
                     Section {
-                        // TODO: Mock -> 실데이터로 변경 필요
                         ForEach(viewModel.notCompleteTasks) { task in
-                            TaskListCell(taskTitle: task.title, taskDuration: task.requiredTime, taskHasDone: (task.finishedAt != nil))
+                            TaskListCell(task: task)
                                 .sheet(isPresented: $isPresented, content: {
                                     VStack {
                                         TaskDetailView()
@@ -34,6 +33,7 @@ struct TaskListView: View {
                                     }
                                 })
                         }
+                        // TaskDetailView 불러오기
                         .onTapGesture { isPresented.toggle() }
                         
                     } header: {
@@ -51,9 +51,8 @@ struct TaskListView: View {
                     // MARK: 완료 할일 리스트
                     if !viewModel.completeTasks.isEmpty {
                         Section {
-                            // TODO: Mock -> 실데이터로 변경 필요
                             ForEach(viewModel.completeTasks) { task in
-                                TaskListCell(taskTitle: task.title, taskDuration: task.requiredTime, taskHasDone: (task.finishedAt != nil))
+                                TaskListCell(task: task)
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
                                             TaskDetailView()
@@ -116,28 +115,27 @@ struct TaskListView: View {
 
 struct TaskListCell: View {
     
-    var taskTitle: String
-    var taskDuration: Int
-    @State var taskHasDone: Bool
+    @EnvironmentObject var viewModel: TaskViewModel
+    @State var task: Todo
     
     var body: some View {
         HStack {
-            if taskHasDone {
+            if task.finishedAt != nil {
                 Image(systemName: "checkmark.square.fill")
-                    .foregroundStyle(taskHasDone ? .secondaryText.opacity(0.5) : .primaryText)
+                    .foregroundStyle(task.finishedAt != nil ? .secondaryText.opacity(0.5) : .primaryText)
             }else {
                 Image(systemName: "square")
             }
             
-            Text(taskTitle)
+            Text(task.title)
                 .font(.system(size: 14))
-                .foregroundStyle(taskHasDone ? .secondaryText : .primaryText)
+                .foregroundStyle(task.finishedAt != nil ? .secondaryText : .primaryText)
                 .padding(.horizontal, 10)
             
             Spacer()
             
             Button(action: {}, label: {
-                Label("\(taskDuration)분", systemImage: SystemImage.clock.name)
+                Label("\(task.requiredTime)분", systemImage: SystemImage.clock.name)
                     .font(.system(size: 10))
                     .foregroundStyle(.black)
             })
@@ -147,11 +145,11 @@ struct TaskListCell: View {
             
         }
         .padding(20)
-        .background(taskHasDone ? .secondaryText.opacity(0.1) : .white)
+        .background(task.finishedAt != nil ? .secondaryText.opacity(0.1) : .white)
         .clipShape(.rect(cornerRadius: 12))
         .contextMenu {
             Button(role: .destructive) {
-                // TODO: 선택 셀 데이터 삭제
+                viewModel.deleteTask(id: task.id)
             } label: {
                 Label("삭제하기", systemImage: "trash")
             }
@@ -161,9 +159,6 @@ struct TaskListCell: View {
     }
 }
 
-#Preview("NotDoneTaskCell") {
-    TaskListCell(taskTitle: "기초 디자인 포스터", taskDuration: 20, taskHasDone: false)
-}
-#Preview("HasDoneTaskCell") {
-    TaskListCell(taskTitle: "기초 디자인 포스터", taskDuration: 20, taskHasDone: true)
+#Preview("TaskListCell") {
+    TaskListCell(task: Todo(title: "프리뷰", requiredTime: 15, createdAt: Date.now))
 }

@@ -74,11 +74,13 @@ struct EllipsisMenu: View {
     
     var body: some View {
         Menu {
+            
             Button(role: .destructive, action: {
                 isPresented.toggle()
             }, label: {
                 Label("삭제하기", systemImage: SystemImage.trash.name)
             })
+            
         } label: {
             Image(systemName: SystemImage.ellipsis.name)
                 .resizable()

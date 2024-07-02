@@ -25,7 +25,7 @@ struct DateSelector: View {
             // MARK: 월 단위 표시
             HStack {
                 Button(action: {
-                    // TODO: 터치 시, 월 변경하기
+                    // TODO: 터치 시, 주 변경하기
                 }, label: {
                     Image(systemName: SystemImage.leftArrow.name)
                         .frame(width: 20, height: 20)
@@ -39,7 +39,7 @@ struct DateSelector: View {
                     .bold()
                 
                 Button(action: {
-                    // TODO: 터치 시, 월 변경하기
+                    // TODO: 터치 시, 주 변경하기
                 }, label: {
                     Image(systemName: SystemImage.rightArrow.name)
                         .frame(width: 20, height: 20)

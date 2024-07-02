@@ -61,7 +61,7 @@ struct AddTaskView: View {
                 })
                 // MARK: 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
-                    viewModel.getSaveTask(title: taskTitle, content: taskDesciptions, time: taskRequiredTime)
+                    viewModel.saveTask(title: taskTitle, content: taskDesciptions, time: taskRequiredTime)
                     addTaskModalViewIsPresented.toggle()
                 }, label: {
                     Image(systemName: SystemImage.upArrow.name)

@@ -37,7 +37,7 @@ struct HomeView: View {
                 .padding(.bottom, 10)
                 .scrollIndicators(.hidden)
                 .onAppear {
-                    viewModel.getTaskStates()
+                    viewModel.fetchTaskData()
                 }
             if viewModel.notCompleteTasks.isEmpty && viewModel.completeTasks.isEmpty {
                 EmptyListView()
