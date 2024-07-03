@@ -24,14 +24,42 @@ class TodoViewModel: ObservableObject {
         fetchTask()
     }
     
+    func changeTodoTitle(todo: Todo, title: String) {
+        if var todos = model.todos {
+            if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
+                todos[index].title = title
+            }
+            model.todos = todos
+        }
+        fetchTask()
+    }
+    
+    func changeTodoContent(todo: Todo, content: String) {
+        if var todos = model.todos {
+            if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
+                todos[index].content = content
+            }
+            model.todos = todos
+        }
+        fetchTask()
+    }
+    
+    func changeTodoRequiredTime(todo: Todo, requiredTime: Int) {
+        if var todos = model.todos {
+            if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
+                todos[index].requiredTime = requiredTime
+            }
+            model.todos = todos
+        }
+        fetchTask()
+    }
+    
     /**UUID를 입력받아 해당 요소를 찾아 삭제하는 함수*/
     func deleteTask(id: UUID) {
         if let index = model.todos?.firstIndex(where: { $0.id == id }) {
-            print("index : \(index)")
             model.todos?.remove(at: index)
         }
         fetchTask()
-        print("notCompleteTasks : \(notCompleteTodos.count)")
     }
     
     /**입력한 시간을 초 단위로 바꿔 저장하는 함수*/
@@ -50,6 +78,7 @@ class TodoViewModel: ObservableObject {
     }
     
     /**할일 데이터 업데이트*/
+    // TODO: Task -> Todo
     func fetchTask() {
         let calendar = Calendar.current
         self.completeTodos = []

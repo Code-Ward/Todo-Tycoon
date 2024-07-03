@@ -25,12 +25,13 @@ struct TodoListView: View {
                         ForEach(viewModel.notCompleteTodos) { todo in
                             TaskListCell(todo: todo)
                                 .sheet(isPresented: $isPresented, content: {
-                                    VStack {
-                                        TodoDetailView(todo: todo )
-                                            .presentationDetents([.height(580)])
-                                            .presentationDragIndicator(.visible)
-                                    }
+                                    TodoDetailView(todo: todo)
+                                        .presentationDetents([.height(580)])
+                                        .presentationDragIndicator(.visible)
                                 })
+                                .onChange(of: isPresented) { _, _ in
+                                    viewModel.fetchTask()
+                                }
                         }
                         // TaskDetailView 불러오기
                         .onTapGesture { isPresented.toggle() }
@@ -57,6 +58,9 @@ struct TodoListView: View {
                                             TodoDetailView(todo: todo)
                                                 .presentationDetents([.height(580)])
                                                 .presentationDragIndicator(.visible)
+                                                .onDisappear(perform: {
+                                                    viewModel.fetchTask()
+                                                })
                                         }
                                     })
                             }
@@ -116,7 +120,7 @@ struct TodoListView: View {
 struct TaskListCell: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
-    @State var todo: Todo
+    var todo: Todo
     
     var body: some View {
         HStack {
@@ -132,7 +136,7 @@ struct TaskListCell: View {
                     Image(systemName: "square")
                 }
             }
-
+            
             
             Text(todo.title)
                 .font(.system(size: 14))
