@@ -8,11 +8,10 @@
 import SwiftUI
 
 /**할일 추가 완료 시, 할일 목록을 보여주는 화면*/
-struct TaskListView: View {
+struct TodoListView: View {
     
-    
+    @EnvironmentObject var viewModel: TodoViewModel
     @State var isPresented = false
-    @EnvironmentObject var viewModel: TaskViewModel
     @State var addTaskIsPresented = false
     
     var body: some View {
@@ -23,11 +22,11 @@ struct TaskListView: View {
                 VStack {
                     // MARK: 미완료 할일 리스트
                     Section {
-                        ForEach(viewModel.notCompleteTasks) { task in
-                            TaskListCell(task: task)
+                        ForEach(viewModel.notCompleteTodos) { todo in
+                            TaskListCell(todo: todo)
                                 .sheet(isPresented: $isPresented, content: {
                                     VStack {
-                                        TaskDetailView(task: task)
+                                        TodoDetailView(todo: todo)
                                             .presentationDetents([.height(580)])
                                             .presentationDragIndicator(.visible)
                                     }
@@ -38,7 +37,7 @@ struct TaskListView: View {
                         
                     } header: {
                         HStack {
-                            Text("\(viewModel.notCompleteTasks.count)개의 할 일")
+                            Text("\(viewModel.notCompleteTodos.count)개의 할 일")
                             
                             Spacer()
                             
@@ -49,13 +48,13 @@ struct TaskListView: View {
                         .padding()
                     }
                     // MARK: 완료 할일 리스트
-                    if !viewModel.completeTasks.isEmpty {
+                    if !viewModel.completeTodos.isEmpty {
                         Section {
-                            ForEach(viewModel.completeTasks) { task in
-                                TaskListCell(task: task)
+                            ForEach(viewModel.completeTodos) { todo in
+                                TaskListCell(todo: todo)
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
-                                            TaskDetailView(task: task)
+                                            TodoDetailView(todo: todo)
                                                 .presentationDetents([.height(580)])
                                                 .presentationDragIndicator(.visible)
                                         }
@@ -98,7 +97,7 @@ struct TaskListView: View {
                     })
                     .sheet(isPresented: $addTaskIsPresented, content: {
                         // 할일 추가 화면 모달뷰
-                        AddTaskView(addTaskModalViewIsPresented: $addTaskIsPresented)
+                        AddTaskView(addTodoModalViewIsPresented: $addTaskIsPresented)
                             .presentationDetents([.height(200)])
                             .presentationDragIndicator(.visible)
                     })
@@ -110,32 +109,38 @@ struct TaskListView: View {
 }
 
 #Preview("TaskList") {
-    TaskListView()
+    TodoListView()
+        .environmentObject(TodoViewModel())
 }
 
 struct TaskListCell: View {
     
-    @EnvironmentObject var viewModel: TaskViewModel
-    @State var task: Todo
+    @EnvironmentObject var viewModel: TodoViewModel
+    @State var todo: Todo
     
     var body: some View {
         HStack {
-            if task.finishedAt != nil {
-                Image(systemName: "checkmark.square.fill")
-                    .foregroundStyle(task.finishedAt != nil ? .secondaryText.opacity(0.5) : .primaryText)
-            }else {
-                Image(systemName: "square")
+            Button {
+                // TODO: 할일 완료 기능
+            } label: {
+                if todo.finishedAt != nil {
+                    Image(systemName: "checkmark.square.fill")
+                        .foregroundStyle(todo.finishedAt != nil ? .secondaryText.opacity(0.5) : .primaryText)
+                }else {
+                    Image(systemName: "square")
+                }
             }
+
             
-            Text(task.title)
+            Text(todo.title)
                 .font(.system(size: 14))
-                .foregroundStyle(task.finishedAt != nil ? .secondaryText : .primaryText)
+                .foregroundStyle(todo.finishedAt != nil ? .secondaryText : .primaryText)
                 .padding(.horizontal, 10)
             
             Spacer()
             
             Button(action: {}, label: {
-                Label("\(task.requiredTime)분", systemImage: SystemImage.clock.name)
+                Label("\(todo.requiredTime)분", systemImage: SystemImage.clock.name)
                     .font(.system(size: 10))
                     .foregroundStyle(.black)
             })
@@ -145,11 +150,11 @@ struct TaskListCell: View {
             
         }
         .padding(20)
-        .background(task.finishedAt != nil ? .secondaryText.opacity(0.1) : .white)
+        .background(todo.finishedAt != nil ? .secondaryText.opacity(0.1) : .white)
         .clipShape(.rect(cornerRadius: 12))
         .contextMenu {
             Button(role: .destructive) {
-                viewModel.deleteTask(id: task.id)
+                viewModel.deleteTask(id: todo.id)
             } label: {
                 Label("삭제하기", systemImage: "trash")
             }
@@ -160,5 +165,5 @@ struct TaskListCell: View {
 }
 
 #Preview("TaskListCell") {
-    TaskListCell(task: Todo(title: "프리뷰", requiredTime: 15, createdAt: Date.now))
+    TaskListCell(todo: Todo(title: "프리뷰", requiredTime: 15, createdAt: Date.now))
 }

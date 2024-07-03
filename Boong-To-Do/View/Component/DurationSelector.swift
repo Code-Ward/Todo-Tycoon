@@ -10,14 +10,14 @@ import SwiftUI
 /**할일 추가 시, 예상 소요시간 선택 모달화면*/
 struct DurationSelector: View {
     
-    @EnvironmentObject var viewModel: TaskViewModel
+    @EnvironmentObject var viewModel: TodoViewModel
     // 상위 뷰 모달상태
     @Binding var isPresented: Bool
     @State var hourSelection = 0
     @State var minuteSelection = 0
     var hourArray = Array(0..<24)
     var minuteArray = Array(1..<60)
-    @Binding var taskRequiredTime: Int
+    @Binding var todoRequiredTime: Int
     
     var body: some View {
         VStack {
@@ -25,7 +25,7 @@ struct DurationSelector: View {
             // 데이터를 저장
             Button(action: {
                 isPresented.toggle()
-                taskRequiredTime = viewModel.getRequiredTime(hours: hourSelection, minutes: minuteSelection)
+                todoRequiredTime = viewModel.getRequiredTime(hours: hourSelection, minutes: minuteSelection)
             }, label: {
                 HStack {
                     Spacer()
@@ -73,5 +73,5 @@ struct DurationSelector: View {
 }
 
 #Preview {
-    DurationSelector(isPresented: .constant(false), taskRequiredTime: .constant(5))
+    DurationSelector(isPresented: .constant(false), todoRequiredTime: .constant(5))
 }

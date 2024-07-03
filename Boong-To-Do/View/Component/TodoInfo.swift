@@ -8,23 +8,14 @@
 import SwiftUI
 
 /**할일 상세사항을 보여주는 뷰*/
-struct TaskInfo: View {
+struct TodoInfo: View {
     
-    @Binding var task: Todo
+    @Binding var todo: Todo
     
     var body: some View {
         VStack {
-//            HStack {
-//                Spacer()
-//                Button(action: {
-//                    
-//                }, label: {
-//                    EllipsisMenu(isPresented: false)
-//                })
-//            }
-
             HStack {
-                Text("\(task.title)")
+                Text("\(todo.title)")
                     .font(.system(size: 16))
                     .bold()
                 Spacer()
@@ -33,7 +24,7 @@ struct TaskInfo: View {
             .frame(height: 24)
             
             HStack {
-                Text("\(task.content)")
+                Text("\(todo.content)")
                     .font(.system(size: 12))
                     .frame(minHeight: 50, alignment: .top)
                     .lineLimit(8)
@@ -45,7 +36,7 @@ struct TaskInfo: View {
                 Label(
                     // TODO: 예상소요시간 데이터 연동 필요
                     title: { 
-                        Text("예상 소요 시간 \(task.requiredTime)분")
+                        Text("예상 소요 시간 \(todo.requiredTime)분")
                             .font(.system(size: 12))
                     },
                     icon: { 
@@ -65,7 +56,7 @@ struct TaskInfo: View {
 }
 
 #Preview("TaskDetail") {
-    TaskInfo(task: .constant(Todo(title: "TaskDetail", requiredTime: 12, createdAt: Date())))
+    TodoInfo(todo: .constant(Todo(title: "TaskDetail", requiredTime: 12, createdAt: Date())))
 }
 
 

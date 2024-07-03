@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Boong_To_DoApp: App {
     
-    @StateObject var viewModel = TaskViewModel()
+    @StateObject var viewModel = TodoViewModel()
     
     var body: some Scene {
         WindowGroup {

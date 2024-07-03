@@ -7,32 +7,31 @@
 
 import Foundation
 
-class TaskViewModel: ObservableObject {
+class TodoViewModel: ObservableObject {
     
     private var model = UserInfo()
     var today = Date()
-    @Published var completeTasks: [Todo] = []
-    @Published var notCompleteTasks: [Todo] = []
+    @Published var completeTodos: [Todo] = []
+    @Published var notCompleteTodos: [Todo] = []
     @Published var dateInfo: [DateInfo] = []
     @Published var selectedDate: Date = Date.now
     
     // MARK: - Task 관련
     
     /**할일 저장을 저장하며 함수 호출 시, (createdAt: Date.now) 저장*/
-    // TODO: createdAt 입력값 수정
     func saveTask(title: String, content: String?, time: Int, createdAt: Date) {
-        self.model.tasks?.append(Todo(title: title, requiredTime: time, createdAt: createdAt))
+        self.model.todos?.append(Todo(title: title, content: content ?? "설명 없음", requiredTime: time, createdAt: createdAt))
         fetchTask()
     }
     
     /**UUID를 입력받아 해당 요소를 찾아 삭제하는 함수*/
     func deleteTask(id: UUID) {
-        if let index = model.tasks?.firstIndex(where: { $0.id == id }) {
+        if let index = model.todos?.firstIndex(where: { $0.id == id }) {
             print("index : \(index)")
-            model.tasks?.remove(at: index)
+            model.todos?.remove(at: index)
         }
         fetchTask()
-        print("notCompleteTasks : \(notCompleteTasks.count)")
+        print("notCompleteTasks : \(notCompleteTodos.count)")
     }
     
     /**입력한 시간을 초 단위로 바꿔 저장하는 함수*/
@@ -41,21 +40,25 @@ class TaskViewModel: ObservableObject {
         return ((hours * 3600) + (minutes * 60))
     }
     
-    /**뷰에 사용될 데이터 업데이트*/
+    func todoHasDone(todo: Todo) {
+        
+    }
+    
+    /**할일 데이터 업데이트*/
     func fetchTask() {
         let calendar = Calendar.current
-        self.completeTasks = []
-        self.notCompleteTasks = []
+        self.completeTodos = []
+        self.notCompleteTodos = []
         
         // 사용자 선택 날짜와 할일 생성 날짜를 비교
-        if let tasks = model.tasks {
-            for task in tasks {
-                if calendar.isDate(selectedDate, inSameDayAs: task.createdAt) {
-                    if task.finishedAt == nil {
-                        self.notCompleteTasks.append(task)
+        if let todos = model.todos {
+            for todo in todos {
+                if calendar.isDate(selectedDate, inSameDayAs: todo.createdAt) {
+                    if todo.finishedAt == nil {
+                        self.notCompleteTodos.append(todo)
                     } else {
-                        self.completeTasks.append(task)
-                    }                    
+                        self.completeTodos.append(todo)
+                    }
                 }
             }
         }

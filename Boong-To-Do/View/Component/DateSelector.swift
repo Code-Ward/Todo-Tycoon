@@ -10,7 +10,7 @@ import SwiftUI
 /**날짜를 선택할 수 있는 스크롤뷰*/
 struct DateSelector: View {
     
-    @EnvironmentObject var viewModel: TaskViewModel
+    @EnvironmentObject var viewModel: TodoViewModel
     
     var body: some View {
         VStack {

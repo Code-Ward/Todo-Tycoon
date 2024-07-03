@@ -11,7 +11,7 @@ struct UserInfo {
     let id = UUID()
     let userID: String = "hamsik"
     let userPW: String = "passpass"// 암호화 필요
-    var tasks: [Todo]? = []
+    var todos: [Todo]? = []
 }
 
 struct Todo: Identifiable {

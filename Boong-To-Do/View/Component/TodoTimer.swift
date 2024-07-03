@@ -8,9 +8,9 @@
 import SwiftUI
 
 /**할일을 진행할 때, 사용되는 타이머 컴포넌트*/
-struct TaskTimer: View {
+struct TodoTimer: View {
     
-    @Binding var task: Todo
+    @Binding var todo: Todo
     // TODO: 타이머 관련 속성 정의
     @State var progress = 0.6
     @State var isStarted = false
@@ -27,11 +27,11 @@ struct TaskTimer: View {
                 
                 VStack {
                     // TODO: (XX:XX) 형태로 표현
-                    Text("\(task.requiredTime)")
+                    Text("\(todo.requiredTime)")
                         .font(.system(size: 70))
                         .foregroundStyle(.opacity(0.5))
                     // TODO: (XX분) 형태로 표현
-                    Text("\(task.requiredTime)")
+                    Text("\(todo.requiredTime)")
                         .font(.system(size: 16))
                         .foregroundStyle(.opacity(0.5))
                 }
@@ -83,6 +83,6 @@ struct TaskTimer: View {
 }
 
 #Preview("TaskTimer") {
-    TaskTimer(task: .constant(Todo(title: "TaskTimer", requiredTime: 10, createdAt: Date())))
+    TodoTimer(todo: .constant(Todo(title: "TaskTimer", requiredTime: 10, createdAt: Date())))
 }
 

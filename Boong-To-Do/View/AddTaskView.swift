@@ -10,19 +10,19 @@ import SwiftUI
 /**할일 추가 모달화면*/
 struct AddTaskView: View {
     
-    @EnvironmentObject var viewModel: TaskViewModel
-    @State var taskTitle: String = ""
-    @State var taskDesciptions: String = ""
-    @State var taskRequiredTime: Int = 0
+    @EnvironmentObject var viewModel: TodoViewModel
+    @State var todoTitle: String = ""
+    @State var todoDesciptions: String = ""
+    @State var todoRequiredTime: Int = 0
     // 상위 뷰 모달 상태
-    @Binding var addTaskModalViewIsPresented: Bool
+    @Binding var addTodoModalViewIsPresented: Bool
     // 하위 뷰(시간 선택) 모달 상태
     @State var durationSelectorIsPresented = false
     @FocusState private var isFocused: Bool
     
     var body: some View {
         VStack {
-            TextField("할일 제목 입력", text: $taskTitle, prompt: Text("할 일을 입력해주세요."))
+            TextField("할일 제목 입력", text: $todoTitle, prompt: Text("할 일을 입력해주세요."))
                 .frame(width: 335, height: 24)
                 .padding(.top, 30)
                 .focused($isFocused)
@@ -30,7 +30,7 @@ struct AddTaskView: View {
                     isFocused = true
                 }
             
-            TextField("설명 입력", text: $taskDesciptions, prompt: Text("설명"))
+            TextField("설명 입력", text: $todoDesciptions, prompt: Text("설명"))
                 .frame(width: 335, height: 24)
                 .padding(.bottom, 40)
             
@@ -42,10 +42,10 @@ struct AddTaskView: View {
                     HStack {
                         Label(
                             title: {
-                                if taskRequiredTime == 0 {
+                                if todoRequiredTime == 0 {
                                     Text("예상 소요 시간")
                                 } else {
-                                    Text("예상 소요 시간 \(taskRequiredTime/60)분")
+                                    Text("예상 소요 시간 \(todoRequiredTime/60)분")
                                         .font(.system(size: 14))
                                 }
                             },
@@ -61,8 +61,8 @@ struct AddTaskView: View {
                 })
                 // 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
-                    viewModel.saveTask(title: taskTitle, content: taskDesciptions, time: taskRequiredTime, createdAt: viewModel.selectedDate)
-                    addTaskModalViewIsPresented.toggle()
+                    viewModel.saveTask(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
+                    addTodoModalViewIsPresented.toggle()
                 }, label: {
                     Image(systemName: SystemImage.upArrow.name)
                         .foregroundStyle(.white)
@@ -72,7 +72,7 @@ struct AddTaskView: View {
                         .padding()
                 })
             }.sheet(isPresented: $durationSelectorIsPresented, content: {
-                DurationSelector(isPresented: $durationSelectorIsPresented, taskRequiredTime: $taskRequiredTime)
+                DurationSelector(isPresented: $durationSelectorIsPresented, todoRequiredTime: $todoRequiredTime)
                     .presentationDetents([.height(368)])
                     .presentationDragIndicator(.visible)
             })
@@ -82,5 +82,5 @@ struct AddTaskView: View {
 }
 
 #Preview {
-    AddTaskView(taskTitle: "", taskDesciptions: "", addTaskModalViewIsPresented: .constant(false))
+    AddTaskView(todoTitle: "", todoDesciptions: "", addTodoModalViewIsPresented: .constant(false))
 }

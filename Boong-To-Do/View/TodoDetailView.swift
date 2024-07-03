@@ -11,22 +11,22 @@ import SwiftUI
  
  할일 상세목록 + 타이머
  */
-struct TaskDetailView: View {
+struct TodoDetailView: View {
     
-    @EnvironmentObject var viewModel: TaskViewModel
-    @State var task: Todo
+    @EnvironmentObject var viewModel: TodoViewModel
+    @State var todo: Todo
     
     var body: some View {
         VStack {
         // TODO: 뷰에서 표시할 데이터를 전달해야함
             HStack {
                 Spacer()
-                EllipsisMenu(action: { viewModel.deleteTask(id: task.id) })
+                EllipsisMenu(action: { viewModel.deleteTask(id: todo.id) })
             }
             
-            TaskInfo(task: $task)
+            TodoInfo(todo: $todo)
             
-            TaskTimer(task: $task)
+            TodoTimer(todo: $todo)
             
         }
         .padding(.horizontal, 20)
@@ -34,5 +34,5 @@ struct TaskDetailView: View {
 }
 
 #Preview {
-    TaskDetailView(task: Todo(title: "디테일뷰", requiredTime: 12, createdAt: Date.now))
+    TodoDetailView(todo: Todo(title: "디테일뷰", requiredTime: 12, createdAt: Date.now))
 }

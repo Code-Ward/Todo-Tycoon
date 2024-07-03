@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var viewModel: TaskViewModel
+    @EnvironmentObject var viewModel: TodoViewModel
     
     var body: some View {
         VStack {
@@ -42,10 +42,10 @@ struct HomeView: View {
                 .scrollIndicators(.hidden)
                 .onAppear {
                 }
-            if viewModel.notCompleteTasks.isEmpty && viewModel.completeTasks.isEmpty {
+            if viewModel.notCompleteTodos.isEmpty && viewModel.completeTodos.isEmpty {
                 EmptyListView()
             } else {
-                TaskListView()
+                TodoListView()
             }
         }
     }
