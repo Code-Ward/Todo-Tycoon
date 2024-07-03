@@ -31,13 +31,16 @@ struct HomeView: View {
                         .foregroundStyle(.black)
                 })
             }
+            .onAppear {
+                viewModel.fetchDate()
+                viewModel.fetchTask()
+            }
             .padding()
             
             DateSelector()
                 .padding(.bottom, 10)
                 .scrollIndicators(.hidden)
                 .onAppear {
-                    viewModel.fetchTaskData()
                 }
             if viewModel.notCompleteTasks.isEmpty && viewModel.completeTasks.isEmpty {
                 EmptyListView()

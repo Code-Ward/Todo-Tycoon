@@ -32,3 +32,11 @@ struct Memo {
     var createdAt: Date
     var todoID: Todo
 }
+
+struct DateInfo: Identifiable {
+    let id = UUID()
+    var date: Date
+    var monthString: String
+    var dayString: String
+    var weekdayString: String
+}

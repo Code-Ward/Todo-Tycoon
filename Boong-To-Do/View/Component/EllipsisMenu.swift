@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/**메뉴: 삭제하기*/
+/**메뉴: 입력 기능 작동*/
 struct EllipsisMenu: View {
     
     @State var isPresented = false
