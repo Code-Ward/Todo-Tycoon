@@ -14,13 +14,14 @@ class TaskViewModel: ObservableObject {
     @Published var completeTasks: [Todo] = []
     @Published var notCompleteTasks: [Todo] = []
     @Published var dateInfo: [DateInfo] = []
+    @Published var selectedDate: Date = Date.now
     
     // MARK: - Task 관련
     
     /**할일 저장을 저장하며 함수 호출 시, (createdAt: Date.now) 저장*/
     // TODO: createdAt 입력값 수정
-    func saveTask(title: String, content: String?, time: Int) {
-        self.model.tasks?.append(Todo(title: title, requiredTime: time, createdAt: Date.now))
+    func saveTask(title: String, content: String?, time: Int, createdAt: Date) {
+        self.model.tasks?.append(Todo(title: title, requiredTime: time, createdAt: createdAt))
         fetchTask()
     }
     
@@ -42,14 +43,19 @@ class TaskViewModel: ObservableObject {
     
     /**뷰에 사용될 데이터 업데이트*/
     func fetchTask() {
+        let calendar = Calendar.current
         self.completeTasks = []
         self.notCompleteTasks = []
+        
+        // 사용자 선택 날짜와 할일 생성 날짜를 비교
         if let tasks = model.tasks {
             for task in tasks {
-                if task.finishedAt == nil {
-                    self.notCompleteTasks.append(task)
-                } else {
-                    self.completeTasks.append(task)
+                if calendar.isDate(selectedDate, inSameDayAs: task.createdAt) {
+                    if task.finishedAt == nil {
+                        self.notCompleteTasks.append(task)
+                    } else {
+                        self.completeTasks.append(task)
+                    }                    
                 }
             }
         }

@@ -35,7 +35,7 @@ struct AddTaskView: View {
                 .padding(.bottom, 40)
             
             HStack {
-                // MARK: 예상 소요시간 선택
+                // 예상 소요시간 선택
                 Button(action: {
                     durationSelectorIsPresented.toggle()
                 }, label: {
@@ -59,9 +59,9 @@ struct AddTaskView: View {
                     }
                     .padding(.horizontal)
                 })
-                // MARK: 터치 시, 데이터 저장 후 뷰 Dismiss
+                // 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
-                    viewModel.saveTask(title: taskTitle, content: taskDesciptions, time: taskRequiredTime)
+                    viewModel.saveTask(title: taskTitle, content: taskDesciptions, time: taskRequiredTime, createdAt: viewModel.selectedDate)
                     addTaskModalViewIsPresented.toggle()
                 }, label: {
                     Image(systemName: SystemImage.upArrow.name)

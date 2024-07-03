@@ -11,8 +11,6 @@ import SwiftUI
 struct DateSelector: View {
     
     @EnvironmentObject var viewModel: TaskViewModel
-    @State private var selectedDay: Date? = nil
-    @State private var scrollViewHeight: CGFloat = 0.0
     
     var body: some View {
         VStack {
@@ -56,14 +54,15 @@ struct DateSelector: View {
                         Text(day.weekdayString)
                     }
                     .frame(width: 41, height: 47)
-                    .foregroundStyle(self.selectedDay == day.date ? Color.accentColor : Color.black)
-                    .background(self.selectedDay == day.date ? Color.gray.opacity(0.3) : Color.clear)
+                    .foregroundStyle(viewModel.selectedDate == day.date ? Color.accentColor : Color.black)
+                    .background(viewModel.selectedDate == day.date ? Color.gray.opacity(0.3) : Color.clear)
                     .clipShape(.rect(cornerRadius: 4))
-                    .id(day.date)
+                    .id(day.id)
                     .onTapGesture {
                         withAnimation {
-                            selectedDay = day.date
+                            viewModel.selectedDate = day.date
                         }
+                        viewModel.fetchTask()
                     }
                 }
             }
