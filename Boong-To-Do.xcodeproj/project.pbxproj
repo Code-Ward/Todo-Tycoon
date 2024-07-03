@@ -16,7 +16,7 @@
 		9131C91C2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C91B2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift */; };
 		9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C9282C16007A006DE1F7 /* DateSelector.swift */; };
 		913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874552C1888B000EC9C98 /* EmptyListView.swift */; };
-		913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874572C18909F00EC9C98 /* AddTaskView.swift */; };
+		913874582C18909F00EC9C98 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874572C18909F00EC9C98 /* AddTodoView.swift */; };
 		9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874592C18A03700EC9C98 /* DurationSelector.swift */; };
 		917326062C314DE6001D4030 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917326052C314DE6001D4030 /* TodoModel.swift */; };
 		C330C1CF2C1C426000F951D7 /* TodoTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C330C1CE2C1C426000F951D7 /* TodoTimer.swift */; };
@@ -62,7 +62,7 @@
 		9131C91B2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boong_To_DoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9131C9282C16007A006DE1F7 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		913874552C1888B000EC9C98 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
-		913874572C18909F00EC9C98 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		913874572C18909F00EC9C98 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
 		913874592C18A03700EC9C98 /* DurationSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSelector.swift; sourceTree = "<group>"; };
 		917326052C314DE6001D4030 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		C330C1CE2C1C426000F951D7 /* TodoTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTimer.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		C334E0862C1C3AD200492574 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				913874572C18909F00EC9C98 /* AddTaskView.swift */,
+				913874572C18909F00EC9C98 /* AddTodoView.swift */,
 				913874552C1888B000EC9C98 /* EmptyListView.swift */,
 				9131C9002C15FD5F006DE1F7 /* HomeView.swift */,
 				C3724ECD2C1B2BE60058C67C /* TodoListView.swift */,
@@ -345,7 +345,7 @@
 				9138745A2C18A03700EC9C98 /* DurationSelector.swift in Sources */,
 				C35262CF2C2ACEA60074C0FB /* Enums.swift in Sources */,
 				C36DDF752C255787002D214A /* TodoViewModel.swift in Sources */,
-				913874582C18909F00EC9C98 /* AddTaskView.swift in Sources */,
+				913874582C18909F00EC9C98 /* AddTodoView.swift in Sources */,
 				C36F92932C33C9E2004C3593 /* EllipsisMenu.swift in Sources */,
 				C34156452C29F555008A2454 /* TodoInfo.swift in Sources */,
 				9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */,

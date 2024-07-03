@@ -1,5 +1,5 @@
 //
-//  TaskDetail.swift
+//  TodoDetail.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/25/24.
@@ -34,7 +34,7 @@ struct TodoInfo: View {
                     Button(action: {
                         isTitleEditing.toggle()
                         viewModel.changeTodoTitle(todo: todo, title: titleEdit)
-                        viewModel.fetchTask()
+                        viewModel.fetchTodo()
                     }, label: {
                         Text("Done")
                     })
@@ -88,7 +88,7 @@ struct TodoInfo: View {
             HStack {
                 Label(
                     title: {
-                        Text("예상 소요 시간 \(todo.requiredTime)분")
+                        Text("예상 소요 시간 \(todo.requiredTime/60)분")
                             .font(.system(size: 12))
                             .onChange(of: requiredTime) {
                                 todo.requiredTime = requiredTime
@@ -124,8 +124,8 @@ struct TodoInfo: View {
     }
 }
 
-#Preview("TaskDetail") {
-    TodoInfo(todo: .constant(Todo(title: "TaskDetail", requiredTime: 1, createdAt: Date.now)))
+#Preview("TodoDetail") {
+    TodoInfo(todo: .constant(Todo(title: "TodoDetail", requiredTime: 1, createdAt: Date.now)))
 }
 
 

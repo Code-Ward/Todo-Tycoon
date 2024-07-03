@@ -11,7 +11,7 @@ import SwiftUI
 struct EmptyListView: View {
     
     // 할일 추가하는 모달 뷰
-    @State var addTaskIsPresented = false
+    @State var addTodoIsPresented = false
     
     var body: some View {
         ZStack {
@@ -30,7 +30,7 @@ struct EmptyListView: View {
                     Text("할일이 아직 없어요")
                     // 터치 시, 할일 추가 모달 나타남
                     Button(action: {
-                        addTaskIsPresented.toggle()
+                        addTodoIsPresented.toggle()
                     }, label: {
                         Text("추가하러 가기")
                             .foregroundColor(.white)
@@ -49,7 +49,7 @@ struct EmptyListView: View {
                     Spacer()
                     // 터치 시, 할일 추가 모달 나타남
                     Button(action: {
-                        addTaskIsPresented.toggle()
+                        addTodoIsPresented.toggle()
                     }, label: {
                         ZStack {
                             Image(systemName: SystemImage.plus.name)
@@ -62,9 +62,9 @@ struct EmptyListView: View {
                         }
                         .padding()
                     })
-                    .sheet(isPresented: $addTaskIsPresented, content: {
+                    .sheet(isPresented: $addTodoIsPresented, content: {
                         // 할일 추가 화면 모달뷰
-                        AddTaskView(addTodoModalViewIsPresented: $addTaskIsPresented)
+                        AddTodoView(addTodoModalViewIsPresented: $addTodoIsPresented)
                             .presentationDetents([.height(200)])
                             .presentationDragIndicator(.visible)
                     })

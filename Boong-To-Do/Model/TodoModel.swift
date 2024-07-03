@@ -1,5 +1,5 @@
 //
-//  TaskModel.swift
+//  TodoModel.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/30/24.

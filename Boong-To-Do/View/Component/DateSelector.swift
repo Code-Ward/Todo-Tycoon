@@ -62,7 +62,7 @@ struct DateSelector: View {
                         withAnimation {
                             viewModel.selectedDate = day.date
                         }
-                        viewModel.fetchTask()
+                        viewModel.fetchTodo()
                     }
                 }
             }

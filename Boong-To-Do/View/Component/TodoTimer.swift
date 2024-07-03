@@ -1,5 +1,5 @@
 //
-//  TaskTimer.swift
+//  TodoTimer.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/14/24.
@@ -74,7 +74,7 @@ struct TodoTimer: View {
                     Button {
                         // 할일 완료 기능
                         viewModel.todoHasDone(todo: todo)
-                        viewModel.fetchTask()
+                        viewModel.fetchTodo()
                     } label: {
                         TextButton(content: "할 일 완료")
                     }
@@ -85,7 +85,7 @@ struct TodoTimer: View {
     }
 }
 
-#Preview("TaskTimer") {
-    TodoTimer(todo: .constant(Todo(title: "TaskTimer", requiredTime: 10, createdAt: Date())))
+#Preview("TodoTimer") {
+    TodoTimer(todo: .constant(Todo(title: "TodoTimer", requiredTime: 10, createdAt: Date())))
 }
 

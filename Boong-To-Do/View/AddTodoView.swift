@@ -1,5 +1,5 @@
 //
-//  AddTaskView.swift
+//  AddTodoView.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/11/24.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /**할일 추가 모달화면*/
-struct AddTaskView: View {
+struct AddTodoView: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
     @State var todoTitle: String = ""
@@ -61,7 +61,7 @@ struct AddTaskView: View {
                 })
                 // 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
-                    viewModel.saveTask(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
+                    viewModel.saveTodo(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
                     addTodoModalViewIsPresented.toggle()
                 }, label: {
                     Image(systemName: SystemImage.upArrow.name)
@@ -82,5 +82,5 @@ struct AddTaskView: View {
 }
 
 #Preview {
-    AddTaskView(todoTitle: "", todoDesciptions: "", addTodoModalViewIsPresented: .constant(false))
+    AddTodoView(todoTitle: "", todoDesciptions: "", addTodoModalViewIsPresented: .constant(false))
 }

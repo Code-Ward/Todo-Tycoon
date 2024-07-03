@@ -33,7 +33,7 @@ struct HomeView: View {
             }
             .onAppear {
                 viewModel.fetchDate()
-                viewModel.fetchTask()
+                viewModel.fetchTodo()
             }
             .padding()
             

@@ -1,5 +1,5 @@
 //
-//  TaskListView.swift
+//  TodoListView.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/13/24.
@@ -12,7 +12,7 @@ struct TodoListView: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
     @State var isPresented = false
-    @State var addTaskIsPresented = false
+    @State var addTodoIsPresented = false
     
     var body: some View {
         ZStack{
@@ -23,17 +23,17 @@ struct TodoListView: View {
                     // MARK: 미완료 할일 리스트
                     Section {
                         ForEach(viewModel.notCompleteTodos) { todo in
-                            TaskListCell(todo: todo)
+                            TodoListCell(todo: todo)
                                 .sheet(isPresented: $isPresented, content: {
                                     TodoDetailView(todo: todo)
                                         .presentationDetents([.height(580)])
                                         .presentationDragIndicator(.visible)
                                 })
                                 .onChange(of: isPresented) { _, _ in
-                                    viewModel.fetchTask()
+                                    viewModel.fetchTodo()
                                 }
                         }
-                        // TaskDetailView 불러오기
+                        // TodoDetailView 불러오기
                         .onTapGesture { isPresented.toggle() }
                         
                     } header: {
@@ -52,14 +52,14 @@ struct TodoListView: View {
                     if !viewModel.completeTodos.isEmpty {
                         Section {
                             ForEach(viewModel.completeTodos) { todo in
-                                TaskListCell(todo: todo)
+                                TodoListCell(todo: todo)
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
                                             TodoDetailView(todo: todo)
                                                 .presentationDetents([.height(580)])
                                                 .presentationDragIndicator(.visible)
                                                 .onDisappear(perform: {
-                                                    viewModel.fetchTask()
+                                                    viewModel.fetchTodo()
                                                 })
                                         }
                                     })
@@ -86,7 +86,7 @@ struct TodoListView: View {
                     Spacer()
                     // MARK: 할일 추가
                     Button(action: {
-                        addTaskIsPresented.toggle()
+                        addTodoIsPresented.toggle()
                     }, label: {
                         ZStack {
                             Image(systemName: SystemImage.plus.name)
@@ -99,9 +99,9 @@ struct TodoListView: View {
                         }
                         .padding()
                     })
-                    .sheet(isPresented: $addTaskIsPresented, content: {
+                    .sheet(isPresented: $addTodoIsPresented, content: {
                         // 할일 추가 화면 모달뷰
-                        AddTaskView(addTodoModalViewIsPresented: $addTaskIsPresented)
+                        AddTodoView(addTodoModalViewIsPresented: $addTodoIsPresented)
                             .presentationDetents([.height(200)])
                             .presentationDragIndicator(.visible)
                     })
@@ -112,12 +112,12 @@ struct TodoListView: View {
     }
 }
 
-#Preview("TaskList") {
+#Preview("TodoList") {
     TodoListView()
         .environmentObject(TodoViewModel())
 }
 
-struct TaskListCell: View {
+struct TodoListCell: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
     var todo: Todo
@@ -127,7 +127,7 @@ struct TaskListCell: View {
             Button {
                 // 할일 완료 기능
                 viewModel.todoHasDone(todo: todo)
-                viewModel.fetchTask()
+                viewModel.fetchTodo()
             } label: {
                 if todo.finishedAt != nil {
                     Image(systemName: "checkmark.square.fill")
@@ -160,7 +160,7 @@ struct TaskListCell: View {
         .clipShape(.rect(cornerRadius: 12))
         .contextMenu {
             Button(role: .destructive) {
-                viewModel.deleteTask(id: todo.id)
+                viewModel.deleteTodo(id: todo.id)
             } label: {
                 Label("삭제하기", systemImage: "trash")
             }
@@ -170,6 +170,6 @@ struct TaskListCell: View {
     }
 }
 
-#Preview("TaskListCell") {
-    TaskListCell(todo: Todo(title: "프리뷰", requiredTime: 15, createdAt: Date.now))
+#Preview("TodoListCell") {
+    TodoListCell(todo: Todo(title: "프리뷰", requiredTime: 15, createdAt: Date.now))
 }

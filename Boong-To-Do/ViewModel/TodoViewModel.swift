@@ -1,5 +1,5 @@
 //
-//  TaskViewModel.swift
+//  TodoViewModel.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/21/24.
@@ -16,12 +16,12 @@ class TodoViewModel: ObservableObject {
     @Published var dateInfo: [DateInfo] = []
     @Published var selectedDate: Date = Date.now
     
-    // MARK: - Task 관련
+    // MARK: - Todo 관련
     
     /**할일 저장을 저장하며 함수 호출 시, (createdAt: Date.now) 저장*/
-    func saveTask(title: String, content: String?, time: Int, createdAt: Date) {
+    func saveTodo(title: String, content: String?, time: Int, createdAt: Date) {
         self.model.todos?.append(Todo(title: title, content: content ?? "설명 없음", requiredTime: time, createdAt: createdAt))
-        fetchTask()
+        fetchTodo()
     }
     
     func changeTodoTitle(todo: Todo, title: String) {
@@ -31,7 +31,7 @@ class TodoViewModel: ObservableObject {
             }
             model.todos = todos
         }
-        fetchTask()
+        fetchTodo()
     }
     
     func changeTodoContent(todo: Todo, content: String) {
@@ -41,7 +41,7 @@ class TodoViewModel: ObservableObject {
             }
             model.todos = todos
         }
-        fetchTask()
+        fetchTodo()
     }
     
     func changeTodoRequiredTime(todo: Todo, requiredTime: Int) {
@@ -51,15 +51,15 @@ class TodoViewModel: ObservableObject {
             }
             model.todos = todos
         }
-        fetchTask()
+        fetchTodo()
     }
     
     /**UUID를 입력받아 해당 요소를 찾아 삭제하는 함수*/
-    func deleteTask(id: UUID) {
+    func deleteTodo(id: UUID) {
         if let index = model.todos?.firstIndex(where: { $0.id == id }) {
             model.todos?.remove(at: index)
         }
-        fetchTask()
+        fetchTodo()
     }
     
     /**입력한 시간을 초 단위로 바꿔 저장하는 함수*/
@@ -78,8 +78,7 @@ class TodoViewModel: ObservableObject {
     }
     
     /**할일 데이터 업데이트*/
-    // TODO: Task -> Todo
-    func fetchTask() {
+    func fetchTodo() {
         let calendar = Calendar.current
         self.completeTodos = []
         self.notCompleteTodos = []
@@ -157,4 +156,7 @@ class TodoViewModel: ObservableObject {
         formatter.locale = Locale(identifier: "ko_KR")
         return formatter.string(from: date)
     }
+    
+    // MARK: - 타이머 관련
+    
 }

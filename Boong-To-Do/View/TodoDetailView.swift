@@ -1,5 +1,5 @@
 //
-//  TaskProcessView.swift
+//  TodoProcessView.swift
 //  Boong-To-Do
 //
 //  Created by 황석현 on 6/25/24.
@@ -21,7 +21,7 @@ struct TodoDetailView: View {
         // TODO: 뷰에서 표시할 데이터를 전달해야함
             HStack {
                 Spacer()
-                EllipsisMenu(action: { viewModel.deleteTask(id: todo.id) })
+                EllipsisMenu(action: { viewModel.deleteTodo(id: todo.id) })
             }
             
             TodoInfo(todo: $todo)
