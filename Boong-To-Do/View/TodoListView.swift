@@ -26,7 +26,7 @@ struct TodoListView: View {
                             TaskListCell(todo: todo)
                                 .sheet(isPresented: $isPresented, content: {
                                     VStack {
-                                        TodoDetailView(todo: todo)
+                                        TodoDetailView(todo: todo )
                                             .presentationDetents([.height(580)])
                                             .presentationDragIndicator(.visible)
                                     }
@@ -121,12 +121,14 @@ struct TaskListCell: View {
     var body: some View {
         HStack {
             Button {
-                // TODO: 할일 완료 기능
+                // 할일 완료 기능
+                viewModel.todoHasDone(todo: todo)
+                viewModel.fetchTask()
             } label: {
                 if todo.finishedAt != nil {
                     Image(systemName: "checkmark.square.fill")
                         .foregroundStyle(todo.finishedAt != nil ? .secondaryText.opacity(0.5) : .primaryText)
-                }else {
+                } else {
                     Image(systemName: "square")
                 }
             }

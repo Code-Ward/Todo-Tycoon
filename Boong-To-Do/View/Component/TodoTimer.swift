@@ -10,6 +10,7 @@ import SwiftUI
 /**할일을 진행할 때, 사용되는 타이머 컴포넌트*/
 struct TodoTimer: View {
     
+    @EnvironmentObject var viewModel: TodoViewModel
     @Binding var todo: Todo
     // TODO: 타이머 관련 속성 정의
     @State var progress = 0.6
@@ -71,7 +72,9 @@ struct TodoTimer: View {
                         })
                     }
                     Button {
-                        
+                        // 할일 완료 기능
+                        viewModel.todoHasDone(todo: todo)
+                        viewModel.fetchTask()
                     } label: {
                         TextButton(content: "할 일 완료")
                     }

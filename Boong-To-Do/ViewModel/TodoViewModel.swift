@@ -41,7 +41,12 @@ class TodoViewModel: ObservableObject {
     }
     
     func todoHasDone(todo: Todo) {
-        
+        if var todos = model.todos {
+            if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
+                todos[index].finishedAt = Date.now
+            }
+            model.todos = todos
+        }
     }
     
     /**할일 데이터 업데이트*/
