@@ -13,7 +13,6 @@ struct TodoTimer: View {
     @EnvironmentObject var viewModel: TodoViewModel
     @Binding var todo: Todo
     // TODO: 타이머 관련 속성 정의
-    @State var progress = 0.6
     @State var isStarted = false
     @State var isRunning = false
     
@@ -39,12 +38,21 @@ struct TodoTimer: View {
                 }
                 .padding(40)
                 
-                Circle()
-                    .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
-                    .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
-                    .frame(width: 250, height: 250)
-                    .foregroundColor(Color(.black))
-                    .rotationEffect(Angle(degrees: 270.0))
+                if viewModel.getTimePercent(todo: todo.id) < 0 {
+                    Circle()
+                        .trim(from: 0.0, to: CGFloat(min(abs(viewModel.getTimePercent(todo: todo.id)), 1.0)))
+                        .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
+                        .frame(width: 250, height: 250)
+                        .foregroundColor(Color(.red))
+                        .rotationEffect(Angle(degrees: 270.0))
+                } else {
+                    Circle()
+                        .trim(from: 0.0, to: CGFloat(min(viewModel.getTimePercent(todo: todo.id), 1.0)))
+                        .stroke(style: StrokeStyle(lineWidth: 15, lineCap: .round, lineJoin: .round))
+                        .frame(width: 250, height: 250)
+                        .foregroundColor(Color(.black))
+                        .rotationEffect(Angle(degrees: 270.0))
+                }
             }
             // TODO: 타이머 시작하면, 버튼 2개 생성(재생/정지, 할일 완료)
             if !isStarted {

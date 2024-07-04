@@ -16,6 +16,7 @@ class TodoViewModel: ObservableObject {
     @Published var dateInfo: [DateInfo] = []
     @Published var selectedDate: Date = Date.now
     @Published var presentationTime: Int = 0
+    var excutedTime: Int = 0
     
     // MARK: - Todo 관련
     
@@ -163,7 +164,7 @@ class TodoViewModel: ObservableObject {
     
     func setTimeData(todo: UUID) {
         if let todoIndex = notCompleteTodos.firstIndex(where: { $0.id == todo }) {
-            var item = notCompleteTodos[todoIndex]
+            let item = notCompleteTodos[todoIndex]
             presentationTime = item.requiredTime - item.executedTime
         }
     }
@@ -172,15 +173,16 @@ class TodoViewModel: ObservableObject {
         if let todoIndex = notCompleteTodos.firstIndex(where: { $0.id == todo }) {
             var item = notCompleteTodos[todoIndex]
             presentationTime = item.requiredTime - item.executedTime
-            item.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { Timer in
-                self.presentationTime -= 1
+            item.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [self] _ in
+                    presentationTime -= 1
+                    excutedTime += 1
             }
         }
     }
     
     func stopTimer(todo: UUID) {
         if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
-            var item = notCompleteTodos[todoIndex]
+            let item = notCompleteTodos[todoIndex]
             item.timer?.invalidate()
             if let modelIndex = notCompleteTodos.firstIndex(where: {$0.id == todo }) {
                 var modelTodo = model.todos?[modelIndex]
@@ -191,13 +193,23 @@ class TodoViewModel: ObservableObject {
     }
     
     func formatTime() -> String {
-        var minute = presentationTime / 60
-        var second = presentationTime % 60
+        let minute = abs(presentationTime) / 60
+        let second = abs(presentationTime) % 60
         return String(format: "%02d:%02d", minute, second)
     }
     
     func formatMinute() -> String {
-        var minute = presentationTime / 60
+        let minute = abs(presentationTime) / 60
         return String(format: "약 %02d분", minute)
+    }
+    
+    func getTimePercent(todo: UUID) -> Double{
+        if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
+            let item = notCompleteTodos[todoIndex]
+            let result = Double(Double(presentationTime) / Double(item.requiredTime))
+            print(result)
+            return result
+        }
+        return 0.0
     }
 }
