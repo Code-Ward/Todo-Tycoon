@@ -15,6 +15,7 @@ class TodoViewModel: ObservableObject {
     @Published var notCompleteTodos: [Todo] = []
     @Published var dateInfo: [DateInfo] = []
     @Published var selectedDate: Date = Date.now
+    @Published var presentationTime: Int = 0
     
     // MARK: - Todo 관련
     
@@ -95,6 +96,7 @@ class TodoViewModel: ObservableObject {
                 }
             }
         }
+        print("Fetch Todo")
     }
     
     // MARK: - Date 관련
@@ -159,4 +161,43 @@ class TodoViewModel: ObservableObject {
     
     // MARK: - 타이머 관련
     
+    func setTimeData(todo: UUID) {
+        if let todoIndex = notCompleteTodos.firstIndex(where: { $0.id == todo }) {
+            var item = notCompleteTodos[todoIndex]
+            presentationTime = item.requiredTime - item.executedTime
+        }
+    }
+    
+    func startTimer(todo: UUID){
+        if let todoIndex = notCompleteTodos.firstIndex(where: { $0.id == todo }) {
+            var item = notCompleteTodos[todoIndex]
+            presentationTime = item.requiredTime - item.executedTime
+            item.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { Timer in
+                self.presentationTime -= 1
+            }
+        }
+    }
+    
+    func stopTimer(todo: UUID) {
+        if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
+            var item = notCompleteTodos[todoIndex]
+            item.timer?.invalidate()
+            if let modelIndex = notCompleteTodos.firstIndex(where: {$0.id == todo }) {
+                var modelTodo = model.todos?[modelIndex]
+                modelTodo?.executedTime = self.presentationTime
+            }
+        }
+        fetchTodo()
+    }
+    
+    func formatTime() -> String {
+        var minute = presentationTime / 60
+        var second = presentationTime % 60
+        return String(format: "%02d:%02d", minute, second)
+    }
+    
+    func formatMinute() -> String {
+        var minute = presentationTime / 60
+        return String(format: "약 %02d분", minute)
+    }
 }

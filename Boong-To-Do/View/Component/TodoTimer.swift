@@ -28,11 +28,12 @@ struct TodoTimer: View {
                 
                 VStack {
                     // TODO: (XX:XX) 형태로 표현
-                    Text("\(todo.requiredTime)")
+                    Text("\(viewModel.formatTime())")
                         .font(.system(size: 70))
                         .foregroundStyle(.opacity(0.5))
+                        
                     // TODO: (XX분) 형태로 표현
-                    Text("\(todo.requiredTime)")
+                    Text("\(viewModel.formatMinute())")
                         .font(.system(size: 16))
                         .foregroundStyle(.opacity(0.5))
                 }
@@ -49,6 +50,7 @@ struct TodoTimer: View {
             if !isStarted {
                 Button(action: {
                     isStarted.toggle()
+                    viewModel.startTimer(todo: todo.id)
                 }, label: {
                     TextButton(content: "타이머 시작하기")
                         .padding(.vertical, 20)
@@ -86,6 +88,6 @@ struct TodoTimer: View {
 }
 
 #Preview("TodoTimer") {
-    TodoTimer(todo: .constant(Todo(title: "TodoTimer", requiredTime: 10, createdAt: Date())))
+    TodoTimer(todo: .constant(Todo(title: "TodoTimer", requiredTime: 0, createdAt: Date.now)))
 }
 
