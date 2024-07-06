@@ -7,15 +7,13 @@
 
 import SwiftUI
 
-/**할일을 진행할 때, 사용되는 타이머 컴포넌트*/
-struct TodoTimer: View {
-    
-    @EnvironmentObject var viewModel: TodoViewModel
-    @Binding var todo: Todo
-    // TODO: 타이머 관련 속성 정의
-    @State var isStarted = false
-    @State var isRunning = false
-    
+struct TaskTimer: View {
+    @State private var progress: Double = 0.0
+    @State private var isStarted = false
+    @State private var isRunning = false
+    @State private var timeRemaining: TimeInterval = 1200 // 20분
+    @State private var timer: Timer?
+
     var body: some View {
         VStack {
             ZStack {
@@ -26,13 +24,10 @@ struct TodoTimer: View {
                     .foregroundColor(.gray)
                 
                 VStack {
-                    // TODO: (XX:XX) 형태로 표현
-                    Text("\(viewModel.formatTime())")
+                    Text(timeString(from: timeRemaining))
                         .font(.system(size: 70))
                         .foregroundStyle(.opacity(0.5))
-                        
-                    // TODO: (XX분) 형태로 표현
-                    Text("\(viewModel.formatMinute())")
+                    Text("20분")
                         .font(.system(size: 16))
                         .foregroundStyle(.opacity(0.5))
                 }
@@ -54,37 +49,29 @@ struct TodoTimer: View {
                         .rotationEffect(Angle(degrees: 270.0))
                 }
             }
-            // TODO: 타이머 시작하면, 버튼 2개 생성(재생/정지, 할일 완료)
+
             if !isStarted {
                 Button(action: {
-                    isStarted.toggle()
-                    viewModel.startTimer(todo: todo.id)
+                    isStarted = true
+                    startTimer()
                 }, label: {
                     TextButton(content: "타이머 시작하기")
                         .padding(.vertical, 20)
                 })
             } else {
                 HStack {
-                    // TODO: if Timer.invalid() 추가
-                    if isRunning {
-                        Button(action: {
-                            // TODO: 타이머 재실행
-                            isRunning.toggle()
-                        }, label: {
-                            SystemImageButton(imageName: SystemImage.play.name, width: 12, height: 12)
-                        })
-                    } else {
-                        Button(action: {
-                            // TODO: 타이머 정지
-                            isRunning.toggle()
-                        }, label: {
-                            SystemImageButton(imageName: SystemImage.pause.name, width: 12, height: 12)
-                        })
-                    }
+                    Button(action: {
+                        if isRunning {
+                            pauseTimer()
+                        } else {
+                            resumeTimer()
+                        }
+                    }, label: {
+                        SystemImageButton(imageName: isRunning ? SystemImage.pause.name : SystemImage.play.name, width: 12, height: 12)
+                    })
+
                     Button {
-                        // 할일 완료 기능
-                        viewModel.todoHasDone(todo: todo)
-                        viewModel.fetchTodo()
+                        completeTask()
                     } label: {
                         TextButton(content: "할 일 완료")
                     }
@@ -92,6 +79,45 @@ struct TodoTimer: View {
                 .padding(.vertical, 20)
             }
         }
+        .onDisappear {
+            timer?.invalidate()
+        }
+    }
+
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if self.timeRemaining > 0 {
+                self.timeRemaining -= 1
+                self.progress = 1 - (self.timeRemaining / 1200)
+            } else {
+                self.timer?.invalidate()
+                self.isRunning = false
+            }
+        }
+        isRunning = true
+    }
+
+    func pauseTimer() {
+        timer?.invalidate()
+        isRunning = false
+    }
+
+    func resumeTimer() {
+        startTimer()
+    }
+
+    func completeTask() {
+        timer?.invalidate()
+        isStarted = false
+        isRunning = false
+        timeRemaining = 1200
+        progress = 0.0
+    }
+
+    func timeString(from timeInterval: TimeInterval) -> String {
+        let minutes = Int(timeInterval) / 60
+        let seconds = Int(timeInterval) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 
