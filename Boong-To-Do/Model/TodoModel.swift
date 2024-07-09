@@ -23,7 +23,6 @@ struct Todo: Identifiable {
     // TODO: 날짜 지정입력 하기
     var createdAt: Date
     var finishedAt: Date?
-    var timer: Timer?
     var memo: [Memo]?
 }
 

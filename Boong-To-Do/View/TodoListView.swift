@@ -145,8 +145,10 @@ struct TodoListCell: View {
             
             Spacer()
             
-            Button(action: {}, label: {
-                Label("\(todo.requiredTime)분", systemImage: SystemImage.clock.name)
+            Button(action: {
+                
+            }, label: {
+                Label("\((todo.requiredTime) / 60)분", systemImage: SystemImage.clock.name)
                     .font(.system(size: 10))
                     .foregroundStyle(.black)
             })

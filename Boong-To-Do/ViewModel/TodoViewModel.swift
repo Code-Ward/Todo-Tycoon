@@ -11,6 +11,7 @@ class TodoViewModel: ObservableObject {
     
     private var model = UserInfo()
     var today = Date()
+    var timer: Timer?
     @Published var completeTodos: [Todo] = []
     @Published var notCompleteTodos: [Todo] = []
     @Published var dateInfo: [DateInfo] = []
@@ -21,7 +22,7 @@ class TodoViewModel: ObservableObject {
     // MARK: - Todo 관련
     
     /**할일 저장을 저장하며 함수 호출 시, (createdAt: Date.now) 저장*/
-    func saveTodo(title: String, content: String?, time: Int, createdAt: Date) {
+    func addTodo(title: String, content: String?, time: Int, createdAt: Date) {
         self.model.todos?.append(Todo(title: title, content: content ?? "설명 없음", requiredTime: time, createdAt: createdAt))
         fetchTodo()
     }
@@ -70,10 +71,18 @@ class TodoViewModel: ObservableObject {
         return ((hours * 3600) + (minutes * 60))
     }
     
+    /// 할일을 완료 했을 때, 호출되는 함수
+    ///
+    /// 저장값
+    /// - 완료시점: Date
+    /// - 소요시간 : Int
     func todoHasDone(todo: Todo) {
         if var todos = model.todos {
             if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
+                // 완료시점 저장
                 todos[index].finishedAt = Date.now
+                // 소요된 시간 저장 -> 함수화
+                todos[index].executedTime += self.excutedTime
             }
             model.todos = todos
         }
@@ -162,34 +171,42 @@ class TodoViewModel: ObservableObject {
     
     // MARK: - 타이머 관련
     
+    /// 할일의 남은 시간을 뷰에 세팅하는 함수
+    ///
+    ///입력받은 todo의 ID로 필요한 데이터를 model에서 찾고
+    ///처음 세팅한 시간에서 기존에 실행한 시간을 뺀 값을
+    ///presentationTime에 할당
+
+    // 타이머가 나타나면 호출될 함수
     func setTimeData(todo: UUID) {
-        if let todoIndex = notCompleteTodos.firstIndex(where: { $0.id == todo }) {
-            let item = notCompleteTodos[todoIndex]
-            presentationTime = item.requiredTime - item.executedTime
-        }
-    }
-    
-    func startTimer(todo: UUID){
-        if let todoIndex = notCompleteTodos.firstIndex(where: { $0.id == todo }) {
-            var item = notCompleteTodos[todoIndex]
-            presentationTime = item.requiredTime - item.executedTime
-            item.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [self] _ in
-                    presentationTime -= 1
-                    excutedTime += 1
-            }
-        }
-    }
-    
-    func stopTimer(todo: UUID) {
         if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
             let item = notCompleteTodos[todoIndex]
-            item.timer?.invalidate()
-            if let modelIndex = notCompleteTodos.firstIndex(where: {$0.id == todo }) {
-                var modelTodo = model.todos?[modelIndex]
-                modelTodo?.executedTime = self.presentationTime
-            }
+            let presentedTime = item.requiredTime - item.executedTime
+            self.presentationTime = presentedTime
         }
-        fetchTodo()
+    }
+    
+    // 타이머 시작
+    func startTimer(todo: UUID){
+        print("Timer Start!")
+        excutedTime = 0
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [self] _ in
+            presentationTime -= 1
+            excutedTime += 1
+            print("Time Value: \(presentationTime)")
+        })
+    }
+    
+    func stopTimer() {
+        self.timer?.invalidate()
+        print("Timer Stopped!")
+    }
+    
+    func saveExcutedTime(todo: UUID) {
+        if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
+            var item = notCompleteTodos[todoIndex]
+            item.executedTime += self.excutedTime
+        }
     }
     
     func formatTime() -> String {
@@ -203,11 +220,11 @@ class TodoViewModel: ObservableObject {
         return String(format: "약 %02d분", minute)
     }
     
-    func getTimePercent(todo: UUID) -> Double{
+    // 남은 시간 / 전체시간 = 남은 시간 비율
+    func getTimePercent(todo: UUID) -> Double {
         if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
             let item = notCompleteTodos[todoIndex]
             let result = Double(Double(presentationTime) / Double(item.requiredTime))
-            print(result)
             return result
         }
         return 0.0

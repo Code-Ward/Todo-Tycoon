@@ -61,7 +61,7 @@ struct AddTodoView: View {
                 })
                 // 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
-                    viewModel.saveTodo(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
+                    viewModel.addTodo(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
                     addTodoModalViewIsPresented.toggle()
                 }, label: {
                     Image(systemName: SystemImage.upArrow.name)

@@ -26,7 +26,7 @@ struct TodoDetailView: View {
             
             TodoInfo(todo: $todo)
             
-            TodoTimer(todo: $todo)
+            TodoTimer(todo: todo)
                 .onAppear {
                     viewModel.setTimeData(todo: todo.id)
                 }
