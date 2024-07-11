@@ -14,6 +14,7 @@ class TodoViewModel: ObservableObject {
     var timer: Timer?
     @Published var completeTodos: [Todo] = []
     @Published var notCompleteTodos: [Todo] = []
+    @Published var processingTodos: [Todo] = []
     @Published var dateInfo: [DateInfo] = []
     @Published var selectedDate: Date = Date.now
     @Published var presentationTime: Int = 0
@@ -117,15 +118,24 @@ class TodoViewModel: ObservableObject {
         let calendar = Calendar.current
         self.completeTodos = []
         self.notCompleteTodos = []
+        self.processingTodos = []
         
-        // 사용자 선택 날짜와 할일 생성 날짜를 비교
         if let todos = model.todos {
             for todo in todos {
+                // 사용자 선택 날짜와 할일 생성 날짜를 비교
                 if calendar.isDate(selectedDate, inSameDayAs: todo.createdAt) {
-                    if todo.finishedAt == nil {
-                        self.notCompleteTodos.append(todo)
-                    } else {
+                    // 종료시점이 있다면 = 완료
+                    if todo.finishedAt != nil {
                         self.completeTodos.append(todo)
+                    } else {
+                        // 소요된 시간이 없다면? = 할 일
+                        if todo.executedTime == 0 {
+                            self.notCompleteTodos.append(todo)
+                        }
+                        // 소요된 시간이 있다면 = 진행 중
+                        if todo.executedTime > 0 {
+                            self.processingTodos.append(todo)
+                        }
                     }
                 }
             }
@@ -221,21 +231,20 @@ class TodoViewModel: ObservableObject {
         })
     }
     
+    /// 타이머 중지
+    ///
+    /// 타이머 인스턴스를 해제하고
+    /// UUID를 통해 해당 할일의 소요시간을
+    /// 현재 소요된 시간만큼 더한다.
     func stopTimer(todo: UUID) {
         self.timer?.invalidate()
         print("Timer Stopped!")
         if var todos = model.todos {
             if let index = model.todos?.firstIndex(where: { $0.id == todo }) {
                 todos[index].executedTime += self.excutedTime
+                print("\(self.excutedTime) has Saved!")
             }
             model.todos = todos
-        }
-    }
-    
-    func saveExcutedTime(todo: UUID) {
-        if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {
-            var item = notCompleteTodos[todoIndex]
-            item.executedTime += self.excutedTime
         }
     }
     

@@ -13,41 +13,82 @@ struct TodoListView: View {
     @EnvironmentObject var viewModel: TodoViewModel
     @State var isPresented = false
     @State var addTodoIsPresented = false
+    @State private var selectedTodo: Todo = Todo(title: "", requiredTime: 0, createdAt: Date.now)
     
     var body: some View {
         ZStack{
             Color.gray.opacity(0.2)
                 .edgesIgnoringSafeArea(.all)
+            
             ScrollView {
+                
                 VStack {
-                    // MARK: 미완료 할일 리스트
-                    Section {
-                        ForEach(viewModel.notCompleteTodos) { todo in
-                            TodoListCell(todo: todo)
-                                .sheet(isPresented: $isPresented, content: {
-                                    TodoDetailView(todo: todo, isPresented: $isPresented)
-                                        .presentationDetents([.height(580)])
-                                        .presentationDragIndicator(.visible)
-                                })
-                                .onChange(of: isPresented) { _, _ in
-                                    viewModel.fetchTodo()
-                                }
-                        }
-                        // TodoDetailView 불러오기
-                        .onTapGesture { isPresented.toggle() }
-                        
-                    } header: {
-                        HStack {
-                            Text("\(viewModel.notCompleteTodos.count)개의 할 일")
+                    if !viewModel.processingTodos.isEmpty {
+                        Section {
+                            // MARK: 진행중 할일 리스트
+                            ForEach(viewModel.processingTodos) { todo in
+                                TodoListCell(todo: todo)
+                                    .sheet(isPresented: $isPresented, content: {
+                                        TodoDetailView(todo: selectedTodo, isPresented: $isPresented)
+                                            .presentationDetents([.height(580)])
+                                            .presentationDragIndicator(.visible)
+                                    })
+                                    .onChange(of: isPresented) { _, _ in
+                                        viewModel.fetchTodo()
+                                    }
+                                    .onTapGesture {
+                                        selectedTodo = todo
+                                        // TodoDetailView 불러오기
+                                        isPresented.toggle()
+                                    }
+                            }
+                        } header: {
                             
-                            Spacer()
-                            
-                            // TODO: 정렬 기능 구현하기(추후 개발)
-                            Text("정렬")
-                            Image(systemName: SystemImage.alignArrow.name)
+                            HStack {
+                                Text("진행 중")
+                                
+                                Spacer()
+                            }
+                            .padding()
                         }
-                        .padding()
                     }
+                    
+                    
+                    // MARK: 미완료 할일 리스트
+                    if !viewModel.notCompleteTodos.isEmpty {
+                        Section {
+                            ForEach(viewModel.notCompleteTodos) { todo in
+                                TodoListCell(todo: todo)
+                                    .sheet(isPresented: $isPresented, content: {
+                                        TodoDetailView(todo: selectedTodo, isPresented: $isPresented)
+                                            .presentationDetents([.height(580)])
+                                            .presentationDragIndicator(.visible)
+                                    })
+                                    .onChange(of: isPresented) { _, _ in
+                                        viewModel.fetchTodo()
+                                    }
+                                    .onTapGesture {
+                                        selectedTodo = todo
+                                        // TodoDetailView 불러오기
+                                        isPresented.toggle()
+                                    }
+                            }
+                            
+                        } header: {
+                            
+                            HStack {
+                                Text("\(viewModel.notCompleteTodos.count)개의 할 일")
+                                
+                                Spacer()
+                                
+                                // TODO: 정렬 기능 구현하기(추후 개발)
+                                Text("정렬")
+                                Image(systemName: SystemImage.alignArrow.name)
+                            }
+                            .padding()
+                        }
+                    }
+                    
                     // MARK: 완료 할일 리스트
                     if !viewModel.completeTodos.isEmpty {
                         Section {
@@ -56,7 +97,7 @@ struct TodoListView: View {
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
                                             
-                                            TodoInfo(todo: todo)
+                                            TodoInfo(todo: selectedTodo)
                                             
                                             HStack {
                                                 Text("메모")
@@ -87,11 +128,14 @@ struct TodoListView: View {
                                         .onAppear {
                                             print(todo.memo?.count ?? "No Memo")
                                         }
+                                        .onTapGesture {
+                                            selectedTodo = todo
+                                            isPresented.toggle()
+                                        }
                                     })
                             }
                             .onTapGesture {
                                 viewModel.fetchTodo()
-                                isPresented.toggle()
                             }
                         } header: {
                             HStack {
