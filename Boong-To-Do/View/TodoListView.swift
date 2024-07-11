@@ -25,7 +25,7 @@ struct TodoListView: View {
                         ForEach(viewModel.notCompleteTodos) { todo in
                             TodoListCell(todo: todo)
                                 .sheet(isPresented: $isPresented, content: {
-                                    TodoDetailView(todo: todo)
+                                    TodoDetailView(todo: todo, isPresented: $isPresented)
                                         .presentationDetents([.height(580)])
                                         .presentationDragIndicator(.visible)
                                 })
@@ -55,16 +55,33 @@ struct TodoListView: View {
                                 TodoListCell(todo: todo)
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
-                                            TodoDetailView(todo: todo)
-                                                .presentationDetents([.height(580)])
-                                                .presentationDragIndicator(.visible)
-                                                .onDisappear(perform: {
-                                                    viewModel.fetchTodo()
-                                                })
+                                            TodoInfo(todo: todo)
+                                            Text("메모")
+                                                .foregroundStyle(.secondary)
+                                            if let memo = todo.memo {
+                                                ForEach(memo, id: \.self) { item in
+                                                    Text(item.content)
+                                                        .frame(maxWidth: .infinity, maxHeight: 216, alignment: .topLeading)
+                                                        .padding()
+                                                        .multilineTextAlignment(.leading)
+                                                        .background(.textBox)
+                                                        .clipShape(.rect(cornerRadius: 12))
+                                                }
+                                            }
+                                        }
+                                        .padding()
+                                        .presentationDetents([.height(480)])
+                                        .presentationDragIndicator(.visible)
+                                        .onDisappear(perform: {
+                                            viewModel.fetchTodo()
+                                        })
+                                        .onAppear {
+                                            print(todo.memo?.count ?? "No Memo")
                                         }
                                     })
                             }
                             .onTapGesture {
+                                viewModel.fetchTodo()
                                 isPresented.toggle()
                             }
                         } header: {
@@ -125,9 +142,14 @@ struct TodoListCell: View {
     var body: some View {
         HStack {
             Button {
-                // 할일 완료 기능
-                viewModel.todoHasDone(todo: todo)
-                viewModel.fetchTodo()
+                if todo.finishedAt != nil {
+                    // 할일 완료 기능
+                    viewModel.todoHasDone(todo: todo)
+                    viewModel.fetchTodo()
+                } else {
+                    // 할일 완료 취소
+                    
+                }
             } label: {
                 if todo.finishedAt != nil {
                     Image(systemName: "checkmark.square.fill")
@@ -148,7 +170,7 @@ struct TodoListCell: View {
             Button(action: {
                 
             }, label: {
-                Label("\((todo.requiredTime) / 60)분", systemImage: SystemImage.clock.name)
+                Label("\((todo.requiredTime - todo.executedTime) / 60)분", systemImage: SystemImage.clock.name)
                     .font(.system(size: 10))
                     .foregroundStyle(.black)
             })

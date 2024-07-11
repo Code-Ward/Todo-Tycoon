@@ -26,11 +26,11 @@ struct Todo: Identifiable {
     var memo: [Memo]?
 }
 
-struct Memo {
+struct Memo: Hashable {
     let id = UUID()
     var content: String
     var createdAt: Date
-    var todoID: Todo
+    var todoID: UUID
 }
 
 struct DateInfo: Identifiable {

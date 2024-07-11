@@ -27,6 +27,19 @@ class TodoViewModel: ObservableObject {
         fetchTodo()
     }
     
+    /// 완료 시 메모를 할일에 저장하는 함수
+    func saveMemo(todo: UUID, memo: String) {
+        if var todos = model.todos {
+            if let index = model.todos?.firstIndex(where: { $0.id == todo}) {
+                if ((todos[index].memo?.isEmpty) != nil) { todos[index].memo?.append(Memo(content: memo, createdAt: Date.now, todoID: todo))}
+                else {
+                    todos[index].memo = [Memo(content: memo, createdAt: Date.now, todoID: todo)]
+                }
+            }
+            model.todos = todos
+        }
+    }
+    
     func changeTodoTitle(todo: Todo, title: String) {
         if var todos = model.todos {
             if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
@@ -77,15 +90,26 @@ class TodoViewModel: ObservableObject {
     /// - 완료시점: Date
     /// - 소요시간 : Int
     func todoHasDone(todo: Todo) {
+        if self.timer != nil { self.timer?.invalidate() }
         if var todos = model.todos {
             if let index = model.todos?.firstIndex(where: { $0.id == todo.id}) {
                 // 완료시점 저장
                 todos[index].finishedAt = Date.now
-                // 소요된 시간 저장 -> 함수화
+                // 소요된 시간 저장
                 todos[index].executedTime += self.excutedTime
             }
             model.todos = todos
         }
+    }
+    
+    func getTodoMemo(todo: Todo) -> [String] {
+        var memos: [String] = []
+        if let memo = todo.memo {
+            for item in memo {
+                memos.append(item.content)
+            }
+        }
+        return memos
     }
     
     /**할일 데이터 업데이트*/
@@ -197,9 +221,15 @@ class TodoViewModel: ObservableObject {
         })
     }
     
-    func stopTimer() {
+    func stopTimer(todo: UUID) {
         self.timer?.invalidate()
         print("Timer Stopped!")
+        if var todos = model.todos {
+            if let index = model.todos?.firstIndex(where: { $0.id == todo }) {
+                todos[index].executedTime += self.excutedTime
+            }
+            model.todos = todos
+        }
     }
     
     func saveExcutedTime(todo: UUID) {

@@ -11,7 +11,7 @@ import SwiftUI
 struct TodoInfo: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
-    @Binding var todo: Todo
+    @State var todo: Todo
     @State var isTitleEditing = false
     @State var isContentEditing = false
     @State var isRequiredTimeEditing = false
@@ -103,6 +103,7 @@ struct TodoInfo: View {
                 .frame(width: 140, height: 30)
                 .background(.gray.opacity(0.1))
                 .clipShape(.rect(cornerRadius: 4))
+                .padding(.bottom, 10)
                 .onTapGesture {
                     isRequiredTimeEditing.toggle()
                     durationSelectorPresented.toggle()
@@ -125,7 +126,7 @@ struct TodoInfo: View {
 }
 
 #Preview("TodoDetail") {
-    TodoInfo(todo: .constant(Todo(title: "TodoDetail", requiredTime: 1, createdAt: Date.now)))
+    TodoInfo(todo: Todo(title: "TodoDetail", requiredTime: 1, createdAt: Date.now))
 }
 
 

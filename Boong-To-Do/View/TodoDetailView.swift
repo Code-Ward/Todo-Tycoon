@@ -15,6 +15,7 @@ struct TodoDetailView: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
     @State var todo: Todo
+    @Binding var isPresented: Bool
     
     var body: some View {
         VStack {
@@ -24,9 +25,9 @@ struct TodoDetailView: View {
                 EllipsisMenu(action: { viewModel.deleteTodo(id: todo.id) })
             }
             
-            TodoInfo(todo: $todo)
+            TodoInfo(todo: todo)
             
-            TodoTimer(todo: todo)
+            TodoTimer(isPresented: $isPresented, todo: todo)
                 .onAppear {
                     viewModel.setTimeData(todo: todo.id)
                 }
@@ -37,5 +38,6 @@ struct TodoDetailView: View {
 }
 
 #Preview {
-    TodoDetailView(todo: Todo(title: "디테일뷰", requiredTime: 12, createdAt: Date.now))
+    TodoDetailView(todo: Todo(title: "디테일뷰", requiredTime: 12, createdAt: Date.now), isPresented: .constant(true))
+        .environmentObject(TodoViewModel())
 }

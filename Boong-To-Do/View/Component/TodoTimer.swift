@@ -10,12 +10,14 @@ import SwiftUI
 struct TodoTimer: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
+    @Binding var isPresented: Bool
     @State private var progress: Double = 0.0
     @State private var isStarted = false
     @State private var isRunning = false
     @State private var timeRemaining: TimeInterval = 1200 // 20분
     @State private var timer: Timer?
     @State var todo: Todo
+    @State var memoModalIsPresented = false
 
     var body: some View {
         VStack {
@@ -68,7 +70,7 @@ struct TodoTimer: View {
                     Button(action: {
                         if isRunning {
                             // 일시정지
-                            viewModel.stopTimer()
+                            viewModel.stopTimer(todo: todo.id)
                             isRunning = false
                         } else {
                             // 타이머 재개
@@ -81,8 +83,11 @@ struct TodoTimer: View {
 
                     Button {
                         // 완료
+                        isStarted = false
+                        isRunning = false
                         viewModel.todoHasDone(todo: todo)
                         // TODO: 완료 메모 화면으로
+                        memoModalIsPresented.toggle()
                     } label: {
                         TextButton(content: "할 일 완료")
                     }
@@ -93,10 +98,16 @@ struct TodoTimer: View {
         .onDisappear {
             timer?.invalidate()
         }
+        .sheet(isPresented: $memoModalIsPresented, content: {
+            CompletionMemo(todo: todo, memoIsPresented: $memoModalIsPresented)
+                .presentationDetents([.height(500)])
+                .presentationDragIndicator(.visible)
+        })
     }
 }
 
 #Preview("TodoTimer") {
-    TodoTimer( todo: Todo(title: "TodoTimer", requiredTime: 1, createdAt: Date()))
+    TodoTimer(isPresented: .constant(true), todo: Todo(title: "TodoTimer", requiredTime: 1, createdAt: Date()))
+        .environmentObject(TodoViewModel())
 }
 
