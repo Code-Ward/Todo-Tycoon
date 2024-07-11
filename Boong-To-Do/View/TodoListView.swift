@@ -98,6 +98,13 @@ struct TodoListView: View {
                                 TodoListCell(todo: todo)
                                     .sheet(isPresented: $completeModalIsPresented, content: {
                                         VStack {
+                                            HStack {
+                                                Spacer()
+                                                
+                                                EllipsisMenu {
+                                                    // TODO: 기능 추가 예정(미정)
+                                                }
+                                            }
                                             
                                             TodoInfo(todo: selectedTodo)
                                             
