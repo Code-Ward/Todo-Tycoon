@@ -55,11 +55,20 @@ struct TodoListView: View {
                                 TodoListCell(todo: todo)
                                     .sheet(isPresented: $isPresented, content: {
                                         VStack {
+                                            
                                             TodoInfo(todo: todo)
-                                            Text("메모")
-                                                .foregroundStyle(.secondary)
+                                            
+                                            HStack {
+                                                Text("메모")
+                                                    .bold()
+                                                    .foregroundStyle(.secondary)
+                                                
+                                                Spacer()
+                                            }
+                                            
                                             if let memo = todo.memo {
                                                 ForEach(memo, id: \.self) { item in
+                                                    
                                                     Text(item.content)
                                                         .frame(maxWidth: .infinity, maxHeight: 216, alignment: .topLeading)
                                                         .padding()

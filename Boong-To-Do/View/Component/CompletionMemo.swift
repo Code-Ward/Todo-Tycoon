@@ -14,6 +14,7 @@ struct CompletionMemo: View {
     @State var todo: Todo
     @State var inputMemo = ""
     @Binding var memoIsPresented: Bool
+    @Binding var timerIsPresented: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -34,7 +35,7 @@ struct CompletionMemo: View {
                 Button {
                     // 메모 저장 + 홈화면 이동
                     viewModel.saveMemo(todo: todo.id, memo: inputMemo)
-                    memoIsPresented = false
+                    timerIsPresented = false
                     viewModel.fetchTodo()
                 } label: {
                     Image(systemName: "xmark")
@@ -60,6 +61,6 @@ struct CompletionMemo: View {
 }
 
 #Preview {
-    CompletionMemo(todo: Todo(title: "CompletionMemo", requiredTime: 12, createdAt: Date()), memoIsPresented: .constant(true))
+    CompletionMemo(todo: Todo(title: "CompletionMemo", requiredTime: 12, createdAt: Date()), memoIsPresented: .constant(true), timerIsPresented: .constant(true))
         .environmentObject(TodoViewModel())
 }

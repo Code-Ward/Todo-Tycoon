@@ -99,7 +99,7 @@ struct TodoTimer: View {
             timer?.invalidate()
         }
         .sheet(isPresented: $memoModalIsPresented, content: {
-            CompletionMemo(todo: todo, memoIsPresented: $memoModalIsPresented)
+            CompletionMemo(todo: todo, memoIsPresented: $memoModalIsPresented, timerIsPresented: $isPresented)
                 .presentationDetents([.height(500)])
                 .presentationDragIndicator(.visible)
         })
