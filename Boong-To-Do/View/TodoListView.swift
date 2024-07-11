@@ -13,6 +13,7 @@ struct TodoListView: View {
     @EnvironmentObject var viewModel: TodoViewModel
     @State var isPresented = false
     @State var addTodoIsPresented = false
+    @State var completeModalIsPresented = false
     @State private var selectedTodo: Todo = Todo(title: "", requiredTime: 0, createdAt: Date.now)
     
     var body: some View {
@@ -95,7 +96,7 @@ struct TodoListView: View {
                         Section {
                             ForEach(viewModel.completeTodos) { todo in
                                 TodoListCell(todo: todo)
-                                    .sheet(isPresented: $isPresented, content: {
+                                    .sheet(isPresented: $completeModalIsPresented, content: {
                                         VStack {
                                             
                                             TodoInfo(todo: selectedTodo)
@@ -106,6 +107,7 @@ struct TodoListView: View {
                                                     .foregroundStyle(.secondary)
                                                 
                                                 Spacer()
+                                                
                                             }
                                             
                                             if let memo = todo.memo {
@@ -133,7 +135,7 @@ struct TodoListView: View {
                             }
                             .onTapGesture {
                                 viewModel.fetchTodo()
-                                isPresented.toggle()
+                                completeModalIsPresented.toggle()
                             }
                         } header: {
                             HStack {
