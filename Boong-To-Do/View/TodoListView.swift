@@ -193,13 +193,10 @@ struct TodoListCell: View {
     var body: some View {
         HStack {
             Button {
-                if todo.finishedAt != nil {
+                if todo.finishedAt == nil {
                     // 할일 완료 기능
                     viewModel.todoHasDone(todo: todo)
                     viewModel.fetchTodo()
-                } else {
-                    // 할일 완료 취소
-                    
                 }
             } label: {
                 if todo.finishedAt != nil {

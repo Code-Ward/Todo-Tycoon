@@ -100,6 +100,7 @@ class TodoViewModel: ObservableObject {
                 todos[index].executedTime += self.excutedTime
             }
             model.todos = todos
+            print("Todo Has Done!")
         }
     }
     
