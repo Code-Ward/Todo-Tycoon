@@ -23,9 +23,10 @@ struct TodoListView: View {
             ScrollView {
                 
                 VStack {
+                    
+                    // MARK: 진행중 할일 리스트
                     if !viewModel.processingTodos.isEmpty {
                         Section {
-                            // MARK: 진행중 할일 리스트
                             ForEach(viewModel.processingTodos) { todo in
                                 TodoListCell(todo: todo)
                                     .sheet(isPresented: $isPresented, content: {
@@ -128,14 +129,11 @@ struct TodoListView: View {
                                         .onAppear {
                                             print(todo.memo?.count ?? "No Memo")
                                         }
-                                        .onTapGesture {
-                                            selectedTodo = todo
-                                            isPresented.toggle()
-                                        }
                                     })
                             }
                             .onTapGesture {
                                 viewModel.fetchTodo()
+                                isPresented.toggle()
                             }
                         } header: {
                             HStack {

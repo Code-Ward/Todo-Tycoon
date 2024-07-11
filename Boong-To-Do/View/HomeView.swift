@@ -42,7 +42,7 @@ struct HomeView: View {
                 .scrollIndicators(.hidden)
                 .onAppear {
                 }
-            if viewModel.notCompleteTodos.isEmpty && viewModel.completeTodos.isEmpty {
+            if viewModel.notCompleteTodos.isEmpty && viewModel.completeTodos.isEmpty && viewModel.processingTodos.isEmpty{
                 EmptyListView()
             } else {
                 TodoListView()
