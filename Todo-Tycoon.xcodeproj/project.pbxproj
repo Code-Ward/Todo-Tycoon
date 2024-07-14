@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9131C8FF2C15FD5F006DE1F7 /* Boong_To_DoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C8FE2C15FD5F006DE1F7 /* Boong_To_DoApp.swift */; };
+		9131C8FF2C15FD5F006DE1F7 /* Todo-TycoonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C8FE2C15FD5F006DE1F7 /* Todo-TycoonApp.swift */; };
 		9131C9012C15FD5F006DE1F7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C9002C15FD5F006DE1F7 /* HomeView.swift */; };
 		9131C9032C15FD61006DE1F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9131C9022C15FD61006DE1F7 /* Assets.xcassets */; };
 		9131C9062C15FD61006DE1F7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9131C9052C15FD61006DE1F7 /* Preview Assets.xcassets */; };
-		9131C9102C15FD61006DE1F7 /* Boong_To_DoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C90F2C15FD61006DE1F7 /* Boong_To_DoTests.swift */; };
-		9131C91A2C15FD61006DE1F7 /* Boong_To_DoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C9192C15FD61006DE1F7 /* Boong_To_DoUITests.swift */; };
-		9131C91C2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C91B2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift */; };
+		9131C9102C15FD61006DE1F7 /* Todo_TycoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C90F2C15FD61006DE1F7 /* Todo_TycoonTests.swift */; };
+		9131C91A2C15FD61006DE1F7 /* Todo_TycoonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C9192C15FD61006DE1F7 /* Todo_TycoonUITests.swift */; };
+		9131C91C2C15FD61006DE1F7 /* Todo_TycoonUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C91B2C15FD61006DE1F7 /* Todo_TycoonUITestsLaunchTests.swift */; };
 		9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9131C9282C16007A006DE1F7 /* DateSelector.swift */; };
 		913874562C1888B000EC9C98 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874552C1888B000EC9C98 /* EmptyListView.swift */; };
 		913874582C18909F00EC9C98 /* AddTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913874572C18909F00EC9C98 /* AddTodoView.swift */; };
@@ -51,15 +51,15 @@
 
 /* Begin PBXFileReference section */
 		9131C8FB2C15FD5F006DE1F7 /* Todo-Tycoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Todo-Tycoon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9131C8FE2C15FD5F006DE1F7 /* Boong_To_DoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boong_To_DoApp.swift; sourceTree = "<group>"; };
+		9131C8FE2C15FD5F006DE1F7 /* Todo-TycoonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo-TycoonApp.swift"; sourceTree = "<group>"; };
 		9131C9002C15FD5F006DE1F7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9131C9022C15FD61006DE1F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9131C9052C15FD61006DE1F7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9131C90B2C15FD61006DE1F7 /* Todo-TycoonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Todo-TycoonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9131C90F2C15FD61006DE1F7 /* Boong_To_DoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boong_To_DoTests.swift; sourceTree = "<group>"; };
+		9131C90F2C15FD61006DE1F7 /* Todo_TycoonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_TycoonTests.swift; sourceTree = "<group>"; };
 		9131C9152C15FD61006DE1F7 /* Todo-TycoonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Todo-TycoonUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9131C9192C15FD61006DE1F7 /* Boong_To_DoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boong_To_DoUITests.swift; sourceTree = "<group>"; };
-		9131C91B2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boong_To_DoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9131C9192C15FD61006DE1F7 /* Todo_TycoonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_TycoonUITests.swift; sourceTree = "<group>"; };
+		9131C91B2C15FD61006DE1F7 /* Todo_TycoonUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_TycoonUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9131C9282C16007A006DE1F7 /* DateSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelector.swift; sourceTree = "<group>"; };
 		913874552C1888B000EC9C98 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		913874572C18909F00EC9C98 /* AddTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoView.swift; sourceTree = "<group>"; };
@@ -108,9 +108,9 @@
 			children = (
 				C3724EC92C1B1F310058C67C /* .gitignore */,
 				C3724ECB2C1B1F8D0058C67C /* .gitattributes */,
-				9131C8FD2C15FD5F006DE1F7 /* Boong-To-Do */,
-				9131C90E2C15FD61006DE1F7 /* Boong-To-DoTests */,
-				9131C9182C15FD61006DE1F7 /* Boong-To-DoUITests */,
+				9131C8FD2C15FD5F006DE1F7 /* Todo-Tycoon */,
+				9131C90E2C15FD61006DE1F7 /* Todo-TycoonTests */,
+				9131C9182C15FD61006DE1F7 /* Todo-TycoonUITests */,
 				9131C8FC2C15FD5F006DE1F7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,17 +125,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9131C8FD2C15FD5F006DE1F7 /* Boong-To-Do */ = {
+		9131C8FD2C15FD5F006DE1F7 /* Todo-Tycoon */ = {
 			isa = PBXGroup;
 			children = (
-				9131C8FE2C15FD5F006DE1F7 /* Boong_To_DoApp.swift */,
+				9131C8FE2C15FD5F006DE1F7 /* Todo-TycoonApp.swift */,
 				C36DDF732C25577A002D214A /* ViewModel */,
 				C334E0882C1C3AFA00492574 /* Model */,
 				C334E0862C1C3AD200492574 /* View */,
 				9131C9022C15FD61006DE1F7 /* Assets.xcassets */,
 				9131C9042C15FD61006DE1F7 /* Preview Content */,
 			);
-			path = "Boong-To-Do";
+			path = "Todo-Tycoon";
 			sourceTree = "<group>";
 		};
 		9131C9042C15FD61006DE1F7 /* Preview Content */ = {
@@ -146,21 +146,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		9131C90E2C15FD61006DE1F7 /* Boong-To-DoTests */ = {
+		9131C90E2C15FD61006DE1F7 /* Todo-TycoonTests */ = {
 			isa = PBXGroup;
 			children = (
-				9131C90F2C15FD61006DE1F7 /* Boong_To_DoTests.swift */,
+				9131C90F2C15FD61006DE1F7 /* Todo_TycoonTests.swift */,
 			);
-			path = "Boong-To-DoTests";
+			path = "Todo-TycoonTests";
 			sourceTree = "<group>";
 		};
-		9131C9182C15FD61006DE1F7 /* Boong-To-DoUITests */ = {
+		9131C9182C15FD61006DE1F7 /* Todo-TycoonUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9131C9192C15FD61006DE1F7 /* Boong_To_DoUITests.swift */,
-				9131C91B2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift */,
+				9131C9192C15FD61006DE1F7 /* Todo_TycoonUITests.swift */,
+				9131C91B2C15FD61006DE1F7 /* Todo_TycoonUITestsLaunchTests.swift */,
 			);
-			path = "Boong-To-DoUITests";
+			path = "Todo-TycoonUITests";
 			sourceTree = "<group>";
 		};
 		C334E0862C1C3AD200492574 /* View */ = {
@@ -351,7 +351,7 @@
 				9131C9292C16007A006DE1F7 /* DateSelector.swift in Sources */,
 				9131C9012C15FD5F006DE1F7 /* HomeView.swift in Sources */,
 				C330C1CF2C1C426000F951D7 /* TodoTimer.swift in Sources */,
-				9131C8FF2C15FD5F006DE1F7 /* Boong_To_DoApp.swift in Sources */,
+				9131C8FF2C15FD5F006DE1F7 /* Todo-TycoonApp.swift in Sources */,
 				C35262D12C2AD80F0074C0FB /* CompletionMemo.swift in Sources */,
 				917326062C314DE6001D4030 /* TodoModel.swift in Sources */,
 				C35262CD2C2ACABC0074C0FB /* SystemComponts.swift in Sources */,
@@ -362,7 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9131C9102C15FD61006DE1F7 /* Boong_To_DoTests.swift in Sources */,
+				9131C9102C15FD61006DE1F7 /* Todo_TycoonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,8 +370,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9131C91C2C15FD61006DE1F7 /* Boong_To_DoUITestsLaunchTests.swift in Sources */,
-				9131C91A2C15FD61006DE1F7 /* Boong_To_DoUITests.swift in Sources */,
+				9131C91C2C15FD61006DE1F7 /* Todo_TycoonUITestsLaunchTests.swift in Sources */,
+				9131C91A2C15FD61006DE1F7 /* Todo_TycoonUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,7 +517,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Boong-To-Do/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Todo-Tycoon/Preview Content\"";
 				DEVELOPMENT_TEAM = UF3R52LYV7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -531,7 +531,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Boong-To-Do";
+				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Todo-Tycoon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -546,7 +546,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Boong-To-Do/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Todo-Tycoon/Preview Content\"";
 				DEVELOPMENT_TEAM = UF3R52LYV7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -560,7 +560,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Boong-To-Do";
+				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Todo-Tycoon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -579,7 +579,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Boong-To-DoTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Todo-TycoonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -599,7 +599,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Boong-To-DoTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Todo-TycoonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -617,7 +617,7 @@
 				DEVELOPMENT_TEAM = UF3R52LYV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Boong-To-DoUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Todo-TycoonUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -635,7 +635,7 @@
 				DEVELOPMENT_TEAM = UF3R52LYV7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Boong-To-DoUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "HamSik22.Todo-TycoonUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Boong_To_DoApp: App {
+struct Todo_TycoonApp: App {
     
     @StateObject var viewModel = TodoViewModel()
     
