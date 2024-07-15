@@ -3,7 +3,7 @@ name: Test Report
 about: 테스트에 대한 설명과 기록을 서술하세요.
 title: "[Test]:"
 labels: test
-assignees: hamsik22
+assignees: ''
 
 ---
 
