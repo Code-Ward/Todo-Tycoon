@@ -2,8 +2,8 @@
 name: Bug Report
 about: 발생한 버그, 문제에 대해서 서술하세요.
 title: "[Bug]:"
-labels: bug
-assignees: ''
+labels: bug, test
+assignees: hamsik22
 
 ---
 
