@@ -86,7 +86,6 @@ struct TodoTimer: View {
                         isStarted = false
                         isRunning = false
                         viewModel.todoHasDone(todo: todo)
-                        // TODO: 완료 메모 화면으로
                         memoModalIsPresented.toggle()
                     } label: {
                         TextButton(content: "할 일 완료")

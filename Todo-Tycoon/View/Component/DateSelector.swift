@@ -73,4 +73,5 @@ struct DateSelector: View {
 
 #Preview {
     DateSelector()
+        .environmentObject(TodoViewModel())
 }

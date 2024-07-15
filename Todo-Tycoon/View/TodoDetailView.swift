@@ -19,7 +19,6 @@ struct TodoDetailView: View {
     
     var body: some View {
         VStack {
-        // TODO: 뷰에서 표시할 데이터를 전달해야함
             HStack {
                 Spacer()
                 EllipsisMenu(action: { viewModel.deleteTodo(id: todo.id) })

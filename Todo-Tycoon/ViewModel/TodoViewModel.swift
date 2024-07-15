@@ -80,7 +80,6 @@ class TodoViewModel: ObservableObject {
     }
     
     /**입력한 시간을 초 단위로 바꿔 저장하는 함수*/
-    // TODO: 단위 수정 필요
     func getRequiredTime(hours: Int, minutes: Int) -> Int{
         return ((hours * 3600) + (minutes * 60))
     }

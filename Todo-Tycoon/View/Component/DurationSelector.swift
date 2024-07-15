@@ -56,6 +56,7 @@ struct DurationSelector: View {
                 Text("시간")
                 
                 Picker("분 선택창", selection: $minuteSelection) {
+                    let minuteArray = Array(0..<60)
                     ForEach(minuteArray, id: \.self) { minute in
                         Text("\(minute)")
                     }
