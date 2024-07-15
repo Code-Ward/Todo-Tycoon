@@ -16,7 +16,6 @@ struct DurationSelector: View {
     @State var hourSelection = 0
     @State var minuteSelection = 0
     var hourArray = Array(0..<24)
-    var minuteArray = Array(0..<60)
     @Binding var todoRequiredTime: Int
     
     var body: some View {
@@ -56,13 +55,24 @@ struct DurationSelector: View {
                 Text("시간")
                 
                 Picker("분 선택창", selection: $minuteSelection) {
-                    let minuteArray = Array(0..<60)
-                    ForEach(minuteArray, id: \.self) { minute in
-                        Text("\(minute)")
+                    if hourSelection < 1 {
+                        let minuteArray = Array(1...59)
+                        ForEach(minuteArray, id: \.self) { minute in
+                            Text("\(minute)")
+                        }
+                        .onAppear(perform: {
+                            minuteSelection = 15
+                        })
                     }
-                    .onAppear(perform: {
-                        minuteSelection = 15
-                    })
+                    else {
+                        let minuteArray = Array(0...59)
+                        ForEach(minuteArray, id: \.self) { minute in
+                            Text("\(minute)")
+                        }
+                        .onAppear(perform: {
+                            minuteSelection = 15
+                        })
+                    }
                 }
                 .pickerStyle(.wheel)
                 
