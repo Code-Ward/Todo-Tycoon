@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+/**할일을 진행할 때, 사용되는 타이머 컴포넌트*/
 struct TaskTimer: View {
-    @State private var progress: Double = 0.0
-    @State private var isStarted = false
-    @State private var isRunning = false
-    @State private var timeRemaining: TimeInterval = 1200 // 20분
-    @State private var timer: Timer?
-
+    
+    // TODO: 데이터 연동하기
+    @State var progress = 0.6
+    @State var isStarted = false
+    @State var isRunning = false
+    
     var body: some View {
         VStack {
             ZStack {
@@ -24,9 +25,11 @@ struct TaskTimer: View {
                     .foregroundColor(.gray)
                 
                 VStack {
-                    Text(timeString(from: timeRemaining))
+                    // TODO: 데이터 연동하기
+                    Text("20:00")
                         .font(.system(size: 70))
                         .foregroundStyle(.opacity(0.5))
+                    // TODO: 데이터 연동하기
                     Text("20분")
                         .font(.system(size: 16))
                         .foregroundStyle(.opacity(0.5))
@@ -40,29 +43,34 @@ struct TaskTimer: View {
                     .foregroundColor(Color(.black))
                     .rotationEffect(Angle(degrees: 270.0))
             }
-
+            // TODO: 타이머 시작하면, 버튼 2개 생성(재생/정지, 할일 완료)
             if !isStarted {
                 Button(action: {
-                    isStarted = true
-                    startTimer()
+                    isStarted.toggle()
                 }, label: {
                     TextButton(content: "타이머 시작하기")
                         .padding(.vertical, 20)
                 })
             } else {
                 HStack {
-                    Button(action: {
-                        if isRunning {
-                            pauseTimer()
-                        } else {
-                            resumeTimer()
-                        }
-                    }, label: {
-                        SystemImageButton(imageName: isRunning ? SystemImage.pause.name : SystemImage.play.name, width: 12, height: 12)
-                    })
-
+                    // TODO: if Timer.invalid() 추가
+                    if isRunning {
+                        Button(action: {
+                            // TODO: 타이머 재실행
+                            isRunning.toggle()
+                        }, label: {
+                            SystemImageButton(imageName: SystemImage.play.name, width: 12, height: 12)
+                        })
+                    } else {
+                        Button(action: {
+                            // TODO: 타이머 정지
+                            isRunning.toggle()
+                        }, label: {
+                            SystemImageButton(imageName: SystemImage.pause.name, width: 12, height: 12)
+                        })
+                    }
                     Button {
-                        completeTask()
+                        
                     } label: {
                         TextButton(content: "할 일 완료")
                     }
@@ -70,45 +78,6 @@ struct TaskTimer: View {
                 .padding(.vertical, 20)
             }
         }
-        .onDisappear {
-            timer?.invalidate()
-        }
-    }
-
-    func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            if self.timeRemaining > 0 {
-                self.timeRemaining -= 1
-                self.progress = 1 - (self.timeRemaining / 1200)
-            } else {
-                self.timer?.invalidate()
-                self.isRunning = false
-            }
-        }
-        isRunning = true
-    }
-
-    func pauseTimer() {
-        timer?.invalidate()
-        isRunning = false
-    }
-
-    func resumeTimer() {
-        startTimer()
-    }
-
-    func completeTask() {
-        timer?.invalidate()
-        isStarted = false
-        isRunning = false
-        timeRemaining = 1200
-        progress = 0.0
-    }
-
-    func timeString(from timeInterval: TimeInterval) -> String {
-        let minutes = Int(timeInterval) / 60
-        let seconds = Int(timeInterval) % 60
-        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 
