@@ -61,15 +61,33 @@ struct AddTodoView: View {
                 })
                 // 터치 시, 데이터 저장 후 뷰 Dismiss
                 Button(action: {
-                    viewModel.addTodo(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
-                    addTodoModalViewIsPresented.toggle()
+                    if todoTitle.isEmpty || todoRequiredTime == 0 {
+                        // 필수값 비입력 시
+                        print("not save")
+                    } else {
+                        // 필수값 입력 시
+                        viewModel.addTodo(title: todoTitle, content: todoDesciptions, time: todoRequiredTime, createdAt: viewModel.selectedDate)
+                        addTodoModalViewIsPresented.toggle()
+                        print("saved")
+                    }
                 }, label: {
-                    Image(systemName: SystemImage.upArrow.name)
-                        .foregroundStyle(.white)
-                        .frame(width: 32, height: 32)
-                        .background(.black)
-                        .clipShape(Circle())
-                        .padding()
+                    if todoTitle.isEmpty || todoRequiredTime == 0 {
+                        // 필수값 비입력 시
+                        Image(systemName: SystemImage.upArrow.name)
+                            .foregroundStyle(.white)
+                            .frame(width: 32, height: 32)
+                            .background(.gray)
+                            .clipShape(Circle())
+                            .padding()
+                    } else {
+                        // 필수값 입력 시
+                        Image(systemName: SystemImage.upArrow.name)
+                            .foregroundStyle(.white)
+                            .frame(width: 32, height: 32)
+                            .background(.black)
+                            .clipShape(Circle())
+                            .padding()
+                    }
                 })
             }.sheet(isPresented: $durationSelectorIsPresented, content: {
                 DurationSelector(isPresented: $durationSelectorIsPresented, todoRequiredTime: $todoRequiredTime)
@@ -83,4 +101,5 @@ struct AddTodoView: View {
 
 #Preview {
     AddTodoView(todoTitle: "", todoDesciptions: "", addTodoModalViewIsPresented: .constant(false))
+        .environmentObject(TodoViewModel())
 }
