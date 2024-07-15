@@ -14,7 +14,7 @@ struct DurationSelector: View {
     // 상위 뷰 모달상태
     @Binding var isPresented: Bool
     @State var hourSelection = 0
-    @State var minuteSelection = 0
+    @State var minuteSelection = 15
     var hourArray = Array(0..<24)
     @Binding var todoRequiredTime: Int
     
@@ -49,6 +49,11 @@ struct DurationSelector: View {
                     ForEach(hourArray, id: \.self) { hour in
                         Text("\(hour)")
                     }
+                    .onAppear {
+                        if todoRequiredTime != 0 {
+                            hourSelection = todoRequiredTime / 3600
+                        }
+                    }
                 }
                 .pickerStyle(.wheel)
                 
@@ -61,7 +66,9 @@ struct DurationSelector: View {
                             Text("\(minute)")
                         }
                         .onAppear(perform: {
-                            minuteSelection = 15
+                            if todoRequiredTime != 0 {
+                                minuteSelection = ((todoRequiredTime % 3600) / 60)
+                            }
                         })
                     }
                     else {
@@ -70,7 +77,9 @@ struct DurationSelector: View {
                             Text("\(minute)")
                         }
                         .onAppear(perform: {
-                            minuteSelection = 15
+                            if todoRequiredTime != 0 {
+                                minuteSelection = ((todoRequiredTime % 3600) / 60)
+                            }
                         })
                     }
                 }
