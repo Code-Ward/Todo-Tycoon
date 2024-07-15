@@ -16,7 +16,7 @@ class TodoViewModel: ObservableObject {
     @Published var notCompleteTodos: [Todo] = []
     @Published var processingTodos: [Todo] = []
     @Published var dateInfo: [DateInfo] = []
-    @Published var selectedDate: Date = Date.now
+    @Published var selectedDate: Date = Calendar.current.startOfDay(for: Date())
     @Published var presentationTime: Int = 0
     var excutedTime: Int = 0
     
@@ -164,6 +164,15 @@ class TodoViewModel: ObservableObject {
         }
     }
     
+    /// DateSelector의 오늘 날짜를 표시하기 위한 함수
+    /// dateInfo의 날짜 중 오늘 날짜와 일치하는 정보를 selectedDate에 대입함
+    func getTodayInfo() {
+        if let todayInfo = dateInfo.first(where: { $0.date == selectedDate }) {
+            self.selectedDate = todayInfo.date
+        }
+        print("getTodayInfo")
+    }
+    
     /**주(날짜) 변경*/
     func goNextWeekDate(type: Bool) {
         let calendar = Calendar.current
@@ -210,7 +219,7 @@ class TodoViewModel: ObservableObject {
     ///입력받은 todo의 ID로 필요한 데이터를 model에서 찾고
     ///처음 세팅한 시간에서 기존에 실행한 시간을 뺀 값을
     ///presentationTime에 할당
-
+    
     // 타이머가 나타나면 호출될 함수
     func setTimeData(todo: UUID) {
         if let todoIndex = notCompleteTodos.firstIndex( where: { $0.id == todo }) {

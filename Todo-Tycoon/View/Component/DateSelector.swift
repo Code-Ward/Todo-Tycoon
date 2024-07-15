@@ -11,6 +11,7 @@ import SwiftUI
 struct DateSelector: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
+    @State var today = Date.now
     
     var body: some View {
         VStack {
@@ -57,13 +58,15 @@ struct DateSelector: View {
                     .foregroundStyle(viewModel.selectedDate == day.date ? Color.accentColor : Color.black)
                     .background(viewModel.selectedDate == day.date ? Color.gray.opacity(0.3) : Color.clear)
                     .clipShape(.rect(cornerRadius: 4))
-                    .id(day.id)
                     .onTapGesture {
                         withAnimation {
                             viewModel.selectedDate = day.date
                         }
                         viewModel.fetchTodo()
                     }
+                }
+                .onAppear {
+                    viewModel.getTodayInfo()
                 }
             }
             .padding(.horizontal)

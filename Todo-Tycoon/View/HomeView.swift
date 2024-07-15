@@ -40,8 +40,7 @@ struct HomeView: View {
             DateSelector()
                 .padding(.bottom, 10)
                 .scrollIndicators(.hidden)
-                .onAppear {
-                }
+            
             if viewModel.notCompleteTodos.isEmpty && viewModel.completeTodos.isEmpty && viewModel.processingTodos.isEmpty{
                 EmptyListView()
             } else {
