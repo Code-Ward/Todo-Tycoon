@@ -20,7 +20,6 @@ struct Todo: Identifiable {
     var content: String = ""
     var requiredTime: Int
     var executedTime: Int = 0
-    // TODO: 날짜 지정입력 하기
     var createdAt: Date
     var finishedAt: Date?
     var memo: [Memo]?

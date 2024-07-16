@@ -23,7 +23,6 @@ struct TextButton: View {
     var content: String = "Text"
     
     var body: some View {
-        // TODO: 타이머 시작하기
         Text("\(content)")
             .foregroundStyle(.white)
             .bold()
