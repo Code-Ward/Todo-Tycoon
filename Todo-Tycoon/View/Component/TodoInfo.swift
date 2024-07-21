@@ -76,13 +76,23 @@ struct TodoInfo: View {
                         Text("완료")
                     })
                 } else {
-                    Text("\(todo.content)")
-                        .font(.system(size: 12))
-                        .frame(minHeight: 50, alignment: .top)
-                        .lineLimit(8)
-                        .onTapGesture {
-                            isContentEditing.toggle()
-                        }
+                    if todo.content.isEmpty {
+                        Text("설명 없음")
+                            .font(.system(size: 12))
+                            .frame(minHeight: 50, alignment: .top)
+                            .lineLimit(8)
+                            .onTapGesture {
+                                isContentEditing.toggle()
+                            }
+                    } else {
+                        Text("\(todo.content)")
+                            .font(.system(size: 12))
+                            .frame(minHeight: 50, alignment: .top)
+                            .lineLimit(8)
+                            .onTapGesture {
+                                isContentEditing.toggle()
+                            }
+                    }
                     
                     Spacer()
                 }
