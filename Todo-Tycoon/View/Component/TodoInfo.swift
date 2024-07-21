@@ -36,7 +36,7 @@ struct TodoInfo: View {
                         viewModel.changeTodoTitle(todo: todo, title: titleEdit)
                         viewModel.fetchTodo()
                     }, label: {
-                        Text("Done")
+                        Text("완료")
                     })
                 } else {
                     Text("\(todo.title)")
@@ -64,7 +64,7 @@ struct TodoInfo: View {
                         isContentEditing.toggle()
                         viewModel.changeTodoContent(todo: todo, content: contentEdit)
                     }, label: {
-                        Text("Done")
+                        Text("완료")
                     })
                 } else {
                     Text("\(todo.content)")

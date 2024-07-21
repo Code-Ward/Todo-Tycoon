@@ -265,7 +265,7 @@ class TodoViewModel: ObservableObject {
     
     func formatMinute() -> String {
         let minute = abs(presentationTime) / 60
-        return String(format: "약 %02d분", minute)
+        return String(format: "%02d분", minute)
     }
     
     // 남은 시간 / 전체시간 = 남은 시간 비율
