@@ -32,9 +32,13 @@ struct TodoInfo: View {
                             todo.title = titleEdit
                         }
                     Button(action: {
-                        isTitleEditing.toggle()
-                        viewModel.changeTodoTitle(todo: todo, title: titleEdit)
-                        viewModel.fetchTodo()
+                        if titleEdit.isEmpty {
+                            isTitleEditing.toggle()
+                        } else {
+                            isTitleEditing.toggle()
+                            viewModel.changeTodoTitle(todo: todo, title: titleEdit)
+                            viewModel.fetchTodo()
+                        }
                     }, label: {
                         Text("완료")
                     })
@@ -55,14 +59,19 @@ struct TodoInfo: View {
             HStack {
                 if isContentEditing {
                     TextField(todo.content, text: $contentEdit)
-                        .font(.system(size: 16))
+                        .font(.system(size: 12))
                         .bold()
+                        .frame(minHeight: 50, alignment: .top)
                         .onChange(of: contentEdit) {
                             todo.content = contentEdit
                         }
                     Button(action: {
-                        isContentEditing.toggle()
-                        viewModel.changeTodoContent(todo: todo, content: contentEdit)
+                        if contentEdit.isEmpty {
+                            isContentEditing.toggle()
+                        } else {
+                            isContentEditing.toggle()
+                            viewModel.changeTodoContent(todo: todo, content: contentEdit)
+                        }
                     }, label: {
                         Text("완료")
                     })
