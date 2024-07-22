@@ -22,7 +22,7 @@ struct TodoInfo: View {
     
     var body: some View {
         VStack {
-            // 1번
+            // 제목
             HStack {
                 if isTitleEditing {
                     TextField(todo.title, text: $titleEdit)
@@ -55,7 +55,7 @@ struct TodoInfo: View {
             .frame(maxWidth: .infinity)
             .frame(height: 24)
             
-            // 2번
+            // 설명
             HStack {
                 if isContentEditing {
                     TextField(todo.content, text: $contentEdit)
@@ -103,7 +103,7 @@ struct TodoInfo: View {
                     .presentationDragIndicator(.visible)
             })
             
-            // 3-1번
+            // 예상소요시간
             HStack {
                 Label(
                     title: {
@@ -134,8 +134,9 @@ struct TodoInfo: View {
                     Button(action: {
                         isRequiredTimeEditing.toggle()
                         viewModel.changeTodoRequiredTime(todo: todo, requiredTime: requiredTime)
+                        viewModel.setTimeData(todo: todo.id)
                     }, label: {
-                        Text("Done")
+                        Text("완료")
                     })
                 }
                 
