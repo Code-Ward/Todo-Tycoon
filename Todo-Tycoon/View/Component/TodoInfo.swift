@@ -135,6 +135,7 @@ struct TodoInfo: View {
                         isRequiredTimeEditing.toggle()
                         viewModel.changeTodoRequiredTime(todo: todo, requiredTime: requiredTime)
                         viewModel.setTimeData(todo: todo.id)
+                        viewModel.fetchTodo()
                     }, label: {
                         Text("완료")
                     })
