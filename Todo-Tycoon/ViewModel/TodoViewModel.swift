@@ -9,7 +9,8 @@ import Foundation
 
 class TodoViewModel: ObservableObject {
     
-    private var model = UserInfo()
+    private var model: UserInfo = UserInfo()
+
     var today = Date()
     var timer: Timer?
     @Published var completeTodos: [Todo] = []
@@ -277,4 +278,16 @@ class TodoViewModel: ObservableObject {
         }
         return 0.0
     }
+    // MARK: - 데이터 관련
+    
+    func getObject() { 
+        if let model = UserDefaults.standard.getObject(forKey: "todo", as: UserInfo.self) {
+            self.model = model
+        }
+    }
+    
+    func setObject() {
+        UserDefaults.standard.setObject(model, forKey: "todo")
+    }
+    
 }
