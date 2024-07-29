@@ -29,9 +29,11 @@ struct TodoTimer: View {
                     .foregroundColor(.gray)
                 
                 VStack {
+                    // XX:XX
                     Text(viewModel.formatTime())
                         .font(.system(size: 70))
                         .foregroundStyle(.opacity(0.5))
+                    // XX분
                     Text(viewModel.formatMinute())
                         .font(.system(size: 16))
                         .foregroundStyle(.opacity(0.5))

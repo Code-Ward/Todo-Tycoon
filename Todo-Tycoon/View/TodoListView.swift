@@ -23,6 +23,17 @@ struct TodoListView: View {
             
             ScrollView {
                 
+                HStack {
+                    Text("\(viewModel.notCompleteTodos.count + viewModel.processingTodos.count)개의 할 일")
+                    
+                    Spacer()
+                    
+                    // TODO: 정렬 기능 구현하기(추후 개발)
+                    Text("정렬")
+                    Image(systemName: SystemImage.alignArrow.name)
+                }
+                .padding()
+                
                 VStack {
                     
                     // MARK: 진행중 할일 리스트
@@ -44,6 +55,7 @@ struct TodoListView: View {
                                         isPresented.toggle()
                                     }
                             }
+                            .padding(.bottom, 40)
                         } header: {
                             
                             HStack {
@@ -51,7 +63,7 @@ struct TodoListView: View {
                                 
                                 Spacer()
                             }
-                            .padding()
+                            .padding(.horizontal)
                         }
                     }
                     
@@ -76,18 +88,6 @@ struct TodoListView: View {
                                     }
                             }
                             
-                        } header: {
-                            
-                            HStack {
-                                Text("\(viewModel.notCompleteTodos.count)개의 할 일")
-                                
-                                Spacer()
-                                
-                                // TODO: 정렬 기능 구현하기(추후 개발)
-                                Text("정렬")
-                                Image(systemName: SystemImage.alignArrow.name)
-                            }
-                            .padding()
                         }
                     }
                     

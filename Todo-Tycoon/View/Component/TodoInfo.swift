@@ -22,7 +22,7 @@ struct TodoInfo: View {
     
     var body: some View {
         VStack {
-            // 1번
+            // 제목
             HStack {
                 if isTitleEditing {
                     TextField(todo.title, text: $titleEdit)
@@ -32,11 +32,15 @@ struct TodoInfo: View {
                             todo.title = titleEdit
                         }
                     Button(action: {
-                        isTitleEditing.toggle()
-                        viewModel.changeTodoTitle(todo: todo, title: titleEdit)
-                        viewModel.fetchTodo()
+                        if titleEdit.isEmpty {
+                            isTitleEditing.toggle()
+                        } else {
+                            isTitleEditing.toggle()
+                            viewModel.changeTodoTitle(todo: todo, title: titleEdit)
+                            viewModel.fetchTodo()
+                        }
                     }, label: {
-                        Text("Done")
+                        Text("완료")
                     })
                 } else {
                     Text("\(todo.title)")
@@ -51,29 +55,44 @@ struct TodoInfo: View {
             .frame(maxWidth: .infinity)
             .frame(height: 24)
             
-            // 2번
+            // 설명
             HStack {
                 if isContentEditing {
                     TextField(todo.content, text: $contentEdit)
-                        .font(.system(size: 16))
+                        .font(.system(size: 12))
                         .bold()
+                        .frame(minHeight: 50, alignment: .top)
                         .onChange(of: contentEdit) {
                             todo.content = contentEdit
                         }
                     Button(action: {
-                        isContentEditing.toggle()
-                        viewModel.changeTodoContent(todo: todo, content: contentEdit)
+                        if contentEdit.isEmpty {
+                            isContentEditing.toggle()
+                        } else {
+                            isContentEditing.toggle()
+                            viewModel.changeTodoContent(todo: todo, content: contentEdit)
+                        }
                     }, label: {
-                        Text("Done")
+                        Text("완료")
                     })
                 } else {
-                    Text("\(todo.content)")
-                        .font(.system(size: 12))
-                        .frame(minHeight: 50, alignment: .top)
-                        .lineLimit(8)
-                        .onTapGesture {
-                            isContentEditing.toggle()
-                        }
+                    if todo.content.isEmpty {
+                        Text("설명 없음")
+                            .font(.system(size: 12))
+                            .frame(minHeight: 50, alignment: .top)
+                            .lineLimit(8)
+                            .onTapGesture {
+                                isContentEditing.toggle()
+                            }
+                    } else {
+                        Text("\(todo.content)")
+                            .font(.system(size: 12))
+                            .frame(minHeight: 50, alignment: .top)
+                            .lineLimit(8)
+                            .onTapGesture {
+                                isContentEditing.toggle()
+                            }
+                    }
                     
                     Spacer()
                 }
@@ -84,7 +103,7 @@ struct TodoInfo: View {
                     .presentationDragIndicator(.visible)
             })
             
-            // 3-1번
+            // 예상소요시간
             HStack {
                 Label(
                     title: {
@@ -115,8 +134,10 @@ struct TodoInfo: View {
                     Button(action: {
                         isRequiredTimeEditing.toggle()
                         viewModel.changeTodoRequiredTime(todo: todo, requiredTime: requiredTime)
+                        viewModel.setTimeData(todo: todo.id)
+                        viewModel.fetchTodo()
                     }, label: {
-                        Text("Done")
+                        Text("완료")
                     })
                 }
                 
