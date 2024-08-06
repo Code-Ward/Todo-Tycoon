@@ -12,8 +12,6 @@ struct TodoInfo: View {
     
     @EnvironmentObject var viewModel: TodoViewModel
     @State var todo: Todo
-    @State var isTitleEditing = false
-    @State var isContentEditing = false
     @State var isRequiredTimeEditing = false
     @State var durationSelectorPresented = false
     @State var titleEdit = ""
@@ -22,7 +20,7 @@ struct TodoInfo: View {
     
     var body: some View {
         VStack {
-            // 제목
+            // MARK: 제목
             HStack {
                 if viewModel.isEditing {
                     TextField(todo.title, text: $titleEdit)
@@ -36,9 +34,6 @@ struct TodoInfo: View {
                     Text("\(todo.title)")
                         .font(.system(size: 16))
                         .bold()
-                        .onTapGesture {
-                            isTitleEditing.toggle()
-                        }
                     Spacer()
                 }
                     
@@ -47,17 +42,15 @@ struct TodoInfo: View {
             .frame(height: 24)
             .onChange(of: viewModel.isEditing) {
                 if titleEdit.isEmpty {
-                    isTitleEditing.toggle()
                     print("No Changes")
                 } else {
-                    isTitleEditing.toggle()
                     viewModel.changeTodoTitle(todo: todo, title: titleEdit)
                     viewModel.fetchTodo()
                     print("Edit Complete")
                 }
             }
             
-            // 설명
+            // MARK: 설명
             HStack {
                 if viewModel.isEditing {
                     TextField(todo.content, text: $contentEdit)
@@ -74,17 +67,11 @@ struct TodoInfo: View {
                             .font(.system(size: 12))
                             .frame(minHeight: 50, alignment: .top)
                             .lineLimit(8)
-                            .onTapGesture {
-                                isContentEditing.toggle()
-                            }
                     } else {
                         Text("\(todo.content)")
                             .font(.system(size: 12))
                             .frame(minHeight: 50, alignment: .top)
                             .lineLimit(8)
-                            .onTapGesture {
-                                isContentEditing.toggle()
-                            }
                     }
                     
                     Spacer()
@@ -97,16 +84,14 @@ struct TodoInfo: View {
             })
             .onChange(of: viewModel.isEditing) {
                 if contentEdit.isEmpty {
-                    isContentEditing.toggle()
                     print("No Changes")
                 } else {
-                    isContentEditing.toggle()
                     viewModel.changeTodoContent(todo: todo, content: contentEdit)
                     print("Edit Complete")
                 }
             }
             
-            // 예상소요시간
+            // MARK: 예상소요시간
             HStack {
                 Label(
                     title: {
