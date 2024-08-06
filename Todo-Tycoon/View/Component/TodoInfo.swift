@@ -24,24 +24,14 @@ struct TodoInfo: View {
         VStack {
             // 제목
             HStack {
-                if isTitleEditing {
+                if viewModel.isEditing {
                     TextField(todo.title, text: $titleEdit)
                         .font(.system(size: 16))
                         .bold()
                         .onChange(of: titleEdit) {
                             todo.title = titleEdit
                         }
-                    Button(action: {
-                        if titleEdit.isEmpty {
-                            isTitleEditing.toggle()
-                        } else {
-                            isTitleEditing.toggle()
-                            viewModel.changeTodoTitle(todo: todo, title: titleEdit)
-                            viewModel.fetchTodo()
-                        }
-                    }, label: {
-                        Text("완료")
-                    })
+                        
                 } else {
                     Text("\(todo.title)")
                         .font(.system(size: 16))
@@ -51,13 +41,25 @@ struct TodoInfo: View {
                         }
                     Spacer()
                 }
+                    
             }
             .frame(maxWidth: .infinity)
             .frame(height: 24)
+            .onChange(of: viewModel.isEditing) {
+                if titleEdit.isEmpty {
+                    isTitleEditing.toggle()
+                    print("No Changes")
+                } else {
+                    isTitleEditing.toggle()
+                    viewModel.changeTodoTitle(todo: todo, title: titleEdit)
+                    viewModel.fetchTodo()
+                    print("Edit Complete")
+                }
+            }
             
             // 설명
             HStack {
-                if isContentEditing {
+                if viewModel.isEditing {
                     TextField(todo.content, text: $contentEdit)
                         .font(.system(size: 12))
                         .bold()
@@ -65,16 +67,7 @@ struct TodoInfo: View {
                         .onChange(of: contentEdit) {
                             todo.content = contentEdit
                         }
-                    Button(action: {
-                        if contentEdit.isEmpty {
-                            isContentEditing.toggle()
-                        } else {
-                            isContentEditing.toggle()
-                            viewModel.changeTodoContent(todo: todo, content: contentEdit)
-                        }
-                    }, label: {
-                        Text("완료")
-                    })
+                        
                 } else {
                     if todo.content.isEmpty {
                         Text("설명 없음")
@@ -102,6 +95,16 @@ struct TodoInfo: View {
                     .presentationDetents([.height(368)])
                     .presentationDragIndicator(.visible)
             })
+            .onChange(of: viewModel.isEditing) {
+                if contentEdit.isEmpty {
+                    isContentEditing.toggle()
+                    print("No Changes")
+                } else {
+                    isContentEditing.toggle()
+                    viewModel.changeTodoContent(todo: todo, content: contentEdit)
+                    print("Edit Complete")
+                }
+            }
             
             // 예상소요시간
             HStack {
@@ -138,6 +141,12 @@ struct TodoInfo: View {
                         viewModel.fetchTodo()
                     }, label: {
                         Text("완료")
+                            .foregroundColor(.white)
+                            .font(.system(size: 16))
+                            .bold()
+                            .frame(width: 50, height: 30)
+                            .background(.black)
+                            .clipShape(.rect(cornerRadius: 8))
                     })
                 }
                 
@@ -148,6 +157,7 @@ struct TodoInfo: View {
 
 #Preview("TodoDetail") {
     TodoInfo(todo: Todo(title: "TodoDetail", requiredTime: 1, createdAt: Date.now))
+        .environmentObject(TodoViewModel())
 }
 
 

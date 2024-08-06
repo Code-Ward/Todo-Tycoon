@@ -82,7 +82,7 @@ struct DurationSelector: View {
                 isPresented.toggle()
                 todoRequiredTime = viewModel.getRequiredTime(hours: hourSelection, minutes: minuteSelection)
             }, label: {
-                Text("추가하러 가기")
+                Text("적용하기")
                     .foregroundColor(.white)
                     .font(.system(size: 16))
                     .bold()
