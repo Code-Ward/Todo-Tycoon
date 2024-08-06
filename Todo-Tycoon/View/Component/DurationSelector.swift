@@ -22,19 +22,7 @@ struct DurationSelector: View {
         VStack {
             // X를 누르면 모달 Dismiss
             // 데이터를 저장
-            Button(action: {
-                isPresented.toggle()
-                todoRequiredTime = viewModel.getRequiredTime(hours: hourSelection, minutes: minuteSelection)
-            }, label: {
-                HStack {
-                    Spacer()
-                    
-                    Image(systemName: SystemImage.xMark.name)
-                        .padding(.horizontal)
-                        .foregroundStyle(.black)
-                        .bold()
-                }
-            })
+            
             
             HStack {
                 Text("예상 소요 시간")
@@ -87,7 +75,24 @@ struct DurationSelector: View {
                 
                 Text("분")
             }
+            
             .padding()
+            
+            Button(action: {
+                isPresented.toggle()
+                todoRequiredTime = viewModel.getRequiredTime(hours: hourSelection, minutes: minuteSelection)
+            }, label: {
+                Text("추가하러 가기")
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+                    .bold()
+                    .frame(height: 56)
+                    .frame(maxWidth: .infinity)
+                    .background(.black)
+                    .clipShape(.rect(cornerRadius: 8))
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+            })
         }
     }
 }
