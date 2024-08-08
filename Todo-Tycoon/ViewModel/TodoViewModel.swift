@@ -13,6 +13,7 @@ class TodoViewModel: ObservableObject {
 
     var today = Date()
     var timer: Timer?
+    @Published var isEditing = false
     @Published var completeTodos: [Todo] = []
     @Published var notCompleteTodos: [Todo] = []
     @Published var processingTodos: [Todo] = []

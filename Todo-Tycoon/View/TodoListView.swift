@@ -101,8 +101,10 @@ struct TodoListView: View {
                                             HStack {
                                                 Spacer()
                                                 
-                                                EllipsisMenu {
+                                                Button {
                                                     // TODO: 기능 추가 예정(미정)
+                                                } label: {
+                                                    EllipsisMenu()
                                                 }
                                             }
                                             
